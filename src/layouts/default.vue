@@ -1,10 +1,24 @@
 <template>
-  <router-view />
+  <div>
+    <loader />
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
+import Loader from "@/components/Loader.vue";
+
 export default Vue.extend({
-    name: "DefaultLayout"
-})
+  name: "DefaultLayout",
+  components: {
+    Loader,
+  },
+  data() {
+    return {
+      loaderShown: true,
+    };
+  },
+  methods: {},
+});
 </script>
