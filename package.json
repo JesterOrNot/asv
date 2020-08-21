@@ -7,12 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@vottuscode/confstructor": "^1.0.0",
-    "bootstrap-vue": "^2.1.0",
-    "colorful-console-logger": "^0.0.1",
     "core-js": "^3.6.5",
     "postcss-loader": "^3.0.0",
-    "tailwindcss": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
@@ -24,7 +20,7 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "5.0.0-alpha1",
     "mutationobserver-shim": "^0.3.3",
     "popper.js": "^1.16.0",
     "portal-vue": "^2.1.6",
