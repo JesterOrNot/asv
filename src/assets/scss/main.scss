@@ -10,26 +10,3 @@ body {
 // /themes/frontend/img/homepage/bg.jpg
 
 $primary: #004987;
-
-@import "~bulma/bulma";
-
-.hero.is-main {
-  background: url(http://asvgroup.cz/themes/frontend/img/homepage/bg.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: all 6s;
-  animation: banner 6s ease-in-out infinite;
-
-  & > .hero-inner {
-    min-height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-
-    & > .hero-body {
-      display: flex;
-      align-items: flex-end;
-
-      margin-bottom: 200px;
-    }
-  }
-}

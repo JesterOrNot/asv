@@ -14,11 +14,5 @@ export default Vue.extend({
   components: {
     Loader,
   },
-  data() {
-    return {
-      loaderShown: true,
-    };
-  },
-  methods: {},
 });
 </script>
