@@ -23,6 +23,17 @@ export const Logo: React.FC<LogoProps> = (props) => {
   )
 
   useEffect(() => {
+    const primaryColor = {
+      primary: "#004987",
+      secondary: "#ffffff",
+      third: "#a7a9ac",
+    }
+    const secondaryColor = {
+      primary: "#ffffff",
+      secondary: "#ffffff",
+      third: "#a7a9ac",
+    }
+
     setColors(props.color === "secondary" ? secondaryColor : primaryColor)
   }, [props.color])
 

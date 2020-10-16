@@ -5,9 +5,11 @@ import Navbar from "../components/layout/Navbar"
 export const DefaultLayout: React.FC = ({ children: View }) => {
   return (
     <>
-      <Navbar />
-      <div className="page-content">{View}</div>
-      <Footer />
+      <Navbar isParallax={false} />
+      <div className="page-content">
+        <div className="view">{View}</div>
+        <Footer />
+      </div>
     </>
   )
 }

@@ -11,6 +11,12 @@ $nav-fixed-bg: $primary;
   z-index: 3;
   transition: all 0.45s cubic-bezier(0.87, 0, 0.13, 1);
 
+  .navbar-menu.is-active {
+    .navbar-item {
+      color: #4a4a4a !important;
+    }
+  }
+
   & > .container.is-fluid {
     img,
     svg {

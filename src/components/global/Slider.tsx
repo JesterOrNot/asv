@@ -15,17 +15,15 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
   const [image, setImage] = useState(images[0])
   const [index, setIndex] = useState(0)
 
-  //   const imageAnimation
-
-  const changeImage = () =>
-    setIndex(index !== images.length - 1 ? index + 1 : 0)
-
   useEffect(() => {
+    const changeImage = () =>
+      setIndex(index !== images.length - 1 ? index + 1 : 0)
+
     setImage(images[index])
     const timeout = setTimeout(changeImage, 3000)
 
     return () => clearTimeout(timeout)
-  }, [index])
+  }, [index, images])
 
   const transitions = useTransition(image, (item) => item.src, {
     from: { opacity: 0 },

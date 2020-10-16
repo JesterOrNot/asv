@@ -5,13 +5,14 @@ import {
   RouteProps,
   Switch,
 } from "react-router-dom"
+import ContactPage from "../pages/contact"
 import IndexPage from "../pages/index"
 import WhatDoWeDo from "../pages/what-do-we-do"
 
 const routes: RouteProps[] = [
   {
-    path: "/what-do-we-do",
-    component: WhatDoWeDo,
+    path: "/contact",
+    component: ContactPage,
   },
   {
     path: "/",

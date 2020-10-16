@@ -2,23 +2,83 @@ import React, { useEffect, useState } from "react"
 import Logo, { LogoProps } from "../global/Logo"
 import { debounce } from "lodash"
 import { Link } from "react-router-dom"
+import { Parallax } from "react-spring/renderprops-addons"
 
-export default () => {
+export type NavbarProps = {
+  isParallax: boolean
+  parallax?: () => Parallax | null
+}
+
+export const RegularNavbarItems: React.FC = () => (
+  <div className="navbar-item">
+    <Link className="navbar-item" to="/">
+      Domov
+    </Link>
+    <Link to="/projects" className="navbar-item">
+      Projekty
+    </Link>
+    <Link to="/contact" className="navbar-item">
+      Kontakt
+    </Link>
+  </div>
+)
+
+export const ParallaxNavbarItems: React.FC<{
+  parallax?: Parallax | null
+  handleFixed: (value: boolean) => any
+}> = ({ parallax, handleFixed }) => {
+  const scroll = (num: number) => parallax?.scrollTo(num)
+
+  return (
+    <div className="navbar-item">
+      <a onClick={() => scroll(0)} className="navbar-item">
+        Domov
+      </a>
+      <a onClick={() => scroll(1)} className="navbar-item">
+        O nás
+      </a>
+      <a onClick={() => scroll(2)} className="navbar-item">
+        Náš tým
+      </a>
+      <a onClick={() => scroll(3)} className="navbar-item">
+        Projekty
+      </a>
+      <Link to="/contact" className="navbar-item">
+        Kontakt
+      </Link>
+    </div>
+  )
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ isParallax, parallax }) => {
   const [fixed, setFixed] = useState(false)
   const [logoColor, setLogoColor] = useState(
     (fixed ? "secondary" : "primary") as LogoProps["color"]
   )
+  const [active, setActive] = useState(false)
 
-  const handleScroll = () => setFixed(window.scrollY > 100)
+  const handleScroll = (el: Window | HTMLDivElement) =>
+    setFixed(el instanceof Window ? el.scrollY > 100 : el.scrollTop > 100)
 
   useEffect(() => {
     setLogoColor(fixed ? "secondary" : "primary")
   }, [fixed])
 
   useEffect(() => {
-    window.addEventListener("scroll", debounce(handleScroll))
+    const eventTarget = isParallax
+      ? (document.getElementsByClassName(
+          "parallax-wrapper"
+        )[0] as HTMLDivElement)
+      : window
+    if (!eventTarget) return
 
-    return () => window.removeEventListener("scroll", () => handleScroll)
+    console.log(eventTarget)
+
+    const scroll = () => handleScroll(eventTarget)
+
+    eventTarget.addEventListener("scroll", debounce(scroll))
+
+    return () => eventTarget.removeEventListener("scroll", () => handleScroll)
   })
 
   //   return (
@@ -50,25 +110,34 @@ export default () => {
             <Logo color={logoColor} width="150" height="56" />
           </Link>
 
-          <a role="button" className="navbar-burger burger">
+          <a
+            className={`navbar-burger burger ${active ? "is-active" : ""}`}
+            onClick={() => setActive(!active)}
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
 
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div
+          id="navbarBasicExample"
+          className={`navbar-menu ${active ? "is-active" : ""}`}
+        >
           <div className="navbar-end">
-            <div className="navbar-item">
-              <Link className="navbar-item" to="/what-do-we-do">
-                Co děláme
-              </Link>
-              <a className="navbar-item">Portfolio</a>
-              <a className="navbar-item">Kontakt</a>
-            </div>
+            {isParallax ? (
+              <ParallaxNavbarItems
+                parallax={parallax ? parallax() : null}
+                handleFixed={(val) => setFixed(val)}
+              />
+            ) : (
+              <RegularNavbarItems />
+            )}
           </div>
         </div>
       </div>
     </nav>
   )
 }
+
+export default Navbar
