@@ -6,10 +6,8 @@ export const DefaultLayout: React.FC = ({ children: View }) => {
   return (
     <>
       <Navbar isParallax={false} />
-      <div className="page-content">
-        <div className="view">{View}</div>
-        <Footer />
-      </div>
+      <div className="page-content">{View}</div>
+      <Footer />
     </>
   )
 }

@@ -18,13 +18,14 @@ html {
 }
 
 .page-content {
-  position: absolute;
+  display: block;
   margin-top: 4.5rem;
   width: 100vw;
-
-  .view {
-    min-height: calc(100vh - 4rem);
-  }
+  min-height: 100vh;
+}
+.main-space {
+  margin-left: 32px;
+  margin-right: 32px;
 }
 
 .full-w {
@@ -98,16 +99,42 @@ html {
 .asv-footer {
   .content {
     h1 {
-      font-size: 4rem;
+      font-size: 2rem;
       font-weight: 400;
       color: $primary;
       margin-bottom: 20px;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+
+      @include desktop {
+        font-size: 4rem;
+      }
+
+      @include widescreen {
+        font-size: 5rem;
+      }
     }
 
     h2 {
       margin-top: 0;
       font-weight: 300;
       color: #fff;
+
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
+
+      @include desktop {
+        font-size: 2rem;
+      }
+
+      @include widescreen {
+        font-size: 3rem;
+      }
     }
   }
 }
@@ -144,5 +171,10 @@ html {
     h1 {
       font-size: 2rem;
     }
+  }
+
+  .project-image {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

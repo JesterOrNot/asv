@@ -5,6 +5,7 @@ $nav-bg: #f0f0f0;
 $nav-fixed-bg: $primary;
 
 .asv_navbar {
+  top: 0;
   position: absolute !important;
   width: 100vw;
   background: $nav-bg;

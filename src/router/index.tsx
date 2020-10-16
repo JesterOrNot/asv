@@ -5,18 +5,28 @@ import {
   RouteProps,
   Switch,
 } from "react-router-dom"
-import ContactPage from "../pages/contact"
-import IndexPage from "../pages/index"
-import WhatDoWeDo from "../pages/what-do-we-do"
+
+import Contact from "../pages/contact"
+import Index from "../pages/index"
+import Project from "../pages/project"
+import Projects from "../pages/projects"
 
 const routes: RouteProps[] = [
   {
     path: "/contact",
-    component: ContactPage,
+    component: Contact,
+  },
+  {
+    path: "/projects",
+    component: Projects,
+  },
+  {
+    path: "/project/:slug",
+    component: Project,
   },
   {
     path: "/",
-    component: IndexPage,
+    component: Index,
   },
 ]
 

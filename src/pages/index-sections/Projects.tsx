@@ -7,6 +7,7 @@ import { Container } from "../../components/flex/Container"
 import mvc from "../../assets/img/projects/mvc.jpg"
 import iceland from "../../assets/img/projects/iceland.jpg"
 import vl from "../../assets/img/projects/vl.jpg"
+import { Card } from "../../components/global/Card"
 
 export const Projects: React.FC = () => (
   <Container>
@@ -15,40 +16,25 @@ export const Projects: React.FC = () => (
     </div>
     <ColumnWrapper>
       <Column size="is-one-third">
-        <div className="card is-project">
-          <div className="card-image">
-            <figure className="image is-16by9">
-              <img src={iceland} alt="Iceland" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <h1>A</h1>
-          </div>
-        </div>
+        <Card
+          content={<h1>Projekt A</h1>}
+          image={{ src: iceland, alt: "A" }}
+          isProject={true}
+        />
       </Column>
       <Column size="is-one-third">
-        <div className="card is-project">
-          <div className="card-image">
-            <figure className="image is-16by9">
-              <img src={mvc} alt="Iceland" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <h1>B</h1>
-          </div>
-        </div>
+        <Card
+          content={<h1>Projekt B</h1>}
+          image={{ src: mvc, alt: "B" }}
+          isProject={true}
+        />
       </Column>
       <Column size="is-one-third">
-        <div className="card is-project">
-          <div className="card-image">
-            <figure className="image is-16by9">
-              <img src={vl} alt="Iceland" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <h1>C</h1>
-          </div>
-        </div>
+        <Card
+          content={<h1>Projekt C</h1>}
+          image={{ src: vl, alt: "C" }}
+          isProject={true}
+        />
       </Column>
     </ColumnWrapper>
     <div className="content mt-6 has-text-centered">

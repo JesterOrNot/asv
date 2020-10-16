@@ -5,5 +5,7 @@ export type ContainerProps = {
 }
 
 export const Container: React.FC<ContainerProps> = ({ children, fluid }) => (
-  <div className={`container ${fluid ? "is-fluid" : ""}`}>{children}</div>
+  <div className={`container main-space ${fluid ? "is-fluid" : ""}`}>
+    {children}
+  </div>
 )
