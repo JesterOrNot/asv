@@ -1,8 +1,18 @@
 import React from "react"
-import { BrowserRouter as Router, Route, RouteProps } from "react-router-dom"
+import {
+  BrowserRouter as Router,
+  Route,
+  RouteProps,
+  Switch,
+} from "react-router-dom"
 import IndexPage from "../pages/index"
+import WhatDoWeDo from "../pages/what-do-we-do"
 
-const routes: object[] = [
+const routes: RouteProps[] = [
+  {
+    path: "/what-do-we-do",
+    component: WhatDoWeDo,
+  },
   {
     path: "/",
     component: IndexPage,
@@ -11,8 +21,10 @@ const routes: object[] = [
 
 export default () => (
   <Router>
-    {routes.map((route) => (
-      <Route {...route} key={Math.random()} />
-    ))}
+    <Switch>
+      {routes.map((route, key) => (
+        <Route {...route} key={key} />
+      ))}
+    </Switch>
   </Router>
 )

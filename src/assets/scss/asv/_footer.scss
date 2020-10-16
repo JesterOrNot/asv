@@ -1,0 +1,26 @@
+.asv_footer {
+  background: #004987;
+  color: #fff;
+  height: 4rem;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+
+  & > .inner {
+    margin-left: 20px;
+  }
+
+  @media (min-width: 800px) {
+    &.index {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: calc(100vw / 3);
+      border-top-left-radius: 6rem;
+
+      & > .inner {
+        margin-left: 6rem;
+      }
+    }
+  }
+}

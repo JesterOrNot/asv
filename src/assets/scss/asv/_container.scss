@@ -1,0 +1,18 @@
+.container {
+  &.is-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    @media (min-width: 800px) {
+      & {
+        padding-left: 100px !important;
+        padding-right: 100px !important;
+        &.fluider {
+          // Fluider adds extra 20px to round with the navbar
+          padding-left: 120px !important;
+          padding-right: 120px !important;
+        }
+      }
+    }
+  }
+}

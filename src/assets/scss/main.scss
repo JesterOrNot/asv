@@ -1,3 +1,58 @@
+$primary: #004987;
+
 @import "./asv/slider";
 @import "./asv/navbar";
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./asv/footer";
+@import "./asv/container";
+
+@import "~bulma/bulma.sass";
+
+::-webkit-scrollbar {
+  width: 0;
+  display: none;
+  opacity: 0;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+.page-content {
+  position: absolute;
+  margin-top: 6rem + 2rem; // 6 rem account for the absolute navbar
+}
+
+.full-w {
+  width: 100vw !important;
+}
+
+#about-us {
+  .content {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 2rem;
+    border-radius: 10px;
+
+    h1 {
+      font-size: 4rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.about-us.bg {
+  position: absolute;
+  top: 0;
+  height: calc(100vh + 4rem);
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: -4rem;
+  background-size: cover;
+  filter: blur(8px);
+}

@@ -1,6 +1,44 @@
+$nav-height: 90px;
+$nav-fixed-height: 80px;
+
+$nav-bg: #f0f0f0;
+$nav-fixed-bg: $primary;
+
 .asv_navbar {
-  position: absolute;
-  height: 90px;
+  position: absolute !important;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.25);
+  background: $nav-bg;
+  z-index: 3;
+  transition: all 0.45s cubic-bezier(0.87, 0, 0.13, 1);
+
+  & > .container.is-fluid {
+    img,
+    svg {
+      max-height: $nav-height - 25px;
+      transition: all 0.45s cubic-bezier(0.87, 0, 0.13, 1);
+
+      path {
+        transition: all 0.45s cubic-bezier(0.87, 0, 0.13, 1);
+      }
+    }
+
+    .navbar-brand {
+      align-items: center;
+    }
+
+    .navbar-item:hover {
+      color: $primary;
+    }
+  }
+
+  &.fixed {
+    position: fixed !important;
+    background: $primary;
+    color: #fff;
+
+    .navbar-item,
+    .navbar-burger {
+      color: #fff;
+    }
+  }
 }

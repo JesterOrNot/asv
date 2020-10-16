@@ -1,12 +1,12 @@
 import React from "react"
-import { Image } from "../app/hooks/useSlider"
-import Slider from "../components/Slider"
+import Slider, { Image } from "../components/global/Slider"
 import Navbar from "../components/layout/Navbar"
 
 import mvc from "../assets/img/projects/mvc.jpg"
 import iceland from "../assets/img/projects/iceland.jpg"
 import vl from "../assets/img/projects/vl.jpg"
-
+import Footer from "../components/layout/Footer"
+import { Link } from "react-router-dom"
 const images: Image[] = [
   {
     src: mvc,
@@ -26,5 +26,6 @@ export default () => (
   <div>
     <Navbar />
     <Slider images={images} />
+    <Footer index={true} />
   </div>
 )
