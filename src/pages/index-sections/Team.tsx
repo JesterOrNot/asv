@@ -7,7 +7,7 @@ export const Team: React.FC = () => (
   <div className="container">
     <div className="content is-landing-section has-text-centered">
       <div className="mb-6">
-        <h1>Náš tým</h1>
+        <h1 className="has-text-white">Náš tým</h1>
       </div>
 
       <ColumnWrapper>

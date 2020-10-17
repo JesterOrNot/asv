@@ -5,6 +5,7 @@ import Navbar from "../components/layout/Navbar"
 import mvc from "../assets/img/projects/mvc.jpg"
 import iceland from "../assets/img/projects/iceland.jpg"
 import vl from "../assets/img/projects/vl.jpg"
+import teamBg from "../assets/img/projects/1.jpg"
 
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons"
 import ParallaxFooter from "../components/layout/ParallaxFooter"
@@ -66,6 +67,24 @@ export default () => {
         >
           <About />
         </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={2}
+          speed={0.8}
+          // @ts-ignore
+          style={{
+            background: `url(http://asvgroup.cz/themes/frontend/img/homepage/bg.jpg)`,
+          }}
+          // @ts-ignore
+          className="full-bg"
+        />
+
+        <ParallaxLayer
+          offset={2}
+          speed={0.8}
+          // @ts-ignore
+          style={{ background: `rgba(0, 73, 135, 0.3)` }}
+        />
 
         {/* Layer 2 - Our Team */}
         <ParallaxLayer

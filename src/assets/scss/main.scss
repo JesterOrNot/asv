@@ -178,3 +178,12 @@ html {
     margin-right: 0;
   }
 }
+
+.full-bg {
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.blur-4 {
+  filter: blur(4px);
+}

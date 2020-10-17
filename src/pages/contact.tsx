@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { Mail, Map, PhoneCall } from "react-feather"
-import { Column } from "../components/flex/Column"
+import { Mail, Map as MapIcon, PhoneCall } from "react-feather"
 import { Container } from "../components/flex/Container"
+import { Map } from "../components/global/Map"
 import DefaultLayout from "../layouts/DefaultLayout"
-
-import { HashLoader } from "react-spinners"
 
 export const ContactPage: React.FC = () => {
   const phone = "+420 224 267 592"
@@ -42,7 +40,7 @@ export const ContactPage: React.FC = () => {
                   </div>
 
                   <div className="info bigger mb-6">
-                    <Map size="4rem" />
+                    <MapIcon size="4rem" />
                     {address}
                   </div>
 
@@ -63,18 +61,11 @@ export const ContactPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <iframe
-                  title="Mapy Google"
-                  onLoad={() => setMapLoaded(true)}
-                  style={{ height: "100%", width: "100%" }}
-                  src="https://maps.google.com/maps?q=%C5%A1t%C4%9Bp%C3%A1nsk%C3%A1%202071%2F37&t=&z=19&ie=UTF8&iwloc=&output=embed"
-                ></iframe>
-
-                {!mapLoaded && (
-                  <div style={{ position: "absolute" }}>
-                    <HashLoader color="#004987" size="100" />
-                  </div>
-                )}
+                <Map
+                  height="100%"
+                  width="100%"
+                  url="https://maps.google.com/maps?q=%C5%A1t%C4%9Bp%C3%A1nsk%C3%A1%202071%2F37&t=&z=19&ie=UTF8&iwloc=&output=embed"
+                />
               </div>
             </div>
           </div>
