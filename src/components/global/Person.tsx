@@ -16,7 +16,9 @@ export const Person: React.FC<PersonProps> = ({ name, position, image }) => (
         <img {...image} />
       </div>
     )}
-    <h3>{name}</h3>
-    <span>{position}</span>
+    <div className="info-wrapper">
+      <h3>{name}</h3>
+      <span>{position}</span>
+    </div>
   </div>
 )

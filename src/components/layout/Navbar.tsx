@@ -72,8 +72,6 @@ export const Navbar: React.FC<NavbarProps> = ({ isParallax, parallax }) => {
       : window
     if (!eventTarget) return
 
-    console.log(eventTarget)
-
     const scroll = () => handleScroll(eventTarget)
 
     eventTarget.addEventListener("scroll", debounce(scroll))

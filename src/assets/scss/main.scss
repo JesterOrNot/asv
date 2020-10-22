@@ -1,11 +1,11 @@
 $primary: #004987;
 
+@import "~bulma/bulma.sass";
+
 @import "./asv/slider";
 @import "./asv/navbar";
 @import "./asv/footer";
 @import "./asv/container";
-
-@import "~bulma/bulma.sass";
 
 ::-webkit-scrollbar {
   width: 0;
@@ -65,13 +65,29 @@ html {
 
 .content.is-landing-section {
   h1 {
-    font-size: 5rem;
+    font-size: 3rem;
     color: $primary;
+
+    @include tablet {
+      font-size: 5rem;
+    }
+
+    @include desktop {
+      font-size: 6rem;
+    }
   }
 
   p.main-sub {
-    font-size: 2rem;
+    font-size: 1rem;
     color: #444;
+
+    @include tablet {
+      font-size: 2rem;
+    }
+
+    @include desktop {
+      font-size: 3rem;
+    }
   }
 
   div.column {
@@ -85,13 +101,23 @@ html {
   div.person {
     background: $primary;
     width: fit-content;
-    padding: 2rem;
+    // padding: 2rem;
     border-radius: 4px;
     text-align: center;
     color: #cacaca;
 
-    h3 {
-      color: #fff;
+    .info-wrapper {
+      padding: 1rem;
+      h3 {
+        color: #fff;
+        margin-top: 0;
+      }
+    }
+
+    .image-wrapper {
+      img {
+        border-radius: 4px;
+      }
     }
   }
 }
@@ -137,6 +163,21 @@ html {
       }
     }
   }
+  .info.column {
+    display: flex;
+    justify-content: center;
+
+    &.is-contact > div {
+      margin-right: 20px;
+    }
+
+    @include tablet {
+      &.is-contact {
+        margin-right: 0;
+        flex-flow: column nowrap;
+      }
+    }
+  }
 }
 .contact {
   color: #cacaca;
@@ -154,6 +195,13 @@ html {
       svg {
         margin-right: 30px;
       }
+    }
+  }
+
+  .info span {
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.5rem;
     }
   }
 }

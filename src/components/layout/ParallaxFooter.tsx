@@ -1,9 +1,17 @@
 import React from "react"
-import { Map, PhoneCall } from "react-feather"
+import { Map, PhoneCall, PhoneMissed } from "react-feather"
 import { Link } from "react-router-dom"
 import Logo from "../global/Logo"
 
-export const ParallaxFooter: React.FC = () => (
+export type ParallaxFooterProps = {
+  phone: string[]
+  address: string | null
+}
+
+export const ParallaxFooter: React.FC<ParallaxFooterProps> = ({
+  phone,
+  address,
+}) => (
   <div className="asv-footer">
     <div className="container">
       <div className="mb-6 pb-3 mt-6">
@@ -31,20 +39,29 @@ export const ParallaxFooter: React.FC = () => (
       </div>
 
       <div className="contact columns mt-6">
-        <div className="info column is-half">
-          <PhoneCall size="2rem" />
-          +420 224 267 592
-        </div>
-
-        <div
-          className="info column is-half has-text-right"
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <Map size="2rem" />
-          <div className="address has-text-left">
-            Štěpánská 2071/37 <br /> 110 00 Praha 1
+        {phone.length >= 1 && (
+          <div className="info column is-half is-contact">
+            {phone.map((el, key) => (
+              <div key={key} style={{ marginBottom: "5px" }}>
+                <PhoneCall size="2rem" />
+                <span>{el}</span>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
+        {address && (
+          <div className="info column is-half">
+            <Map size="2rem" />
+            <div className="address has-text-left">
+              {address.split("\n").map((el, key) => (
+                <span key={key}>
+                  {el}
+                  <br />
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   </div>

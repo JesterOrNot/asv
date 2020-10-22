@@ -38,12 +38,19 @@ body {
       margin-bottom: 30px;
 
       h1 {
-        font-size: 4rem;
+        // font-size: 4rem;
+        font-size: 2rem;
         color: #fff;
         font-weight: 700;
       }
 
-      @media (min-width: 800px) {
+      @include tablet {
+        & h1 {
+          font-size: 4rem;
+        }
+      }
+
+      @include desktop {
         & {
           margin-left: 100px;
           margin-bottom: 100px;

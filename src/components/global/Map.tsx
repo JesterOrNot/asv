@@ -7,6 +7,12 @@ export type MapProps = {
   width: string
 }
 
+export const MapLoader = () => (
+  <div style={{ position: "absolute" }}>
+    <HashLoader color="#004987" size="100" />
+  </div>
+)
+
 export const Map: React.FC<MapProps> = ({ url, height, width }) => {
   const [mapLoaded, setMapLoaded] = useState(false)
 
@@ -18,11 +24,7 @@ export const Map: React.FC<MapProps> = ({ url, height, width }) => {
         style={{ height, width }}
         src={url}
       ></iframe>
-      {!mapLoaded && (
-        <div style={{ position: "absolute" }}>
-          <HashLoader color="#004987" size="100" />
-        </div>
-      )}
+      {!mapLoaded && <MapLoader />}
     </>
   )
 }
