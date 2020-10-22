@@ -42,13 +42,13 @@ export const ProjectPage: React.FC = () => {
     <>
       {project ? (
         <DefaultLayout>
-          <div className="hero is-primary is-medium">
-            <Container>
-              <div className="hero-body">
-                {/* TODO: fetch */}
-                <h1 className="is-size-1">{project.name}</h1>
-              </div>
-            </Container>
+          <div
+            className="hero is-primary"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <div className="hero-body has-text-centered">
+              <h1 className="is-size-1">{project.name}</h1>
+            </div>
           </div>
           <div className="main-space">
             <div className="container mt-6 pt-6">

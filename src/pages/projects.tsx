@@ -28,12 +28,13 @@ export const Projects: React.FC = () => {
 
   return (
     <DefaultLayout>
-      <div className="hero is-primary is-medium">
-        <Container>
-          <div className="hero-body">
-            <h1 className="is-size-1">Projekty</h1>
-          </div>
-        </Container>
+      <div
+        className="hero is-primary"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <div className="hero-body has-text-centered">
+          <h1 className="is-size-1">Projekty</h1>
+        </div>
       </div>
 
       {projects ? (
