@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
-import { Container } from "../components/flex/Container"
+import { useParams } from "react-router-dom"
 import DefaultLayout from "../layouts/DefaultLayout"
 
-import iceland from "../assets/img/projects/iceland.jpg"
 import { Globe, Map } from "react-feather"
-import { HashLoader } from "react-spinners"
 import Project from "../api/project"
 import { FullscreenLoader } from "../components/global/FullscreenLoader"
 import { FullscreenFetchError } from "../components/global/FullscreenFetchError"
-import { ESRCH } from "constants"
 import { MapLoader } from "../components/global/Map"
+import ReactImageGallery from "react-image-gallery"
 
 export type ProjectRouteParams = {
   slug: string
@@ -26,6 +23,11 @@ export const ProjectPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const { data: res } = await new Project().getProject(slug)
+
+        ;(res as any).data.project.images = (res as any).data.project.images.map(
+          (el: string) => ({ original: el, thumbnail: el })
+        )
+
         setProject(res.data.project)
         // setProject(false)
         console.log("Project", (res.data.project as any).mainImage)
@@ -36,7 +38,7 @@ export const ProjectPage: React.FC = () => {
     }
 
     fetchData()
-  }, [])
+  }, [slug])
 
   return (
     <>
@@ -97,14 +99,12 @@ export const ProjectPage: React.FC = () => {
                   }}
                 >
                   {mainLoaded !== null && (
-                    <img
-                      src={project.mainImage}
-                      onLoad={() => setMainLoaded(true)}
-                      onError={() => setMainLoaded(null)}
+                    <ReactImageGallery
+                      items={project.images}
+                      onImageError={() => setMainLoaded(false)}
+                      onImageLoad={() => setMainLoaded(true)}
                     />
                   )}
-                  {/* other images */}
-                  {mainLoaded && <></>}
 
                   {/* image is loading */}
                   {mainLoaded === false && <MapLoader />}

@@ -10,7 +10,7 @@ import Contact from "../pages/contact"
 import Index from "../pages/index"
 import Project from "../pages/project"
 import Projects from "../pages/projects"
-import WhatDoWeDo from "../pages/wdwd"
+import WhatDoWeDo from "../pages/services"
 
 const routes: RouteProps[] = [
   {
@@ -26,7 +26,7 @@ const routes: RouteProps[] = [
     component: Project,
   },
   {
-    path: "/what-do-we-do",
+    path: "/services",
     component: WhatDoWeDo,
   },
   {

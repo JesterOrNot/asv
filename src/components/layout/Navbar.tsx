@@ -17,6 +17,9 @@ export const RegularNavbarItems: React.FC = () => (
     <Link to="/projects" className="navbar-item">
       Projekty
     </Link>
+    <Link to="/services" className="navbar-item">
+      Služby
+    </Link>
     <Link to="/contact" className="navbar-item">
       Kontakt
     </Link>
@@ -24,10 +27,15 @@ export const RegularNavbarItems: React.FC = () => (
 )
 
 export const ParallaxNavbarItems: React.FC<{
-  parallax?: Parallax | null
+  parallax?: (() => Parallax | null) | null
   handleFixed: (value: boolean) => any
 }> = ({ parallax, handleFixed }) => {
-  const scroll = (num: number) => parallax?.scrollTo(num)
+  const scroll = (num: number) => {
+    const para = parallax ? parallax() : null
+    if (!para) return null
+
+    para.scrollTo(num)
+  }
 
   return (
     <div className="navbar-item">
@@ -43,6 +51,9 @@ export const ParallaxNavbarItems: React.FC<{
       <a onClick={() => scroll(3)} className="navbar-item">
         Projekty
       </a>
+      <Link to="/services" className="navbar-item">
+        Služby
+      </Link>
       <Link to="/contact" className="navbar-item">
         Kontakt
       </Link>
@@ -125,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isParallax, parallax }) => {
           <div className="navbar-end">
             {isParallax ? (
               <ParallaxNavbarItems
-                parallax={parallax ? parallax() : null}
+                parallax={parallax ? parallax : null}
                 handleFixed={(val) => setFixed(val)}
               />
             ) : (

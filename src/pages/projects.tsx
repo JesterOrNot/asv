@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react"
 import DefaultLayout from "../layouts/DefaultLayout"
-import iceland from "../assets/img/projects/iceland.jpg"
-import { Container } from "../components/flex/Container"
 import { Column } from "../components/flex/Column"
-import { Card } from "../components/global/Card"
 import { Link } from "react-router-dom"
 import Project from "../api/project"
 import { HashLoader } from "react-spinners"
+import { WdwdItem } from "./services"
 
 export const Projects: React.FC = () => {
   const [projects, setProjects] = useState<any[] | null>(null)
@@ -45,11 +43,7 @@ export const Projects: React.FC = () => {
                 {projects.map((el, key) => (
                   <Column size="is-one-quarter">
                     <Link to={`/project/${el.slug}`}>
-                      <Card
-                        content={<h1>{el.name}</h1>}
-                        image={{ src: el.mainImage, alt: el.name }}
-                        isProject={true}
-                      />
+                      <WdwdItem title={el.name} image={el.mainImage} />
                     </Link>
                   </Column>
                 ))}

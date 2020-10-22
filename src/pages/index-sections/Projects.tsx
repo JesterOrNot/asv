@@ -4,9 +4,6 @@ import { Column } from "../../components/flex/Column"
 import ColumnWrapper from "../../components/flex/ColumnWrapper"
 import { Container } from "../../components/flex/Container"
 
-import mvc from "../../assets/img/projects/mvc.jpg"
-import iceland from "../../assets/img/projects/iceland.jpg"
-import vl from "../../assets/img/projects/vl.jpg"
 import { Card } from "../../components/global/Card"
 import Project from "../../api/project"
 

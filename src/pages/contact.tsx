@@ -1,6 +1,5 @@
-import React, { useState } from "react"
+import React from "react"
 import { Mail, Map as MapIcon, PhoneCall } from "react-feather"
-import { Container } from "../components/flex/Container"
 import { Map } from "../components/global/Map"
 import DefaultLayout from "../layouts/DefaultLayout"
 
@@ -13,8 +12,6 @@ export const ContactPage: React.FC = () => {
   )
 
   const emails = ["av@asvgroup.cz", "pm@asvgroup.cz"]
-
-  const [mapLoaded, setMapLoaded] = useState(false)
 
   return (
     <DefaultLayout>

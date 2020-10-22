@@ -1,5 +1,5 @@
 import React from "react"
-import { Map, PhoneCall, PhoneMissed } from "react-feather"
+import { Map, PhoneCall } from "react-feather"
 import { Link } from "react-router-dom"
 import Logo from "../global/Logo"
 
