@@ -242,6 +242,13 @@ html {
   text-align: center;
   color: white;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
+  transition: all 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+
+  &:hover {
+    transform: scale(0.9);
+  }
 
   & > img {
     width: 100%;
@@ -264,11 +271,11 @@ html {
     transition: all 0.35s cubic-bezier(0.76, 0, 0.24, 1);
 
     &:hover {
-      background: rgba(0, 73, 135, 0.3);
-
+      background: rgba(0, 73, 135, 0.5);
       h3 {
-        margin-top: 20px;
-        color: $primary;
+        // margin-top: 20px;
+
+        color: #fff;
       }
     }
 

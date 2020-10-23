@@ -36,28 +36,28 @@ export const WDWD: React.FC = () => {
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Development & Construction Management"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Investments & Acquisitions"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Asset Management & Leasing"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Advisory & Financing"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
             </ColumnWrapper>
@@ -72,28 +72,28 @@ export const WDWD: React.FC = () => {
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Mixed-Use"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Office"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Residential"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
 
               <Column size="is-one-quarter">
                 <WdwdItem
                   title="Retail"
-                  image="https://via.placeholder.com/1280x720"
+                  image="https://fra1.digitaloceanspaces.com/awooing/asv/proj/mvr/img-1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GLWWS345RNH5YL6DZUFC%2F20201023%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20201023T070008Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ef30a995a6aec6690ff290e15b4592ae8dd2e1ab0f6fa07f73e6e48af0036747"
                 />
               </Column>
             </ColumnWrapper>

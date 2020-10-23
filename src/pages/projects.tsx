@@ -41,7 +41,7 @@ export const Projects: React.FC = () => {
             <div className="content">
               <div className="columns is-multiline mb-6">
                 {projects.map((el, key) => (
-                  <Column size="is-one-quarter">
+                  <Column size="is-half">
                     <Link to={`/project/${el.slug}`}>
                       <WdwdItem title={el.name} image={el.mainImage} />
                     </Link>
