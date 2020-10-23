@@ -20,6 +20,8 @@ export const Card: React.FC<CardProps> = ({ image, content, isProject }) => (
         </figure>
       </div>
     )}
-    <div className="card-content">{content}</div>
+    <div className="card-content" style={{ height: "100%" }}>
+      {content}
+    </div>
   </div>
 )
