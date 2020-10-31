@@ -10,7 +10,10 @@ export type CardProps = {
 }
 
 export const Card: React.FC<CardProps> = ({ image, content, isProject }) => (
-  <div className={`card ${isProject ? "is-project" : ""}`}>
+  <div
+    className={`card ${isProject ? "is-project" : ""}`}
+    style={{ height: "100%" }}
+  >
     {image && (
       <div className="card-image">
         <figure
@@ -20,6 +23,8 @@ export const Card: React.FC<CardProps> = ({ image, content, isProject }) => (
         </figure>
       </div>
     )}
-    <div className="card-content">{content}</div>
+    <div className="card-content" style={{ height: "100%" }}>
+      {content}
+    </div>
   </div>
 )
