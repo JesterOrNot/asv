@@ -8,6 +8,7 @@ import { FullscreenLoader } from "../components/global/FullscreenLoader"
 import { FullscreenFetchError } from "../components/global/FullscreenFetchError"
 import { MapLoader } from "../components/global/Map"
 import ReactImageGallery from "react-image-gallery"
+import { axi } from "../api"
 
 export type ProjectRouteParams = {
   slug: string
@@ -82,6 +83,16 @@ export const ProjectPage: React.FC = () => {
                                 </div>
                               ))}
                           </div>
+
+                          <textarea
+                            name=""
+                            id=""
+                            onChange={(e) =>
+                              console.log(
+                                JSON.stringify({ hello: e.target.value })
+                              )
+                            }
+                          ></textarea>
                         </div>
                       </div>
                     </div>

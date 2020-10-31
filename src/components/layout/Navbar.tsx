@@ -3,28 +3,34 @@ import Logo, { LogoProps } from "../global/Logo"
 import { debounce } from "lodash"
 import { Link } from "react-router-dom"
 import { Parallax } from "react-spring/renderprops-addons"
+import userEvent from "@testing-library/user-event"
+import useUser from "../../hooks/useUser"
 
 export type NavbarProps = {
   isParallax: boolean
   parallax?: () => Parallax | null
 }
 
-export const RegularNavbarItems: React.FC = () => (
-  <div className="navbar-item">
-    <Link className="navbar-item" to="/">
-      Domov
-    </Link>
-    <Link to="/projects" className="navbar-item">
-      Projekty
-    </Link>
-    <Link to="/services" className="navbar-item">
-      Služby
-    </Link>
-    <Link to="/contact" className="navbar-item">
-      Kontakt
-    </Link>
-  </div>
-)
+export const RegularNavbarItems: React.FC = () => {
+  const { user } = useUser()
+  console.log(user)
+  return (
+    <div className="navbar-item">
+      <Link className="navbar-item" to="/">
+        Domov
+      </Link>
+      <Link to="/projects" className="navbar-item">
+        Projekty
+      </Link>
+      <Link to="/services" className="navbar-item">
+        Služby
+      </Link>
+      <Link to="/contact" className="navbar-item">
+        Kontakt
+      </Link>
+    </div>
+  )
+}
 
 export const ParallaxNavbarItems: React.FC<{
   parallax?: (() => Parallax | null) | null
