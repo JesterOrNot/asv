@@ -26,7 +26,7 @@ const routes: RouteProps[] = [
     component: Project,
   },
   {
-    path: "/services",
+    path: "/about",
     component: WhatDoWeDo,
   },
   {

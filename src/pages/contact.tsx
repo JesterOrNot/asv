@@ -50,7 +50,7 @@ export const ContactPage: React.FC = () => {
                     style={{ marginTop: "auto", marginBottom: "auto" }}
                   >
                     <div className="contact">
-                      {info.emails.map((el: string, key: number) => (
+                      {info.phones.map((el: string, key: number) => (
                         <div className="info bigger mb-6">
                           <PhoneCall size="4rem" />
                           {el}

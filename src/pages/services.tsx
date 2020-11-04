@@ -29,7 +29,7 @@ export const WDWD: React.FC = () => {
 
       <div className="container mt-6 pt-6">
         <div className="content">
-          <h1 className="is-size-1 mb-6">Služby</h1>
+          <h1 className="is-size-1 mb-6">Naše činnost</h1>
 
           <div className="content mt-4">
             <ColumnWrapper>

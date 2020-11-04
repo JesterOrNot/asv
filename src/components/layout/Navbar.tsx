@@ -22,8 +22,8 @@ export const RegularNavbarItems: React.FC = () => {
       <Link to="/projects" className="navbar-item">
         Projekty
       </Link>
-      <Link to="/services" className="navbar-item">
-        Služby
+      <Link to="/about" className="navbar-item">
+        Co děláme
       </Link>
       <Link to="/contact" className="navbar-item">
         Kontakt
