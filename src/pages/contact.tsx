@@ -7,16 +7,16 @@ import { Map } from "../components/global/Map"
 import DefaultLayout from "../layouts/DefaultLayout"
 
 export const ContactPage: React.FC = () => {
-  const o = `  const phone = "+420 224 267 592"
- const address = (
-    <>
-      Štěpánská 2071/37 <br /> 110 00 Praha 1
-    </>
-  )
+  //   const o = `  const phone = "+420 224 267 592"
+  //  const address = (
+  //     <>
+  //       Štěpánská 2071/37 <br /> 110 00 Praha 1
+  //     </>
+  //   )
 
-  const emails = ["av@asvgroup.cz", "pm@asvgroup.cz"]
+  //   const emails = ["av@asvgroup.cz", "pm@asvgroup.cz"]
 
-  `
+  //   `
 
   const [info, setInfo] = useState<any | null | false>(null)
 

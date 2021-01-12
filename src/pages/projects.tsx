@@ -42,9 +42,7 @@ export const Projects: React.FC = () => {
               <div className="columns is-multiline mb-6">
                 {projects.map((el, key) => (
                   <Column size="is-half">
-                    <Link to={`/project/${el.slug}`}>
-                      <WdwdItem title={el.name} image={el.mainImage} />
-                    </Link>
+                    <WdwdItem title={el.name} image={el.mainImage} />
                   </Column>
                 ))}
                 {/* <Column size="is-one-quarter">
