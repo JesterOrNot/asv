@@ -12,6 +12,12 @@ export type SliderProps = {
 }
 
 const Slider: React.FC<SliderProps> = ({ images }) => {
+  images = [
+    {
+      src: "/",
+      text: "Hello",
+    },
+  ]
   const [image, setImage] = useState(images[0])
   const [index, setIndex] = useState(0)
 
