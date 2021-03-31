@@ -1,0 +1,14 @@
+2021-03-31T21:25:09.304Z | info: ASV Backend 2.0.0
+2021-03-31T21:25:09.304Z | warn: ASV Backend is running in development mode. Please make sure it is running in production mode when deploying!
+2021-03-31T21:25:09.305Z | info: Connecting to Postgres...
+2021-03-31T21:25:09.838Z | info: Connected to Postgres
+2021-03-31T21:25:44.413Z | info: ASV Backend 2.0.0
+2021-03-31T21:25:44.413Z | warn: ASV Backend is running in development mode. Please make sure it is running in production mode when deploying!
+2021-03-31T21:25:44.413Z | info: Connecting to Postgres...
+2021-03-31T21:25:44.876Z | info: Connected to Postgres
+2021-03-31T21:25:44.877Z | info: Starting Fastify...
+2021-03-31T21:25:44.919Z | info: Controller AuthController.ts registered!
+2021-03-31T21:25:44.956Z | info: Controller MiscController.ts registered!
+2021-03-31T21:25:44.968Z | info: Controller ProjectController.ts registered!
+2021-03-31T21:25:45.105Z | info: Controller UserController.ts registered!
+2021-03-31T21:25:45.147Z | info: Fastify started at http://0.0.0.0:4000
