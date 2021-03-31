@@ -72,12 +72,12 @@ export class ASV {
       //   useUnifiedTopology: true,
       // })
       // logger.info("Connected to MongoDB")
-      this.database = await createConnection()
+      this.database = await createConnection(require("../ormconfig"))
       logger.info("Connected to Postgres")
     } catch (e) {
       // logger.error("An error has occurred while starting MongoDB")
       logger.error("Error occurred while connecting to Postgres")
-      logger.error(e)
+      console.error(e)
 
       this.exit(1)
     }
