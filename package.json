@@ -7,5 +7,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "private": true
+  "private": true,
+  "scripts": {
+    "frontend": "yarn workspace @asv/frontend",
+    "backend": "yarn workspace @asv/backend"
+  }
 }
