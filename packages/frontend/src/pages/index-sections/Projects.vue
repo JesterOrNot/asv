@@ -13,7 +13,7 @@
             to="/project/d"
             class="mr-8"
           >
-            Projekt B
+            <card-title>Projekt B</card-title>
           </card>
           <card
             :img="{
@@ -23,7 +23,7 @@
             to="/project/b"
             class="mr-8"
           >
-            Projekt B
+            <card-title>Projekt D</card-title>
           </card>
 
           <card
@@ -33,7 +33,7 @@
             }"
             to="/project/f"
           >
-            Projekt F
+            <card-title>Projekt F</card-title>
           </card>
         </div>
 
@@ -52,6 +52,7 @@ import { Subtitle } from "../../components/typography"
 import ColumnWrapper from "../../components/flex/ColumnWrapper"
 import FullscreenWrapper from "../../components/wrapper/FullscreenWrapper.vue"
 import Card from "../../components/elements/Card.vue"
+import { CardTitle } from "../../components/elements/Card"
 import Link from "../../components/elements/LinkButton.vue"
 
 export default defineComponent({
@@ -60,6 +61,7 @@ export default defineComponent({
     Subtitle,
     ColumnWrapper,
     Card,
+    CardTitle,
     Link,
   },
 })
