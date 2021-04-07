@@ -1,5 +1,7 @@
 <template>
-  <div :style="styles"></div>
+  <div :style="styles">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">

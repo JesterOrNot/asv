@@ -1,63 +1,66 @@
 <template>
-  <Container>
-    <div class="content is-landing-section has-text-centered mb-6">
-      <h1>Naše projekty</h1>
+  <fullscreen-wrapper id="projects">
+    <div>
+      <column-wrapper class="w-full">
+        <subtitle>Projekty</subtitle>
+
+        <div class="flex my-8">
+          <card
+            :img="{
+              src: 'https://via.placeholder.com/300x200',
+              alt: 'Projekt D',
+            }"
+            to="/project/d"
+            class="mr-8"
+          >
+            Projekt B
+          </card>
+          <card
+            :img="{
+              src: 'https://via.placeholder.com/300x200',
+              alt: 'Projekt B',
+            }"
+            to="/project/b"
+            class="mr-8"
+          >
+            Projekt B
+          </card>
+
+          <card
+            :img="{
+              src: 'https://via.placeholder.com/300x200',
+              alt: 'Projekt F',
+            }"
+            to="/project/f"
+          >
+            Projekt F
+          </card>
+        </div>
+
+        <div class="flex justify-end">
+          <Link color="transparent" to="/projects"> Všechny projekty </Link>
+        </div>
+      </column-wrapper>
     </div>
-    <ColumnWrapper v-if="projects">
-      <Column
-        size="is-one-third"
-        v-for="(el, i) in projects.sort(() => 0.5 - Math.random()).slice(0, 3)"
-        :key="i"
-      >
-        <router-link :to="`/project/${el.slug}`">
-          <Card :image="{ src: el.mainImage, alt: el.name }" :isProject="true">
-            <h1>{{ el.name }}</h1>
-          </Card>
-        </router-link>
-      </Column>
-    </ColumnWrapper>
-    <div class="content mt-6 has-text-centered">
-      <router-link to="/projects" class="button is-primary is-large">
-        Všechny naše projekty
-      </router-link>
-    </div>
-  </Container>
+  </fullscreen-wrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue"
-import Project from "../../api/project"
-import Column from "../../components/flex/Column.vue"
-import ColumnWrapper from "../../components/flex/ColumnWrapper.vue"
-import Container from "../../components/flex/Container.vue"
-import Card from "../../components/global/Card.vue"
+import { defineComponent } from "vue"
+
+import { Subtitle } from "../../components/typography"
+import ColumnWrapper from "../../components/flex/ColumnWrapper"
+import FullscreenWrapper from "../../components/wrapper/FullscreenWrapper.vue"
+import Card from "../../components/elements/Card.vue"
+import Link from "../../components/elements/LinkButton.vue"
 
 export default defineComponent({
   components: {
-    Column,
+    FullscreenWrapper,
+    Subtitle,
     ColumnWrapper,
-    Container,
     Card,
-  },
-  setup() {
-    const state = reactive({
-      projects: null as object[] | null | false,
-    })
-
-    const fetch = async () => {
-      try {
-        const proj = new Project()
-        const res = await proj.getProjects()
-
-        state.projects = res.data.data.projects
-      } catch (e) {
-        console.log(e)
-        state.projects = []
-      }
-    }
-    fetch()
-
-    return state
+    Link,
   },
 })
 </script>
