@@ -4,13 +4,19 @@
 node_modules
 .pnp
 .pnp.js
+vendor
 
 # testing
 coverage
+tests/*.log
+tests/tmp
+tests/coverage.html
 
 # production
 build
 dist
+frontend/dist
+public/assets
 
 # misc
 .DS_Store
@@ -22,3 +28,4 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+

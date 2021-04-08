@@ -1,0 +1,9 @@
+
+parameters:
+	system:
+		error:
+			email: vottus@vott.us
+			presenter: Error
+	database:
+		driver: pdo_mysql
+		port: 3306
