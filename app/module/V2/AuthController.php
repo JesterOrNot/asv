@@ -1,0 +1,48 @@
+<?php declare(strict_types=1);
+
+namespace App\Module\V2;
+
+use Apitte\Core\Annotation\Controller\Method;
+use Apitte\Core\Annotation\Controller\OpenApi;
+use Apitte\Core\Annotation\Controller\Path;
+use Apitte\Core\Annotation\Controller\Tag;
+use Apitte\Core\Http\ApiRequest;
+use Apitte\Core\Http\ApiResponse;
+use App\Model\Api\Security\AbstractAuthenticator;
+use App\Model\Exception\Runtime\AuthenticationException;
+
+/**
+ * @Path("/auth")
+ */
+class AuthController extends BaseV2Controller
+{
+
+  public function __construct(private AbstractAuthenticator $auth)
+  {
+  }
+
+  /**
+   * @OpenApi("
+   *  summary: Authentication endpoint
+   * ")
+   * @Path("/login")
+   * @Method("POST")
+   * @Tag("request.dto", value="App\Domain\Api\Request\AuthenticateUserReqDto")
+   * @param ApiRequest $req
+   * @param ApiResponse $res
+   * @return ApiResponse
+   * @throws AuthenticationException
+   */
+  public function login(ApiRequest $req, ApiResponse $res): ApiResponse
+  {
+    $user = $this->auth->authenticate($req);
+    if (!$user) throw new AuthenticationException("Neznámé uživatelské jméno nebo heslo.");
+
+    $token = $this->auth->createUserToken($user);
+
+    return $res->writeJsonBody($this->ok([
+      "token" => $token
+    ]));
+  }
+
+}
