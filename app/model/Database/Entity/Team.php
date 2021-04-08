@@ -11,10 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  * The ASVGroup Team
  *
  * @ORM\Table(name="Team", uniqueConstraints={@ORM\UniqueConstraint(name="Team.fullName_unique", columns={"fullName"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Model\Database\Repository\TeamRepository")
  */
 class Team
 {
+  // Using number ids so the team can be sorted
   use TId;
 
   /**

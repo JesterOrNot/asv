@@ -2,7 +2,7 @@
 
 namespace App\Model\Database\Entity;
 
-use App\Model\Database\Entity\Attributes\TId;
+use App\Model\Database\Entity\Attributes\TUuid;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,11 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  * All ASV Group projects
  *
  * @ORM\Table(name="Project", uniqueConstraints={@ORM\UniqueConstraint(name="Project.slug_unique", columns={"slug"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Model\Database\Repository\ProjectRepository")
  */
 class Project
 {
-  use TId;
+  use TUuid;
 
   /**
    * @var string

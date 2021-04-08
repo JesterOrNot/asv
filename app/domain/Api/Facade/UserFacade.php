@@ -2,13 +2,13 @@
 
 namespace App\Domain\Api\Facade;
 
-use App\Domain\Api\Request\CreateUserReqDto;
+use App\Domain\Api\Request\User\CreateUserReqDto;
 use App\Domain\Api\Response\UserResDto;
 use App\Model\Database\Entity\User;
 use App\Model\Database\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 
-final class UsersFacade
+final class UserFacade
 {
 
   public function __construct(private EntityManager $em)
@@ -22,7 +22,7 @@ final class UsersFacade
    */
   public function findAll(int $limit = 10, int $offset = 0): array
   {
-    return $this->findBy([], [ 'id' => 'ASC' ], $limit, $offset);
+    return $this->findBy([], limit: $limit, offset: $offset);
   }
 
   /**
@@ -34,19 +34,14 @@ final class UsersFacade
    */
   public function findBy(
     array $criteria = [],
-    array $orderBy = [ 'id' => 'ASC' ],
+    array $orderBy = [ 'createdAt' => 'ASC' ],
     int $limit = 10,
     int $offset = 0
   ): array
   {
-    $entities = $this->em->getUserRepository()->findBy($criteria, $orderBy, $limit, $offset);
-    $result = [];
+    $users = $this->em->getUserRepository()->findBy($criteria, $orderBy, $limit, $offset);
 
-    foreach ($entities as $entity) {
-      $result[] = UserResDto::from($entity);
-    }
-
-    return $result;
+    return UserResDto::fromMany($users);
   }
 
   /**
@@ -67,10 +62,10 @@ final class UsersFacade
    */
   public function findOneBy(array $criteria, ?array $orderBy = null): UserResDto
   {
-    $entity = $this->em->getUserRepository()->findOneBy($criteria, $orderBy);
-    if (!$entity) throw new EntityNotFoundException();
+    $user = $this->em->getUserRepository()->findOneBy($criteria, $orderBy);
+    if (!$user) throw new EntityNotFoundException();
 
-    return UserResDto::from($entity);
+    return UserResDto::from($user);
   }
 
   /**

@@ -3,7 +3,7 @@
 namespace App\Model\Database\Entity;
 
 use App\Model\Database\Entity\Attributes\TCreatedAt;
-use App\Model\Database\Entity\Attributes\TId;
+use App\Model\Database\Entity\Attributes\TUuid;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  * Record of authenticated user accessing the admin endpoints.
  *
  * @ORM\Table(name="AccessRecord", indexes={@ORM\Index(name="userId", columns={"userId"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Model\Database\Repository\AccessRecordRepository")
  */
 class AccessRecord
 {
-  use TId;
+  use TUuid;
   use TCreatedAt;
 
   /**
@@ -49,13 +49,11 @@ class AccessRecord
   }
 
   /**
-   * @param string $id
-   * @return AccessRecord
+   * @return string
    */
-  public function setId(string $id): self
+  public function getEndpoint(): string
   {
-    $this->id = $id;
-    return $this;
+    return $this->endpoint;
   }
 
   /**
@@ -66,6 +64,11 @@ class AccessRecord
   {
     $this->endpoint = $endpoint;
     return $this;
+  }
+
+  public function getCreatedAt(): DateTime
+  {
+    return $this->createdAt;
   }
 
   /**
@@ -79,6 +82,14 @@ class AccessRecord
   }
 
   /**
+   * @return User
+   */
+  public function getUser(): User
+  {
+    return $this->user;
+  }
+
+  /**
    * @param User $user
    * @return self
    */
@@ -86,6 +97,14 @@ class AccessRecord
   {
     $this->user = $user;
     return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getIp(): string
+  {
+    return $this->ip;
   }
 
   /**

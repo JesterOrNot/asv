@@ -1,5 +1,7 @@
 services:
   - App\Domain\Api\Facade\UsersFacade
+  - App\Domain\Api\Facade\ProjectFacade
+  - App\Domain\Api\Facade\TeamFacade
   symfony.serializer.serializer:
     factory: Symfony\Component\Serializer\Serializer
     arguments:

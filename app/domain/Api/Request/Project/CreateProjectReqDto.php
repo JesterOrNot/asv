@@ -1,22 +1,22 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
-namespace App\Domain\Api\Request;
+namespace App\Domain\Api\Request\Project;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class AuthenticateUserReqDto
+class CreateProjectReqDto
 {
 
   /**
    * @var string
    * @Assert\NotBlank
    */
-  public string $username;
+  public string $name;
 
   /**
    * @var string
    * @Assert\NotBlank
    */
-  public string $password;
+  public string $slug;
 
 }
