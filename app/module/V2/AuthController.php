@@ -7,7 +7,6 @@ use Apitte\Core\Annotation\Controller\OpenApi;
 use Apitte\Core\Annotation\Controller\Path;
 use Apitte\Core\Annotation\Controller\Tag;
 use Apitte\Core\Http\ApiRequest;
-use Apitte\Core\Http\ApiResponse;
 use App\Model\Api\Security\AbstractAuthenticator;
 use App\Model\Exception\Runtime\AuthenticationException;
 
