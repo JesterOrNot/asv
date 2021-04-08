@@ -2,24 +2,23 @@
 
 namespace Database\Fixtures;
 
-use App\Model\Database\Entity\User;
+use App\Model\Database\Entity\Project;
 use App\Model\Fixtures\ReflectionLoader;
 use Doctrine\Persistence\ObjectManager;
 use Nelmio\Alice\Throwable\LoadingThrowable;
 
 /**
- * Class UserFixture
+ * Class ProjectFixture
  * @package Database\Fixtures
  */
-class UserFixture extends AbstractFixture
+class ProjectFixture extends AbstractFixture
 {
-
   /**
    * @return int
    */
   public function getOrder(): int
   {
-    return 1;
+    return 2;
   }
 
   /**
@@ -28,36 +27,25 @@ class UserFixture extends AbstractFixture
    */
   public function load(ObjectManager $manager): void
   {
-    foreach (array_merge($this->getRandomUsers(), $this->getStaticUsers()) as $user) {
-      $manager->persist($user);
-    }
-    $manager->flush();
+    foreach ($this->getRandomProjects() as $project)
+      $manager->persist($project);
+
+   $manager->flush();
   }
 
   /**
-   * @return User[]
-   */
-  protected function getStaticUsers(): iterable
-  {
-    return [
-      new User("test", "example@example.com", "hello123", User::ROLES[1])
-    ];
-  }
-
-  /**
-   * @return User[]
+   * @return Project[]
    * @throws LoadingThrowable
    */
-  protected function getRandomUsers(): iterable
+  protected function getRandomProjects(): iterable
   {
     $loader = new ReflectionLoader();
     $objectSet = $loader->loadData([
-      User::class => [
-        "user{1..5}" => [
+      Project::class => [
+        "project{1..5}" => [
           "__construct" => [
-            "<username()>",
-            "<email()>",
-            "<password()>",
+            "<company()>",
+            "<slug(company())>",
           ],
           "id" => "<current()>",
         ],
@@ -66,5 +54,4 @@ class UserFixture extends AbstractFixture
 
     return $objectSet->getObjects();
   }
-
 }

@@ -37,7 +37,7 @@ class Team
    */
   private ?string $image;
 
-  public function __construct(string $fullName, string $position, ?string $image)
+  public function __construct(string $fullName, string $position, ?string $image = null)
   {
     $this->fullName = $fullName;
     $this->position = $position;
