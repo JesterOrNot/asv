@@ -23,6 +23,7 @@ class User
   use TUpdatedAt;
 
   const ROLES = [ "USER", "ADMIN" ];
+
   /**
    * @var string
    *
