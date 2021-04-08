@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace App\Module\V2;
-
 
 use Apitte\Core\Annotation\Controller\Path;
 use JetBrains\PhpStorm\Pure;
