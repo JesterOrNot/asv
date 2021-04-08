@@ -2,14 +2,19 @@
 
 namespace App\Module\V2;
 
+use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\Path;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @Path("/")
+ */
 class DefaultController extends BaseV2Controller
 {
 
   /**
    * @Path("/")
+   * @Method("GET")
    * @return array
    */
   #[Pure] public function index(): array
@@ -17,7 +22,6 @@ class DefaultController extends BaseV2Controller
     return $this->ok([
       "v2" => [
         "state" => "current",
-        "main_endpoint" => "/v2",
         "endpoints" => [
           "GET_TEAM_MEMBERS" => "/team",
           "GET_PROJECTS" => "/project/all/:page=1",
