@@ -9,12 +9,12 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 final class ReflectionLoader extends NativeLoader
 {
-	protected function createPropertyAccessor(): PropertyAccessorInterface
-	{
-		return new ReflectionPropertyAccessor(
-			PropertyAccess::createPropertyAccessorBuilder()
-				->enableMagicCall()
-				->getPropertyAccessor()
-		);
-	}
+  protected function createPropertyAccessor(): PropertyAccessorInterface
+  {
+    return new ReflectionPropertyAccessor(
+      PropertyAccess::createPropertyAccessorBuilder()
+        ->enableMagicCall()
+        ->getPropertyAccessor()
+    );
+  }
 }

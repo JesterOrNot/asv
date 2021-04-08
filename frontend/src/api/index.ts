@@ -12,11 +12,8 @@ export interface BaseResponse {
 export const isStaging = () => window.location.hostname.startsWith("staging")
 
 export const resolveApiDomain = () => {
-  if (process.env.NODE_ENV === "development")
-    return "http://localhost:4000/api/v1"
-  return isStaging()
-    ? "https://staging-api.asvgroup.cz/v1"
-    : "https://api.asvgroup.cz/v1"
+  if (process.env.NODE_ENV === "development") return "http://localhost:4000/api/v1"
+  return isStaging() ? "https://staging-api.asvgroup.cz/v1" : "https://api.asvgroup.cz/v1"
 }
 
 export const axi = () => {
@@ -26,8 +23,7 @@ export const axi = () => {
   axios.defaults.baseURL = resolveApiDomain()
   const token = localStorage.getItem("asv_token")
 
-  if (typeof token == "string")
-    axios.defaults.headers["authorization"] = `Bearer ${token}`
+  if (typeof token == "string") axios.defaults.headers["authorization"] = `Bearer ${token}`
 
   return axios
 }

@@ -17,28 +17,24 @@ class Project
 {
   use TId;
 
-  public function __construct(
-    string $name,
-    string $slug
-  )
-  {
-    $this->name = $name;
-    $this->slug = $slug;
-  }
-
   /**
    * @var string
    *
    * @ORM\Column(name="name", type="string", length=191, nullable=false)
    */
   private string $name;
-
   /**
    * @var string
    *
    * @ORM\Column(name="slug", type="string", length=191, nullable=false)
    */
   private string $slug;
+
+  public function __construct(string $name, string $slug)
+  {
+    $this->name = $name;
+    $this->slug = $slug;
+  }
 
   /**
    * @return string

@@ -17,35 +17,6 @@ abstract class BaseController implements IController
 {
 
   /**
-   * Default action
-   *
-   * Sends all available endpoints
-   *
-   * @Path("/")
-   * @return array
-   */
-  #[Pure] public function endpoints(): array
-  {
-    return $this->ok([
-      "versions" => [
-        "v1" => [
-          "state" => "shutdown"
-        ],
-        "v2" => [
-          "state" => "current",
-          "main_endpoint" => "/v2",
-          "endpoints" => [
-            "GET_TEAM_MEMBERS" => "/team",
-            "GET_PROJECTS" => "/project/all/:page=1",
-            "GET_PROJECT" => "/project/:slug",
-            "GET_SETTINGS" => "/settings"
-          ]
-        ]
-      ]
-    ]);
-  }
-
-  /**
    * The success response formatter.
    * Implements the response-spec.
    *

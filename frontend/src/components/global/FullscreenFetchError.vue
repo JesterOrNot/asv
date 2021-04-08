@@ -6,9 +6,7 @@
     </p>
 
     <div class="mt-4">
-      <router-link to="/" class="button is-primary is-inverted is-medium">
-        Jít domů
-      </router-link>
+      <router-link to="/" class="button is-primary is-inverted is-medium"> Jít domů </router-link>
     </div>
   </fullscreen-wrapper>
 </template>

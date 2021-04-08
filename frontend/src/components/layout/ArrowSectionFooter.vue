@@ -1,11 +1,7 @@
 <template>
   <div
     class="w-full flex flex-col items-center justify-center group"
-    :class="
-      inverted
-        ? 'text-gray-300 hoevr:text-gray-200'
-        : 'text-gray-700 hover:text-gray-800'
-    "
+    :class="inverted ? 'text-gray-300 hoevr:text-gray-200' : 'text-gray-700 hover:text-gray-800'"
   >
     <a
       :href="href"

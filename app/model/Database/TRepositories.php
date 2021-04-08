@@ -10,13 +10,11 @@ use App\Model\Database\Repository\UserRepository;
  */
 trait TRepositories
 {
-
   /**
    * @return UserRepository
    */
-	public function getUserRepository(): UserRepository
-	{
-		return $this->getRepository(User::class);
-	}
-
+  public function getUserRepository(): UserRepository
+  {
+    return $this->getRepository(User::class);
+  }
 }

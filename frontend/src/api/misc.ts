@@ -48,7 +48,7 @@ export class Misc {
     status: number
     data: MiscGetSettingsResponse
   }> =>
-    new Promise((res) =>
+    new Promise(res =>
       res({
         status: 200,
         data: {
@@ -68,8 +68,7 @@ export class Misc {
             ],
             slides: [
               {
-                src:
-                  "https://asv-demo-ver2.vott.us/static/media/intro_bg.aa8aee11.png",
+                src: "https://asv-demo-ver2.vott.us/static/media/intro_bg.aa8aee11.png",
                 text: "ASV Group",
               },
             ],
@@ -78,10 +77,7 @@ export class Misc {
                 "Skupinu ASV Group založili v roce 2014 Aleš Vobruba a Pavel Menšík, manažeři s dlouholetými zkušenostmi z mezinárodní realitní společnosti, jako realitní investiční platformu, která zahrnuje projekty v různých oborech a teritoriích – komerční nemovitosti, obchodní parky v České republice a na Slovensku, rezidenční a smíšené projekty v České republice, Rakousku a Chorvatsku.",
               phones: ["+420 222 222 222"],
               emails: ["asv@asv13.cz"],
-              address: [
-                "Štěpánská 2071/37",
-                "110 00 Praha 1 - Nové Město",
-              ].join("\n"),
+              address: ["Štěpánská 2071/37", "110 00 Praha 1 - Nové Město"].join("\n"),
             },
           },
         },

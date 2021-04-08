@@ -6,12 +6,6 @@ export interface Img {
   class?: string
 }
 
-export const CardTitle = defineTypographyComponent(
-  "p",
-  "text-2xl text-white font-medium"
-)
+export const CardTitle = defineTypographyComponent("p", "text-2xl text-white font-medium")
 
-export const CardSubtitle = defineTypographyComponent(
-  "p",
-  "text-2xl text-white font-medium"
-)
+export const CardSubtitle = defineTypographyComponent("p", "text-2xl text-white font-medium")

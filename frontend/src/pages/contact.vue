@@ -1,9 +1,6 @@
 <template>
   <DefaultLayout v-if="state.info">
-    <div
-      class="hero is-primary"
-      :style="{ display: 'flex', justifyContent: 'center' }"
-    >
+    <div class="hero is-primary" :style="{ display: 'flex', justifyContent: 'center' }">
       <div class="hero-body has-text-centered">
         <h1 class="is-size-1">Kontaktujte nás</h1>
       </div>
@@ -12,16 +9,9 @@
       <div class="container mt-6 pt-6">
         <div class="content">
           <div class="columns mb-6">
-            <div
-              class="column is-half"
-              :style="{ marginTop: 'auto', marginBottom: 'auto' }"
-            >
+            <div class="column is-half" :style="{ marginTop: 'auto', marginBottom: 'auto' }">
               <div class="contact">
-                <div
-                  class="info bigger mb-6"
-                  v-for="(el, i) in state.info.phones"
-                  :key="i"
-                >
+                <div class="info bigger mb-6" v-for="(el, i) in state.info.phones" :key="i">
                   <PhoneCall size="4rem" />
                   {{ el }}
                 </div>
@@ -29,21 +19,14 @@
                 <div class="info bigger mb-6">
                   <MapIcon size="4rem" />
                   <div>
-                    <div
-                      v-for="(el, i) in state.info.address.split('\n')"
-                      :key="i"
-                    >
+                    <div v-for="(el, i) in state.info.address.split('\n')" :key="i">
                       {{ el }}
                       <br />
                     </div>
                   </div>
                 </div>
 
-                <div
-                  class="info bigger mb-6"
-                  v-for="(el, i) in state.info.emails"
-                  :key="i"
-                >
+                <div class="info bigger mb-6" v-for="(el, i) in state.info.emails" :key="i">
                   <Mail size="4rem" />
                   {{ el }}
                 </div>

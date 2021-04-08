@@ -1,9 +1,6 @@
 <template>
   <DefaultLayout>
-    <div
-      class="hero is-primary"
-      :style="{ display: 'flex', justifyContent: 'center' }"
-    >
+    <div class="hero is-primary" :style="{ display: 'flex', justifyContent: 'center' }">
       <div class="hero-body has-text-centered">
         <h1 class="is-size-1">Co děláme</h1>
       </div>
@@ -16,31 +13,19 @@
         <div class="content mt-4">
           <ColumnWrapper>
             <Column size="is-one-quarter">
-              <WdwdItem
-                title="Development & Construction Management"
-                :image="placeholderImage"
-              />
+              <WdwdItem title="Development & Construction Management" :image="placeholderImage" />
             </Column>
 
             <Column size="is-one-quarter">
-              <WdwdItem
-                title="Investments & Acquisitions"
-                :image="placeholderImage"
-              />
+              <WdwdItem title="Investments & Acquisitions" :image="placeholderImage" />
             </Column>
 
             <Column size="is-one-quarter">
-              <WdwdItem
-                title="Asset Management & Leasing"
-                :image="placeholderImage"
-              />
+              <WdwdItem title="Asset Management & Leasing" :image="placeholderImage" />
             </Column>
 
             <Column size="is-one-quarter">
-              <WdwdItem
-                title="Advisory & Financing"
-                :image="placeholderImage"
-              />
+              <WdwdItem title="Advisory & Financing" :image="placeholderImage" />
             </Column>
           </ColumnWrapper>
         </div>

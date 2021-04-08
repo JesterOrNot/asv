@@ -2,11 +2,9 @@
   <component
     :is="component"
     :class="
-      [
-        buttonClasses,
-        buttonColorClasses[color] ?? buttonColorClasses['none'],
-        $attrs.class,
-      ].join('')
+      [buttonClasses, buttonColorClasses[color] ?? buttonColorClasses['none'], $attrs.class].join(
+        ''
+      )
     "
   >
     <slot />
@@ -29,11 +27,7 @@ export const Button = defineComponent({
   name: "Button",
   props: {
     tagName: string("button"),
-    color: oneOf<string>(
-      String as any,
-      Object.keys(buttonColorClasses),
-      "white"
-    ),
+    color: oneOf<string>(String as any, Object.keys(buttonColorClasses), "white"),
   },
   setup(props) {
     const buttonClasses =

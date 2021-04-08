@@ -22,9 +22,7 @@ export default defineComponent({
       // return true if image is falsy because
       // image is optional
       validator: (item: PersonImage) =>
-        item
-          ? typeof item.src === "string" && typeof item.alt === "string"
-          : true,
+        item ? typeof item.src === "string" && typeof item.alt === "string" : true,
     },
     isProject: {
       type: Boolean,

@@ -5,47 +5,47 @@ namespace App\Model\Api\Security;
 use App\Model\Database\Entity\User;
 use App\Model\Database\EntityManager;
 use Firebase\JWT\JWT;
-use Psr\Http\Message\ServerRequestInterface;
 use Nette\Utils\Strings;
+use Psr\Http\Message\ServerRequestInterface;
 use UnexpectedValueException;
 
 class TokenAuthenticator extends AbstractAuthenticator
 {
 
-	private const HEADER_TOKEN = 'Authorization';
-	private const TOKEN_PREFIX = 'Bearer';
+  private const HEADER_TOKEN = 'Authorization';
+  private const TOKEN_PREFIX = 'Bearer';
 
-	/** @var EntityManager */
-	private EntityManager $em;
+  /** @var EntityManager */
+  private EntityManager $em;
 
-	public function __construct(EntityManager $em)
-	{
-		$this->em = $em;
-	}
+  public function __construct(EntityManager $em)
+  {
+    $this->em = $em;
+  }
 
-	public function authenticate(ServerRequestInterface $request): ?User
-	{
-		$token = $this->parseFromHeader($request);
-		if (!$token) return null;
+  public function authenticate(ServerRequestInterface $request): ?User
+  {
+    $token = $this->parseFromHeader($request);
+    if (!$token) return null;
 
     try {
-      $jwt = JWT::decode($token, "", ["HS256"]);
+      $jwt = JWT::decode($token, "", [ "HS256" ]);
 
-      $user = $this->em->getUserRepository()->findOneBy(['id' => $jwt->userId]);
+      $user = $this->em->getUserRepository()->findOneBy([ 'id' => $jwt->userId ]);
       if (!$user) return null;
 
       return $user;
     } catch (UnexpectedValueException) {
       return null;
     }
-	}
+  }
 
-	private function parseFromHeader(ServerRequestInterface $request): ?string
-	{
-		return $request->hasHeader(self::HEADER_TOKEN)
+  private function parseFromHeader(ServerRequestInterface $request): ?string
+  {
+    return $request->hasHeader(self::HEADER_TOKEN)
       ? Strings::startsWith($request->getHeaderLine(self::HEADER_TOKEN), self::TOKEN_PREFIX)
         ? Strings::replace($request->getHeaderLine(self::HEADER_TOKEN), self::TOKEN_PREFIX)
         : null
-			: null;
-	}
+      : null;
+  }
 }

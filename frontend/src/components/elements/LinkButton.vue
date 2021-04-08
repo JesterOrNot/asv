@@ -1,8 +1,5 @@
 <template>
-  <Button
-    :tagName="typeof $attrs.to === 'string' ? 'router-link' : 'a'"
-    :color="color"
-  >
+  <Button :tagName="typeof $attrs.to === 'string' ? 'router-link' : 'a'" :color="color">
     <div class="w-full mr-4">
       <slot />
     </div>

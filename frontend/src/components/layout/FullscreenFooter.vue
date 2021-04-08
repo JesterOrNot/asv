@@ -1,16 +1,12 @@
 <template>
   <div id="footer" class="bg-gray-800 w-full min-h-screen flex item">
-    <div
-      class="w-full max-w-7xl mx-auto flex flex-col justify-center items-center"
-    >
+    <div class="w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
       <div class="mb-4">
         <logo class="w-32 md:w-36 lg:w-48 h-32 md:h-36 lg:h-48" />
       </div>
 
       <div class="mb-6 lg:mb-12 text-center">
-        <h1
-          class="text-primary text-2xl md:text-4xl xl:text-6xl 2xl:text-7xl mb-4"
-        >
+        <h1 class="text-primary text-2xl md:text-4xl xl:text-6xl 2xl:text-7xl mb-4">
           Pojďte do toho s námi!
         </h1>
         <h2 class="text-white text-xl md:text-2xl xl:text-4xl 2xl:text-5xl">

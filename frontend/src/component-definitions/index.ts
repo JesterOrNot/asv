@@ -16,10 +16,7 @@ export const bool = (_default?: boolean) => ({
 
 export const str = (...strs: string[]) => strs.join(" ")
 
-export const oneOf = <
-  TType extends any = any,
-  TArray extends Array<TType> = Array<TType>
->(
+export const oneOf = <TType extends any = any, TArray extends Array<TType> = Array<TType>>(
   type: TType,
   arr: TArray,
   _default?: TType
@@ -33,10 +30,7 @@ export const oneOf = <
  * DefineComponent shorthands    *
  *********************************/
 
-export const defineTypographyComponent = (
-  defaultTag: string,
-  classes: string
-) =>
+export const defineTypographyComponent = (defaultTag: string, classes: string) =>
   defineComponent({
     name: `Typography_${defaultTag}`,
     props: { tagName: string(defaultTag) },

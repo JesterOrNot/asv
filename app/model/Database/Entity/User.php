@@ -23,6 +23,30 @@ class User
   use TUpdatedAt;
 
   const ROLES = [ "USER", "ADMIN" ];
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="username", type="string", length=191, nullable=false)
+   */
+  private string $username;
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="email", type="string", length=191, nullable=false)
+   */
+  private string $email;
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="password", type="string", length=191, nullable=false)
+   */
+  private string $password;
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="role", type="string", length=191, nullable=false, options={"default"="USER"})
+   */
+  private string $role;
 
   public function __construct(
     string $username,
@@ -36,34 +60,6 @@ class User
     $this->password = Passwords::create()->hash($password);
     $this->role = $role;
   }
-
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="username", type="string", length=191, nullable=false)
-   */
-  private string $username;
-
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="email", type="string", length=191, nullable=false)
-   */
-  private string $email;
-
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="password", type="string", length=191, nullable=false)
-   */
-  private string $password;
-
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="role", type="string", length=191, nullable=false, options={"default"="USER"})
-   */
-  private string $role;
 
   /**
    * @return string

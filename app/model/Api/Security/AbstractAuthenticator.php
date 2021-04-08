@@ -6,5 +6,4 @@ use Contributte\Middlewares\Security\IAuthenticator;
 
 abstract class AbstractAuthenticator implements IAuthenticator
 {
-
 }

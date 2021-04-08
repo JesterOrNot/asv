@@ -12,15 +12,13 @@ use App\Model\Database\Entity\User;
  */
 class UserRepository extends AbstractRepository
 {
-
-	public function findOneByEmail(string $email): ?User
-	{
-		return $this->findOneBy(['email' => $email]);
-	}
-
-	public function findOneByUsername(string $username): ?User
+  public function findOneByEmail(string $email): ?User
   {
-    return $this->findOneBy(['username' => $username]);
+    return $this->findOneBy([ "email" => $email ]);
   }
 
+  public function findOneByUsername(string $username): ?User
+  {
+    return $this->findOneBy([ "username" => $username ]);
+  }
 }

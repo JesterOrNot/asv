@@ -22,10 +22,8 @@ export class Project {
 
   // TODO: better types, pls
   getProjects = () => this.axios.get<GetProjectsResponse>("/projects/all")
-  getProject = (
-    slug: string
-  ): Promise<{ status: number; data: GetProjectResponse }> =>
-    new Promise((res) =>
+  getProject = (slug: string): Promise<{ status: number; data: GetProjectResponse }> =>
+    new Promise(res =>
       res({
         status: 200,
         data: {
