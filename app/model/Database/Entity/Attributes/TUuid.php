@@ -9,30 +9,30 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package App\Model\Database\Entity\Attributes
  */
-trait TId
+trait TUuid
 {
   /**
-   * @var int
+   * @var string
    *
    * @ORM\Column(name="id", type="string", length=191, nullable=false)
    * @ORM\Id
-   * @ORM\GeneratedValue(strategy="IDENTITY")
+   * @ORM\GeneratedValue(strategy="UUID")
    */
-  private int $id;
+  private string $id;
 
   /**
-   * @return int
+   * @return string
    */
-  public function getId(): int
+  public function getId(): string
   {
     return $this->id;
   }
 
   /**
-   * @param int $id
+   * @param string $id
    * @return self
    */
-  public function setId(int $id): self
+  public function setId(string $id): self
   {
     $this->id = $id;
     return $this;

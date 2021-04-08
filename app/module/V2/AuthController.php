@@ -29,20 +29,19 @@ class AuthController extends BaseV2Controller
    * @Method("POST")
    * @Tag("request.dto", value="App\Domain\Api\Request\AuthenticateUserReqDto")
    * @param ApiRequest $req
-   * @param ApiResponse $res
-   * @return ApiResponse
+   * @return array
    * @throws AuthenticationException
    */
-  public function login(ApiRequest $req, ApiResponse $res): ApiResponse
+  public function login(ApiRequest $req): array
   {
     $user = $this->auth->authenticate($req);
     if (!$user) throw new AuthenticationException("Neznámé uživatelské jméno nebo heslo.");
 
     $token = $this->auth->createUserToken($user);
 
-    return $res->writeJsonBody($this->ok([
+    return $this->ok([
       "token" => $token
-    ]));
+    ]);
   }
 
 }

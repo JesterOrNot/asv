@@ -3,7 +3,7 @@
 namespace App\Model\Database\Entity;
 
 use App\Model\Database\Entity\Attributes\TCreatedAt;
-use App\Model\Database\Entity\Attributes\TId;
+use App\Model\Database\Entity\Attributes\TUuid;
 use App\Model\Database\Entity\Attributes\TUpdatedAt;
 use App\Model\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,11 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
  * Admin users
  *
  * @ORM\Table(name="User", uniqueConstraints={@ORM\UniqueConstraint(name="User.email_unique", columns={"email"}), @ORM\UniqueConstraint(name="User.username_unique", columns={"username"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Model\Database\Repository\UserRepository")
  */
 class User
 {
-  use TId;
+  use TUuid;
   use TCreatedAt;
   use TUpdatedAt;
 
