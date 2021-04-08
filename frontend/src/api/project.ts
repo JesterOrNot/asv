@@ -1,59 +1,37 @@
-import { axi, BaseResponse } from "."
+import { $http, ErrorResponse, SuccessResponse } from "./index";
 
-export interface GetProjectsResponse extends BaseResponse {
-  data: {
-    // todo: better types
-    projects: object[]
-  }
-}
-
-export interface GetProjectResponse extends BaseResponse {
-  data: {
-    // todo: better types
-    project: object
-  }
+export interface ProjectResDto {
+  id: string
+  name: string
+  slug: string
 }
 
 /**
- * Project API
+ * Get projects (paginated)
+ *
+ * @param {number} page Current page
+ * @param {number} limit Projects per page
  */
-export class Project {
-  axios = axi()
+export const getProjects = (page = 1, limit = 10) =>
+  $http.request<SuccessResponse<{ projects: ProjectResDto[] }> | ErrorResponse>({
+    method: "GET",
+    url: "/project/list",
+    params: {
+      page,
+      limit
+    }
+  })
 
-  // TODO: better types, pls
-  getProjects = () => this.axios.get<GetProjectsResponse>("/projects/all")
-  getProject = (slug: string): Promise<{ status: number; data: GetProjectResponse }> =>
-    new Promise(res =>
-      res({
-        status: 200,
-        data: {
-          success: true,
-          data: {
-            project: [
-              {
-                name: "Project 1",
-                mainImage: "https://via.placeholder.com/600x300",
-              },
-              {
-                name: "Project 2",
-                mainImage: "https://via.placeholder.com/600x300",
-              },
-              {
-                name: "Project 3",
-                mainImage: "https://via.placeholder.com/600x300",
-              },
-              {
-                name: "Project 4",
-                mainImage: "https://via.placeholder.com/600x300",
-              },
-            ],
-          },
-        },
-      })
-    )
-  // this.axios.get<GetProjectResponse>(`/projects/${slug}`)
-
-  // TODO: add,edit,delete projects
-}
-
-export default Project
+/**
+ * Get project by id/slug
+ *
+ * @param {string} id Project id/slug
+ */
+export const getProject = (id: string) =>
+  $http.request<SuccessResponse<{ project: ProjectResDto }> | ErrorResponse>({
+    method: "GET",
+    url: "/project",
+    params: {
+      id
+    }
+  })

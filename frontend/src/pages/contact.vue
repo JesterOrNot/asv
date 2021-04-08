@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue"
-import Misc, { MainSettings } from "../api/misc"
+import Team, { MainSettings } from "../api/misc"
 
 export default defineComponent({
   setup() {
@@ -69,7 +69,7 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const res = await new Misc().getSettings()
+      const res = await new Team().getSettings()
       state.info = res.data.data ? res.data.data.settings : null
     })
 
