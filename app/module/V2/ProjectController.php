@@ -6,6 +6,7 @@ use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\OpenApi;
 use Apitte\Core\Annotation\Controller\Path;
 use Apitte\Core\Annotation\Controller\RequestParameters;
+use Apitte\Core\Annotation\Controller\RequestParameter;
 use Apitte\Core\Http\ApiRequest;
 use App\Domain\Api\Facade\ProjectFacade;
 use App\Domain\Api\Response\ProjectResDto;
@@ -49,7 +50,7 @@ class ProjectController extends BaseV2Controller
    * @OpenApi("
    *   summary: Get project by id/slug.
    * ")
-   * @Path("")
+   * @Path("/")
    * @Method("GET")
    * @RequestParameters({
    * 		@RequestParameter(name="id", type="int", in="query", required=false, description="ID/Slug")

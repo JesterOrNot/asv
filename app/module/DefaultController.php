@@ -6,6 +6,9 @@ use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\Path;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @Path("/")
+ */
 class DefaultController extends BaseController
 {
 

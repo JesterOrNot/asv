@@ -7,7 +7,7 @@ use Apitte\Core\Annotation\Controller\OpenApi;
 use Apitte\Core\Annotation\Controller\Path;
 use Apitte\Core\Annotation\Controller\Tag;
 use Apitte\Core\Http\ApiRequest;
-use App\Model\Api\Security\AbstractAuthenticator;
+use App\Model\Api\Security\TokenAuthenticator;
 use App\Model\Exception\Runtime\AuthenticationException;
 
 /**
@@ -16,7 +16,7 @@ use App\Model\Exception\Runtime\AuthenticationException;
 class AuthController extends BaseV2Controller
 {
 
-  public function __construct(private AbstractAuthenticator $auth)
+  public function __construct(private TokenAuthenticator $auth)
   {
   }
 
