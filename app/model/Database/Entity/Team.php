@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * The ASVGroup Team
  *
- * @ORM\Table(name="Team", uniqueConstraints={@ORM\UniqueConstraint(name="Team.fullName_unique", columns={"fullName"})})
+ * @ORM\Table(name="teams", uniqueConstraints={@ORM\UniqueConstraint(name="fullName_unique", columns={"fullName"})})
  * @ORM\Entity(repositoryClass="App\Model\Database\Repository\TeamRepository")
  */
 class Team

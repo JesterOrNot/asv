@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * All ASV Group projects
  *
- * @ORM\Table(name="Project", uniqueConstraints={@ORM\UniqueConstraint(name="Project.slug_unique", columns={"slug"})})
+ * @ORM\Table(name="projects", uniqueConstraints={@ORM\UniqueConstraint(name="slug_unique", columns={"slug"})})
  * @ORM\Entity(repositoryClass="App\Model\Database\Repository\ProjectRepository")
  */
 class Project
