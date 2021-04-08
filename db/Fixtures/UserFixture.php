@@ -6,6 +6,7 @@ use App\Model\Database\Entity\User;
 use App\Model\Fixtures\ReflectionLoader;
 use App\Model\Security\Passwords;
 use Doctrine\Persistence\ObjectManager;
+use Nelmio\Alice\Throwable\LoadingThrowable;
 
 /**
  * Class UserFixture
@@ -39,21 +40,21 @@ class UserFixture extends AbstractFixture
   }
 
   /**
-   * @return mixed[]
+   * @return array
    */
   protected function getStaticUsers(): iterable
   {
     yield [
       "email" => "example@example.com",
-      "name" => "Test",
-      "surname" => "User",
       "username" => "t3stus3r",
-      "role" => User::ROLE_ADMIN,
+      "password" => "meow",
+      "role" => User::ROLES[1],
     ];
   }
 
   /**
    * @return User[]
+   * @throws LoadingThrowable
    */
   protected function getRandomUsers(): iterable
   {
@@ -62,14 +63,11 @@ class UserFixture extends AbstractFixture
       User::class => [
         "user{1..100}" => [
           "__construct" => [
-            "<firstName()>",
-            "<lastName()>",
-            "<email()>",
             "<username()>",
+            "<email()>",
             "<password()>",
           ],
           "id" => "<current()>",
-          "apiKey" => "<sha256()>",
         ],
       ],
     ]);
@@ -78,20 +76,15 @@ class UserFixture extends AbstractFixture
   }
 
   /**
-   * @param mixed[] $user
+   * @param array $user
    */
   protected function saveUser(array $user): void
   {
     $entity = new User(
-      $user["name"],
-      $user["surname"],
-      $user["email"],
       $user["username"],
-      Passwords::create()->hash("admin")
+      $user['email'],
+      "admin"
     );
-    $entity->activate();
-    $entity->setRole($user["role"]);
-    $entity->setApikey($user["apikey"]);
 
     $this->manager->persist($entity);
     $this->manager->flush();
