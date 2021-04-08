@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Admin users
  *
- * @ORM\Table(name="User", uniqueConstraints={@ORM\UniqueConstraint(name="User.email_unique", columns={"email"}), @ORM\UniqueConstraint(name="User.username_unique", columns={"username"})})
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="email_unique", columns={"email"}), @ORM\UniqueConstraint(name="username_unique", columns={"username"})})
  * @ORM\Entity(repositoryClass="App\Model\Database\Repository\UserRepository")
  */
 class User

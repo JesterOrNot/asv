@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Record of authenticated user accessing the admin endpoints.
  *
- * @ORM\Table(name="AccessRecord", indexes={@ORM\Index(name="userId", columns={"userId"})})
+ * @ORM\Table(name="access_records", indexes={@ORM\Index(name="userId", columns={"userId"})})
  * @ORM\Entity(repositoryClass="App\Model\Database\Repository\AccessRecordRepository")
  */
 class AccessRecord
