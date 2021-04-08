@@ -1,0 +1,10 @@
+parameters:
+
+application:
+  errorPresenter: Error
+  mapping:
+    *: [App, Modules\*, Presenters\*Presenter]
+
+services:
+  # Routers
+  - App\Model\FrontendRouter

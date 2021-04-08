@@ -1,0 +1,11 @@
+<?php
+
+use App\Model\Api\Response\BaseError;
+use App\Model\Api\Response\Response;
+use Nette\Utils\Json;
+
+header("Content-Type: application/json");
+
+echo Json::encode(
+  Response::err(BaseError::make())
+);

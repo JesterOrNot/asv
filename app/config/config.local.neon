@@ -1,0 +1,7 @@
+parameters:
+	database:
+		host: localhost
+		dbname: asv_dev
+		user: asv
+		password: lol123
+

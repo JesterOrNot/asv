@@ -1,0 +1,18 @@
+includes:
+	- base.neon
+
+
+nettrine.orm:
+	configuration:
+		autoGenerateProxyClasses: ::constant(Doctrine\Common\Proxy\AbstractProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS)
+
+nettrine.cache:
+	driver: Doctrine\Common\Cache\ArrayCache
+
+parameters:
+	database:
+		driver: pdo_sqlite
+		host: test
+		dbname: test
+		user: test
+		password: test
