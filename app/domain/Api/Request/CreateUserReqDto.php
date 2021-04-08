@@ -4,13 +4,8 @@ namespace App\Domain\Api\Request;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class CreateUserReqDto
+final class CreateUserReqDto extends AuthenticateUserReqDto
 {
-  /**
-   * @var string
-   * @Assert\NotBlank
-   */
-  public string $username;
 
   /**
    * @var string
@@ -19,9 +14,4 @@ final class CreateUserReqDto
    */
   public string $email;
 
-  /**
-   * @var string
-   * @Assert\NotBlank
-   */
-  public string $password;
 }
