@@ -1,10 +1,5 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 565 300"
-    :width="width"
-    :height="height"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 565 300" :width="width" :height="height">
     <g id="Layer">
       <g id="asv_white">
         <path
@@ -22,11 +17,7 @@
           :fill="primary"
           d="M204.04 166.76C204.04 155.81 213.06 147.32 224.32 147.32C229.95 147.32 233.9 149.23 236.71 151.15C251.64 161.83 267.98 168.4 287.13 168.4C304.88 168.4 315.58 161.56 315.58 150.33L315.58 149.78C315.58 139.1 308.82 133.63 275.87 125.41C236.15 115.56 210.52 104.88 210.52 66.82L210.52 66.27C210.52 44.07 222.24 26.68 241.19 17L203.2 17L157.48 17C126.88 17.02 132.76 43.25 137.77 54.99L139.05 58.09L193.57 177.11C194.98 180.12 195.82 182.86 195.82 185.6C195.82 193.97 190.8 201.12 183.46 204.22L266.97 204.22C247.61 201.35 228.72 194.16 212.21 182.64C207.42 179.35 204.04 173.33 204.04 166.76Z"
         />
-        <path
-          id="Layer"
-          :fill="primary"
-          d="M70.48 123.99L125.12 123.99L97.8 60.74L70.48 123.99Z"
-        />
+        <path id="Layer" :fill="primary" d="M70.48 123.99L125.12 123.99L97.8 60.74L70.48 123.99Z" />
         <path
           id="Layer"
           :fill="primary"
@@ -125,12 +116,12 @@ export default defineComponent({
 
     const setColors = (colors: typeof primaryColor) => {
       console.log({ colors })
-      Object.keys(colors).forEach((el) => (state[el] = colors[el]))
+      Object.keys(colors).forEach(el => (state[el] = colors[el]))
     }
 
     watch(
       () => props.color,
-      (newColor) => {
+      newColor => {
         setColors(newColor === "white" ? secondaryColor : primaryColor)
       },
       { immediate: true }

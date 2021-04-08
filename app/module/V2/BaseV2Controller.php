@@ -11,4 +11,5 @@ use App\Module\BaseController;
  * @Id("v2")
  */
 abstract class BaseV2Controller extends BaseController
-{}
+{
+}

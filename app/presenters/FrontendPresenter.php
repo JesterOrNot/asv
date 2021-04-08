@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Presenters;
 
@@ -15,7 +15,8 @@ class FrontendPresenter extends Presenter
    * @throws BadRequestException
    * @throws AbortException
    */
-  #[NoReturn] public function actionDefault() {
+  #[NoReturn] public function actionDefault()
+  {
     $this->sendResponse(new FileResponse(__DIR__ . "/../resources/index.html", contentType: "text/html", forceDownload: false));
   }
 

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Model;
 
@@ -20,13 +20,13 @@ class FrontendRouter implements Router
   function match(Nette\Http\IRequest $httpRequest): ?array
   {
     return [
-      'presenter' => 'Frontend',
-      'action' => 'default'
+      "presenter" => "Frontend",
+      "action" => "default",
     ];
   }
 
   function constructUrl(array $params, Nette\Http\UrlScript $refUrl): ?string
   {
-    return '/';
+    return "/";
   }
 }

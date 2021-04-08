@@ -10,10 +10,7 @@
           <logo :color="fixed ? 'white' : 'blue'" width="150" height="56" />
         </router-link>
 
-        <a
-          :class="['navbar-burger burger', active && 'is-active']"
-          @click="active = !active"
-        >
+        <a :class="['navbar-burger burger', active && 'is-active']" @click="active = !active">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -23,9 +20,7 @@
       <div :class="['navbar-menu', active && 'is-active']">
         <div class="navbar-end">
           <router-link class="navbar-item" to="/"> Domov </router-link>
-          <router-link to="/projects" class="navbar-item">
-            Projekty
-          </router-link>
+          <router-link to="/projects" class="navbar-item"> Projekty </router-link>
           <router-link to="/about" class="navbar-item"> Co děláme </router-link>
           <router-link to="/contact" class="navbar-item"> Kontakt </router-link>
         </div>

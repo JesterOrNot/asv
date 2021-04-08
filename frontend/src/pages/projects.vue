@@ -1,9 +1,6 @@
 <template>
   <DefaultLayout>
-    <div
-      class="hero is-primary"
-      :style="{ display: 'flex', justifyContent: 'center' }"
-    >
+    <div class="hero is-primary" :style="{ display: 'flex', justifyContent: 'center' }">
       <div class="hero-body has-text-centered">
         <h1 class="is-size-1">Projekty</h1>
       </div>

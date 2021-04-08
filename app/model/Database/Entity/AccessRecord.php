@@ -20,29 +20,18 @@ class AccessRecord
   use TId;
   use TCreatedAt;
 
-  public function __construct(
-    string $endpoint,
-    string $ip
-  )
-  {
-    $this->endpoint = $endpoint;
-    $this->ip = $ip;
-  }
-
   /**
    * @var string
    *
    * @ORM\Column(name="endpoint", type="string", length=191, nullable=false)
    */
   private string $endpoint;
-
   /**
    * @var string
    *
    * @ORM\Column(name="ip", type="string", length=191, nullable=false)
    */
   private string $ip;
-
   /**
    * @var User
    *
@@ -52,6 +41,12 @@ class AccessRecord
    * })
    */
   private User $user;
+
+  public function __construct(string $endpoint, string $ip)
+  {
+    $this->endpoint = $endpoint;
+    $this->ip = $ip;
+  }
 
   /**
    * @param string $id

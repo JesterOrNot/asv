@@ -14,8 +14,8 @@ final class Passwords extends NettePasswords
   }
 
   #[Pure] public static function create(array $options = []): Passwords
-	{
-		return new Passwords($options);
-	}
+  {
+    return new Passwords($options);
+  }
 
 }

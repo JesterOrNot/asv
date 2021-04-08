@@ -17,37 +17,31 @@ class Team
 {
   use TId;
 
-  public function __construct(
-    string $fullName,
-    string $position,
-    ?string $image
-  )
-  {
-    $this->fullName = $fullName;
-    $this->position = $position;
-    $this->image = $image;
-  }
-
   /**
    * @var string
    *
    * @ORM\Column(name="fullName", type="string", length=191, nullable=false)
    */
   private string $fullName;
-
   /**
    * @var string
    *
    * @ORM\Column(name="position", type="string", length=191, nullable=false)
    */
   private string $position;
-
   /**
    * @var ?string
    *
    * @ORM\Column(name="image", type="string", length=191, nullable=true)
    */
   private ?string $image;
+
+  public function __construct(string $fullName, string $position, ?string $image)
+  {
+    $this->fullName = $fullName;
+    $this->position = $position;
+    $this->image = $image;
+  }
 
   /**
    * @return string

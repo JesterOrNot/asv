@@ -1,9 +1,6 @@
 <template>
   <DefaultLayout v-if="project">
-    <div
-      class="hero is-primary"
-      :style="{ display: 'flex', justifyContent: 'center' }"
-    >
+    <div class="hero is-primary" :style="{ display: 'flex', justifyContent: 'center' }">
       <div class="hero-body has-text-centered">
         <h1 class="is-size-1">{{ project.name }}</h1>
       </div>
@@ -18,10 +15,7 @@
                   {{ project.description }}
                 </div>
                 <div class="contact mt-5">
-                  <a
-                    :href="project.website"
-                    v-if="project.website !== '%none%'"
-                  >
+                  <a :href="project.website" v-if="project.website !== '%none%'">
                     <div class="info bigger">
                       <Globe size="3rem" />
                       {{ project.website }}
@@ -31,10 +25,7 @@
                   <div class="info bigger mt-5">
                     <Map size="3rem" />
                     <div>
-                      <div
-                        v-for="(line, i) in project.address.split('\n')"
-                        :key="i"
-                      >
+                      <div v-for="(line, i) in project.address.split('\n')" :key="i">
                         {{ line }}
                         <br />
                       </div>
@@ -105,9 +96,10 @@ export default defineComponent({
       try {
         const { data: res } = await new Project().getProject(params.slug)
 
-        ;(res as any).data.project.images = (res as any).data.project.images.map(
-          (el: string) => ({ original: el, thumbnail: el })
-        )
+        ;(res as any).data.project.images = (res as any).data.project.images.map((el: string) => ({
+          original: el,
+          thumbnail: el,
+        }))
 
         state.project = res.data.project
         console.log("Project", (res.data.project as any).mainImage)

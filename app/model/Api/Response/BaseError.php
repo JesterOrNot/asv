@@ -15,10 +15,7 @@ class BaseError
    * @param string $kind Error Kind
    * @param string $message Error Message
    */
-  public function __construct(
-    string $kind = "INTERNAL",
-    string $message = "Internal Server Error"
-  )
+  public function __construct(string $kind = "INTERNAL", string $message = "Internal Server Error")
   {
     $this->kind = $kind;
     $this->message = $message;
@@ -29,10 +26,7 @@ class BaseError
    * @param string $message
    * @return BaseError
    */
-  public static function make(
-    string $kind = "INTERNAL",
-    string $message = "Internal Server Error"
-  )
+  public static function make(string $kind = "INTERNAL", string $message = "Internal Server Error")
   {
     return new BaseError($kind, $message);
   }

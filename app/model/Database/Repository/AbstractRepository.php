@@ -9,4 +9,5 @@ use Doctrine\ORM\EntityRepository;
  * @extends EntityRepository<TEntityClass>
  */
 abstract class AbstractRepository extends EntityRepository
-{}
+{
+}

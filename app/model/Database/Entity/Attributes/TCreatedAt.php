@@ -2,7 +2,7 @@
 
 namespace App\Model\Database\Entity\Attributes;
 
-use \DateTime;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,23 +12,23 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait TCreatedAt
 {
-	/**
-	 * @var DateTime
-	 * @ORM\Column(type="datetime", nullable=FALSE)
-	 */
-	private DateTime $createdAt;
+  /**
+   * @var DateTime
+   * @ORM\Column(type="datetime", nullable=FALSE)
+   */
+  private DateTime $createdAt;
 
-	public function getCreatedAt(): DateTime
-	{
-		return $this->createdAt;
-	}
+  public function getCreatedAt(): DateTime
+  {
+    return $this->createdAt;
+  }
 
-	/**
-	 * @ORM\PrePersist
-	 * @internal
-	 */
-	public function setCreatedAt(): void
-	{
-		$this->createdAt = new DateTime();
-	}
+  /**
+   * @ORM\PrePersist
+   * @internal
+   */
+  public function setCreatedAt(): void
+  {
+    $this->createdAt = new DateTime();
+  }
 }

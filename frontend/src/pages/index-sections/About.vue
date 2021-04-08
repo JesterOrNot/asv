@@ -4,12 +4,11 @@
       <div class="mb-8">
         <subtitle class="mb-2">O nás</subtitle>
         <p class="text-gray-900 max-w-screen-lg 2xl:text-xl">
-          Skupinu ASV Group založili v roce 2014 Aleš Vobruba a Pavel Menšík,
-          manažeři s dlouholetými zkušenostmi z mezinárodní realitní
-          společnosti, jako realitní investiční platformu, která zahrnuje
-          projekty v různých oborech a teritoriích – komerční nemovitosti,
-          obchodní parky v České republice a na Slovensku, rezidenční a smíšené
-          projekty v České republice, Rakousku a Chorvatsku.
+          Skupinu ASV Group založili v roce 2014 Aleš Vobruba a Pavel Menšík, manažeři s
+          dlouholetými zkušenostmi z mezinárodní realitní společnosti, jako realitní investiční
+          platformu, která zahrnuje projekty v různých oborech a teritoriích – komerční nemovitosti,
+          obchodní parky v České republice a na Slovensku, rezidenční a smíšené projekty v České
+          republice, Rakousku a Chorvatsku.
         </p>
       </div>
 

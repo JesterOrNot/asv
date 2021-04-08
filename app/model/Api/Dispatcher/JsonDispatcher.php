@@ -24,16 +24,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class JsonDispatcher extends ApitteJsonDispatcher
 {
-	protected SerializerInterface $serializer;
+  protected SerializerInterface $serializer;
 
-	protected ValidatorInterface $validator;
+  protected ValidatorInterface $validator;
 
-	#[Pure] public function __construct(IRouter $router, IHandler $handler, SerializerInterface $serializer, ValidatorInterface $validator)
-	{
-		parent::__construct($router, $handler);
-		$this->serializer = $serializer;
-		$this->validator = $validator;
-	}
+  #[Pure] public function __construct(IRouter $router, IHandler $handler, SerializerInterface $serializer, ValidatorInterface $validator)
+  {
+    parent::__construct($router, $handler);
+    $this->serializer = $serializer;
+    $this->validator = $validator;
+  }
 
   /**
    * @param ApiRequest $request
@@ -42,43 +42,43 @@ class JsonDispatcher extends ApitteJsonDispatcher
    * @throws JsonException
    */
   protected function handle(ApiRequest $request, ApiResponse $response): ApiResponse
-	{
-		try {
-			$request = $this->transformRequest($request);
-			$result = $this->handler->handle($request, $response);
+  {
+    try {
+      $request = $this->transformRequest($request);
+      $result = $this->handler->handle($request, $response);
 
-			// Except ResponseInterface convert all to json
-			if (!($result instanceof ApiResponse)) {
-				$response = $this->transformResponse($result, $response);
-			} else {
-				$response = $result;
-			}
-		} catch (ClientErrorException | ServerErrorException $e) {
-			$data = Response::err(BaseError::make());
+      // Except ResponseInterface convert all to json
+      if (!($result instanceof ApiResponse)) {
+        $response = $this->transformResponse($result, $response);
+      } else {
+        $response = $result;
+      }
+    } catch (ClientErrorException | ServerErrorException $e) {
+      $data = Response::err(BaseError::make());
 
-			if ($e->getMessage()) $data['error']['message'] = $e->getMessage();
+      if ($e->getMessage()) $data['error']['message'] = $e->getMessage();
 
-			if ($e->getCode())
-				$data['error']['kind'] = match ($e->getCode()) {
+      if ($e->getCode())
+        $data['error']['kind'] = match ($e->getCode()) {
           400 => "VALIDATION",
           401 => "UNAUTHORIZED",
           403 => "FORBIDDEN",
           404 => "USER_INPUT",
         };
 
-			$response = $response->withStatus($e->getCode() ?: 500)
-				->withHeader('Content-Type', 'application/json');
+      $response = $response->withStatus($e->getCode() ?: 500)
+        ->withHeader('Content-Type', 'application/json');
 
-			$response->getBody()->write(Json::encode($data));
-		} catch (RuntimeException $e) {
-			$response = $response->withStatus($e->getCode() ?: 500)
-				->withHeader('Content-Type', 'application/json');
+      $response->getBody()->write(Json::encode($data));
+    } catch (RuntimeException $e) {
+      $response = $response->withStatus($e->getCode() ?: 500)
+        ->withHeader('Content-Type', 'application/json');
 
-			$response->getBody()->write(Json::encode(Response::err(BaseError::make())));
-		}
+      $response->getBody()->write(Json::encode(Response::err(BaseError::make())));
+    }
 
-		return $response;
-	}
+    return $response;
+  }
 
   /**
    * Transform incoming request to request DTO, if needed.
@@ -86,62 +86,62 @@ class JsonDispatcher extends ApitteJsonDispatcher
    * @param ApiRequest $request
    * @return ApiRequest
    */
-	protected function transformRequest(ApiRequest $request): ApiRequest
-	{
-		// If Apitte endpoint is not provided, skip transforming.
-		if (!($endpoint = $request->getAttribute(RequestAttributes::ATTR_ENDPOINT)))
-			return $request;
+  protected function transformRequest(ApiRequest $request): ApiRequest
+  {
+    // If Apitte endpoint is not provided, skip transforming.
+    if (!($endpoint = $request->getAttribute(RequestAttributes::ATTR_ENDPOINT)))
+      return $request;
 
-		assert($endpoint instanceof Endpoint);
+    assert($endpoint instanceof Endpoint);
 
-		if (!($entity = $endpoint->getTag('request.dto')))
-			return $request;
+    if (!($entity = $endpoint->getTag('request.dto')))
+      return $request;
 
 
-		try {
-			$dto = $this->serializer->deserialize(
-				$request->getBody()->getContents(),
-				$entity,
-				'json',
-				['allow_extra_attributes' => false]
-			);
+    try {
+      $dto = $this->serializer->deserialize(
+        $request->getBody()->getContents(),
+        $entity,
+        'json',
+        [ 'allow_extra_attributes' => false ]
+      );
 
-			$request = $request->withParsedBody($dto);
-		} catch (ExtraAttributesException $e) {
-			throw ValidationException::create()
-				->withMessage($e->getMessage());
-		}
+      $request = $request->withParsedBody($dto);
+    } catch (ExtraAttributesException $e) {
+      throw ValidationException::create()
+        ->withMessage($e->getMessage());
+    }
 
-		$violations = $this->validator->validate($dto);
+    $violations = $this->validator->validate($dto);
 
-		if (count($violations) > 0) {
-			$fields = [];
-			foreach ($violations as $violation) {
-				$fields[$violation->getPropertyPath()][] = $violation->getMessage();
-			}
+    if (count($violations) > 0) {
+      $fields = [];
+      foreach ($violations as $violation) {
+        $fields[$violation->getPropertyPath()][] = $violation->getMessage();
+      }
 
-			throw ValidationException::create()
-				->withMessage('Invalid request data')
-				->withFields($fields);
-		}
+      throw ValidationException::create()
+        ->withMessage('Invalid request data')
+        ->withFields($fields);
+    }
 
-		return $request;
-	}
+    return $request;
+  }
 
   /**
    * @param mixed $data
    * @param ApiResponse $response
    * @return ApiResponse
    */
-	protected function transformResponse(mixed $data, ApiResponse $response): ApiResponse
-	{
-		$response = $response->withStatus(200)
-			->withHeader('Content-Type', 'application/json');
+  protected function transformResponse(mixed $data, ApiResponse $response): ApiResponse
+  {
+    $response = $response->withStatus(200)
+      ->withHeader('Content-Type', 'application/json');
 
-		$serialized = $this->serializer->serialize($data, 'json');
+    $serialized = $this->serializer->serialize($data, 'json');
 
-		$response->getBody()->write($serialized);
+    $response->getBody()->write($serialized);
 
-		return $response;
-	}
+    return $response;
+  }
 }

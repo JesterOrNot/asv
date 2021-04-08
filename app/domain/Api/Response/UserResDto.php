@@ -7,31 +7,31 @@ use DateTimeInterface;
 
 final class UserResDto
 {
-	/** @var string */
-	public string $id;
+  /** @var string */
+  public string $id;
 
-	/** @var string */
-	public string $email;
+  /** @var string */
+  public string $email;
 
-	/** @var string */
-	public string $username;
+  /** @var string */
+  public string $username;
 
-	/** @var DateTimeInterface */
-	public DateTimeInterface $createdAt;
+  /** @var DateTimeInterface */
+  public DateTimeInterface $createdAt;
 
-	/** @var DateTimeInterface */
+  /** @var DateTimeInterface */
   public DateTimeInterface $updatedAt;
 
-	public static function from(User $user): self
-	{
-		$self = new self();
+  public static function from(User $user): self
+  {
+    $self = new self();
 
-		$self->id = $user->getId();
-		$self->email = $user->getEmail();
-		$self->username = $user->getName();
-		$self->createdAt = $user->getSurname();
-		$self->updatedAt = $user->getFullname();
+    $self->id = $user->getId();
+    $self->email = $user->getEmail();
+    $self->username = $user->getName();
+    $self->createdAt = $user->getSurname();
+    $self->updatedAt = $user->getFullname();
 
-		return $self;
-	}
+    return $self;
+  }
 }

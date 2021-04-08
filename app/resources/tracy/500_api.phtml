@@ -6,6 +6,4 @@ use Nette\Utils\Json;
 
 header("Content-Type: application/json");
 
-echo Json::encode(
-  Response::err(BaseError::make())
-);
+echo Json::encode(Response::err(BaseError::make()));

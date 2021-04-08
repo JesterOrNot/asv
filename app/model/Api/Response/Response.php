@@ -2,7 +2,6 @@
 
 namespace App\Model\Api\Response;
 
-use App\Model\Api\Response\BaseError;
 use JetBrains\PhpStorm\ArrayShape;
 
 /**
