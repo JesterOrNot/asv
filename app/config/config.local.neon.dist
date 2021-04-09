@@ -1,6 +1,6 @@
 parameters:
   database:
     host: localhost
-	dbname: asv
-	user: asv
-	password: password
+    dbname: asv
+    user: asv
+    password: password
