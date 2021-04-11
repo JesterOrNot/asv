@@ -2,7 +2,7 @@
   <div id="footer" class="bg-gray-800 w-full min-h-screen flex item">
     <div class="w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
       <div class="mb-4">
-        <logo class="w-32 md:w-36 lg:w-48 h-32 md:h-36 lg:h-48" />
+        <logo class="w-32 md:w-36 lg:w-48 h-32 md:h-36 lg:h-48" :modelValue="false" />
       </div>
 
       <div class="mb-6 lg:mb-12 text-center">
@@ -62,7 +62,7 @@
           </svg>
           <div class="flex flex-col">
             <span>Štěpánská 2071/37</span>
-            <span>110 Praha 1 - Nové Město</span>
+            <span>110 00 Praha 1 - Nové Město</span>
           </div>
         </div>
       </div>

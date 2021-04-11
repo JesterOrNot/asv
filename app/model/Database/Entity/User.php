@@ -60,6 +60,8 @@ class User
     $this->email = $email;
     $this->password = Passwords::create()->hash($password);
     $this->role = $role;
+    $this->createdAt = new \DateTime();
+    $this->updatedAt = new \DateTime();
   }
 
   /**

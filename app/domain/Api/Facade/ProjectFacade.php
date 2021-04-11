@@ -34,12 +34,11 @@ final class ProjectFacade
    */
   public function findBy(
     array $criteria = [],
-    array $orderBy = [ 'createdAt' => 'ASC' ],
     int $limit = 10,
     int $offset = 0
   ): array
   {
-    $projects = $this->em->getProjectRepository()->findBy($criteria, $orderBy, $limit, $offset);
+    $projects = $this->em->getProjectRepository()->findBy($criteria, limit: $limit, offset: $offset);
     return ProjectResDto::fromMany($projects);
   }
 

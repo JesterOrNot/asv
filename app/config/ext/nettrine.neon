@@ -22,6 +22,8 @@ nettrine.dbal:
 		password: %database.password%
 		dbname: %database.dbname%
 		port: %database.port%
+		types:
+		  uuid: Ramsey\Uuid\Doctrine\UuidType
 
 nettrine.orm:
 	entityManagerDecoratorClass: App\Model\Database\EntityManager

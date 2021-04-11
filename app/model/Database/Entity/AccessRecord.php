@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Record of authenticated user accessing the admin endpoints.
  *
- * @ORM\Table(name="access_records", indexes={@ORM\Index(name="userId", columns={"userId"})})
+ * @ORM\Table(name="access_records", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity(repositoryClass="App\Model\Database\Repository\AccessRecordRepository")
  */
 class AccessRecord
@@ -37,7 +37,7 @@ class AccessRecord
    *
    * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumns({
-   *   @ORM\JoinColumn(name="userId", referencedColumnName="id")
+   *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
    * })
    */
   private User $user;
@@ -46,6 +46,7 @@ class AccessRecord
   {
     $this->endpoint = $endpoint;
     $this->ip = $ip;
+    $this->createdAt = new \DateTime();
   }
 
   /**

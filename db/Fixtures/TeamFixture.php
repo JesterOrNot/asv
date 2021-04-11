@@ -18,7 +18,7 @@ class TeamFixture extends AbstractFixture
    */
   public function getOrder(): int
   {
-    return 1;
+    return 2;
   }
 
   public function load(ObjectManager $manager): void

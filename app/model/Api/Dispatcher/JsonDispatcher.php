@@ -14,6 +14,7 @@ use Apitte\Core\Router\IRouter;
 use Apitte\Core\Schema\Endpoint;
 use App\Model\Api\Response\BaseError;
 use App\Model\Api\Response\Response;
+use Doctrine\ORM\EntityNotFoundException;
 use JetBrains\PhpStorm\Pure;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
@@ -75,6 +76,8 @@ class JsonDispatcher extends ApitteJsonDispatcher
         ->withHeader('Content-Type', 'application/json');
 
       $response->getBody()->write(Json::encode(Response::err(BaseError::make())));
+    } catch (EntityNotFoundException $e) {
+      $response = $response->writeJsonBody(Response::err(BaseError::make('USER_INPUT', $e->getMessage() ?: "Entity not found")));
     }
 
     return $response;

@@ -14,9 +14,9 @@ trait TId
   /**
    * @var int
    *
-   * @ORM\Column(name="id", type="string", length=191, nullable=false)
    * @ORM\Id
-   * @ORM\GeneratedValue(strategy="IDENTITY")
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue
    */
   private int $id;
 

@@ -16,6 +16,9 @@ final class ProjectResDto
   /** @var string */
   public string $slug;
 
+  /** @var string[] */
+  public array $images;
+
   #[Pure] public static function from(Project $project): self
   {
     $self = new self();
@@ -23,6 +26,7 @@ final class ProjectResDto
     $self->id = $project->getId();
     $self->name = $project->getName();
     $self->slug = $project->getSlug();
+    $self->images = $project->getImages();
 
     return $self;
   }
