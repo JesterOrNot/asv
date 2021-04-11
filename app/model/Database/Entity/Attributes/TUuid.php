@@ -3,6 +3,7 @@
 namespace App\Model\Database\Entity\Attributes;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 /**
  * Trait for entities that adds the id field.
@@ -14,9 +15,10 @@ trait TUuid
   /**
    * @var string
    *
-   * @ORM\Column(name="id", type="string", length=191, nullable=false)
+   * @ORM\Column(type="uuid", unique=true)
    * @ORM\Id
-   * @ORM\GeneratedValue(strategy="UUID")
+   * @ORM\GeneratedValue(strategy="CUSTOM")
+   * @ORM\CustomIdGenerator(class=UuidGenerator::class)
    */
   private string $id;
 

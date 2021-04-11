@@ -18,7 +18,7 @@ class ProjectFixture extends AbstractFixture
    */
   public function getOrder(): int
   {
-    return 2;
+    return 3;
   }
 
   /**
@@ -42,12 +42,11 @@ class ProjectFixture extends AbstractFixture
     $loader = new ReflectionLoader();
     $objectSet = $loader->loadData([
       Project::class => [
-        "project{1..5}" => [
+        "project{1..10}" => [
           "__construct" => [
             "<company()>",
             "<slug(company())>",
           ],
-          "id" => "<current()>",
         ],
       ],
     ]);

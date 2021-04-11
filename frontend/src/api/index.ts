@@ -2,7 +2,7 @@ import Axios from "axios"
 
 export interface SuccessResponse<TData extends object = object> {
   success: true
-  data?: TData
+  data: TData
 }
 
 export interface BaseError {
@@ -11,13 +11,16 @@ export interface BaseError {
 }
 
 export interface ErrorResponse<TError extends BaseError = BaseError> {
-  success: false,
+  success: false
   error: TError
 }
 
 export const isStaging = () => window.location.hostname.startsWith("staging")
 
-export const apiDomain = () => process.env.NODE_ENV === "development" ? "http://localhost:4000/api/v2" : "https://asvgroup.cz/api/v2"
+export const apiDomain = () =>
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:4000/api/v2"
+    : "https://asvgroup.cz/api/v2"
 
 export const createAxios = () => {
   console.log("[ASV Axi] Staging Server:", isStaging())
@@ -28,8 +31,8 @@ export const createAxios = () => {
   return Axios.create({
     baseURL: apiDomain(),
     headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {})
-    }
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
   })
 }
 

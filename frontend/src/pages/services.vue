@@ -62,7 +62,7 @@
 import { defineComponent } from "vue"
 import Column from "../components/flex/Column.vue"
 import ColumnWrapper from "../components/flex/ColumnWrapper"
-import DefaultLayout from "../layouts/DefaultLayout.vue"
+import DefaultLayout from "../components/wrapper/Scroll.vue"
 import WdwdItem from "../components/global/WdwdItem.vue"
 
 export default defineComponent({

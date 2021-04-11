@@ -1,31 +1,31 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 
-import Contact from "../pages/contact.vue"
-import Index from "../pages/index.vue"
-import Project from "../pages/project.vue"
-import Projects from "../pages/projects.vue"
-import WhatDoWeDo from "../pages/services.vue"
-
 const routes: RouteRecordRaw[] = [
   {
-    path: "/contact",
-    component: Contact,
-  },
-  {
-    path: "/projects",
-    component: Projects,
-  },
-  {
-    path: "/project/:slug",
-    component: Project,
-  },
-  {
-    path: "/about",
-    component: WhatDoWeDo,
-  },
-  {
     path: "/",
-    component: Index,
+    component: () => import("../components/wrapper/Scroll.vue"),
+    children: [
+      {
+        path: "/contact",
+        component: () => import("../pages/contact.vue"),
+      },
+      {
+        path: "/projects",
+        component: () => import("../pages/projects.vue"),
+      },
+      {
+        path: "/project/:id",
+        component: () => import("../pages/project.vue"),
+      },
+      {
+        path: "/services",
+        component: () => import("../pages/services.vue"),
+      },
+      {
+        path: "/",
+        component: () => import("../pages/index.vue"),
+      },
+    ],
   },
 ]
 

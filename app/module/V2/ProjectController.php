@@ -10,6 +10,7 @@ use Apitte\Core\Annotation\Controller\RequestParameter;
 use Apitte\Core\Http\ApiRequest;
 use App\Domain\Api\Facade\ProjectFacade;
 use App\Domain\Api\Response\ProjectResDto;
+use App\Model\Api\Response\BaseError;
 use Doctrine\ORM\EntityNotFoundException;
 
 /**
@@ -37,8 +38,8 @@ class ProjectController extends BaseV2Controller
    */
   public function allProjects(ApiRequest $req): array
   {
-    $limit = $req->getParameter("limit", 10);
-    $page = $req->getParameter("page", 1);
+    $limit = intval($req->getParameter("limit", 10));
+    $page = intval($req->getParameter("page", 1));
     $offset = ($page - 1) * $limit;
 
     return $this->ok([
@@ -64,13 +65,13 @@ class ProjectController extends BaseV2Controller
     $id = $req->getParameter("id");
 
     // Querying by slug first as that is used in the frontend.
-    $project = $this->projectFacade->findBy(['slug' => $id]);
+    $project = $this->projectFacade->findOneBy(['slug' => $id]);
 
     // If there's no match for slug, search by id
     if (!$project) $project = $this->projectFacade->findBy(['id' => $id]);
 
     // No match for slug/id
-    if (!$project) throw new EntityNotFoundException("No project found");
+    if (!$project) return $this->err(BaseError::make('USER_INPUT', 'Project not found'));
 
     return $this->ok([
       "project" => $project

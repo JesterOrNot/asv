@@ -30,10 +30,18 @@ class Project
    */
   private string $slug;
 
-  public function __construct(string $name, string $slug)
+  /**
+   * @var string[]
+   *
+   * @ORM\Column(name="images", type="array")
+   */
+  private array $images;
+
+  public function __construct(string $name, string $slug, array $images = [])
   {
     $this->name = $name;
     $this->slug = $slug;
+    $this->images = $images;
   }
 
   /**
@@ -46,10 +54,12 @@ class Project
 
   /**
    * @param string $name
+   * @return self
    */
-  public function setName(string $name): void
+  public function setName(string $name): self
   {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -62,9 +72,50 @@ class Project
 
   /**
    * @param string $slug
+   * @return self
    */
-  public function setSlug(string $slug): void
+  public function setSlug(string $slug): self
   {
     $this->slug = $slug;
+    return $this;
   }
+
+  /**
+   * @return string[]
+   */
+  public function getImages(): array
+  {
+    return $this->images;
+  }
+
+  /**
+   * @param string[] $images
+   * @return self
+   */
+  public function setImages(array $images): self
+  {
+    $this->images = $images;
+    return $this;
+  }
+
+  /**
+   * @param string $image
+   * @return self
+   */
+  public function addImage(string $image): self
+  {
+    $this->images[] = $image;
+    return $this;
+  }
+
+  /**
+   * @param string[] $images
+   * @return self
+   */
+  public function addImages(array $images): self
+  {
+    $this->images = array_merge($this->images, $images);
+    return $this;
+  }
+
 }

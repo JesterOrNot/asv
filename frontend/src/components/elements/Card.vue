@@ -1,6 +1,6 @@
 <template>
   <component :is="component" class="flex relative h-full">
-    <img :src="img.src" :alt="img.alt" :class="imgClasses" />
+    <img :src="img.src" :alt="img.alt" :class="imgClasses + img.class" />
     <div :class="textWrapperClasses">
       <slot />
     </div>

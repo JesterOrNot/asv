@@ -7,6 +7,9 @@ use Tracy\Debugger;
 
 $config = Kernel::configure();
 
+// CORS
+header('Access-Control-Allow-Origin: *');
+
 if (substr($_SERVER["REQUEST_URI"], 0, 4) === "/api") {
   Debugger::$errorTemplate = __DIR__ . "/../app/resources/tracy/500_api.phtml";
   $config

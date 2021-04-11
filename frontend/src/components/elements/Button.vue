@@ -1,11 +1,7 @@
 <template>
   <component
     :is="component"
-    :class="
-      [buttonClasses, buttonColorClasses[color] ?? buttonColorClasses['none'], $attrs.class].join(
-        ''
-      )
-    "
+    :class="[buttonClasses, buttonColorClasses[color] ?? buttonColorClasses['none']].join('')"
   >
     <slot />
   </component>
@@ -23,8 +19,8 @@ const buttonColorClasses: { [key: string]: string } = {
   none: "",
 }
 
-export const Button = defineComponent({
-  name: "Button",
+export default defineComponent({
+  name: "ASVButton",
   props: {
     tagName: string("button"),
     color: oneOf<string>(String as any, Object.keys(buttonColorClasses), "white"),
@@ -43,24 +39,5 @@ export const Button = defineComponent({
         : "button",
     }
   },
-  // h(
-  //   // @ts-ignore
-  //   props.tagName
-  //     ? props.tagName === "router-link"
-  //       ? RouterLink
-  //       : props.tagName
-  //     : "button",
-  //   {
-  //     ...attrs,
-  //     class: [
-  //       buttonClasses,
-  //       buttonColorClasses[props.color] ?? buttonColorClasses["none"],
-  //       attrs.class,
-  //     ].join(" "),
-  //   },
-  //   slots.default?.()
-  // ),
 })
-
-export default Button
 </script>
