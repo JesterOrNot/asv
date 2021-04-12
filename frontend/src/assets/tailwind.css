@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 .bg-main {
-  background: url(../assets/img/0.png) no-repeat fixed !important;
+  background: url(/images/projects/motovun-istria-chorvatsko-blur.png) no-repeat fixed !important;
   background-size: cover !important;
+  background-position: center !important;
 }
 
 html,

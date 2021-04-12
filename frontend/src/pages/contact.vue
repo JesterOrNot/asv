@@ -1,7 +1,7 @@
 <template>
   <div class="bg-main">
     <div class="py-32 bg-gray-700 bg-opacity-30 w-full h-full flex justify-center items-center">
-      <Title>Kontakt</Title>
+      <PageTitle>Kontakt</PageTitle>
     </div>
   </div>
   <div class="py-32 max-w-6xl mx-auto px-4 flex justify-between items-center min-h-full">
@@ -96,14 +96,17 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import { Title } from "../components/typography"
+import { PageTitle } from "../components/typography"
 import Map from "../components/global/Map.vue"
+import store from "../store"
 
 export default defineComponent({
   components: {
-    Title,
+    PageTitle,
     Map,
   },
-  setup() {},
+  setup() {
+    store.loaded = true
+  },
 })
 </script>

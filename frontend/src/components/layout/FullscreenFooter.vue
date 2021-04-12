@@ -6,11 +6,8 @@
       </div>
 
       <div class="mb-6 lg:mb-12 text-center">
-        <h1 class="text-primary text-2xl md:text-4xl xl:text-6xl 2xl:text-7xl mb-4">
-          Pojďte do toho s námi!
-        </h1>
         <h2 class="text-white text-xl md:text-2xl xl:text-4xl 2xl:text-5xl">
-          Viditelný studie té skryté praxi zde největších.
+          Pojďte do toho s námi!
         </h2>
       </div>
 

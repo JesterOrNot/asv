@@ -14,6 +14,12 @@
       </router-link>
       <div class="flex justify-end items-center w-full">
         <router-link
+          to="/#o-nas"
+          class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
+        >
+          O nás
+        </router-link>
+        <router-link
           to="/services"
           class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
         >

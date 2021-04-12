@@ -20,6 +20,9 @@ final class ProjectResDto
   public string $description;
 
   /** @var string|null */
+  public ?string $address;
+
+  /** @var string|null */
   public ?string $website;
 
   /** @var string */
@@ -36,6 +39,7 @@ final class ProjectResDto
     $self->name = $project->getName();
     $self->types = $project->getTypes();
     $self->description = $project->getDescription();
+    $self->address = $project->getAddress();
     $self->website = $project->getWebsite();
     $self->slug = $project->getSlug();
     $self->images = $project->getImages();

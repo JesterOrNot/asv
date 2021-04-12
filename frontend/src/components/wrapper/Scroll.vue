@@ -1,4 +1,5 @@
 <template>
+  <fullscreen-init />
   <navbar v-model="fixed" class="z-10" />
   <div id="_scroll" ref="container">
     <router-view />
@@ -10,10 +11,11 @@ import Scrollbar, { ScrollbarPlugin } from "smooth-scrollbar"
 import bounce from "smooth-scrollbar/plugins/overscroll"
 import { defineComponent, onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
+import FullscreenInit from "../global/FullscreenInit.vue"
 import Navbar from "../layout/Navbar.vue"
 
 export default defineComponent({
-  components: { Navbar },
+  components: { Navbar, FullscreenInit },
   setup() {
     const container = ref<HTMLDivElement | null>(null)
     const bar = ref<Scrollbar | null>(null)

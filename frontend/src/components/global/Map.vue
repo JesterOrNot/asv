@@ -34,8 +34,6 @@ export default defineComponent({
       mapLoaded: false,
     })
 
-    document.title = "ASV Group | Kontakt"
-
     return {
       state,
     }

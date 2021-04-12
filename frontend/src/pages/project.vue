@@ -1,8 +1,15 @@
 <template>
   <div v-if="state.project">
-    <div class="bg-main">
-      <div class="py-32 bg-gray-700 bg-opacity-30 w-full h-full flex justify-center items-center">
-        <Title>{{ state.project.name }}</Title>
+    <div class="relative py-32">
+      <div
+        :style="`background: url(${state.project.images[0]}) no-repeat fixed;background-size: cover;background-position: center;filter: blur(3px)`"
+        class="w-full h-full absolute top-0"
+      ></div>
+
+      <div
+        class="absolute w-full h-full top-0 bg-gray-700 bg-opacity-30 flex justify-center items-center"
+      >
+        <PageTitle>{{ state.project.name }}</PageTitle>
       </div>
     </div>
     <div
@@ -11,12 +18,20 @@
     >
       <div class="w-full">
         <div class="mb-6">
-          <p class="pr-8 block" v-html="parseMd(state.project.description)"></p>
+          <p
+            class="pr-8 block"
+            v-for="(content, i) in state.project.description.split('\\n')"
+            :key="i"
+          >
+            <component :is="content === '%sp%' ? 'br' : 'span'">
+              {{ content === "%sp%" ? "" : content }}
+            </component>
+          </p>
         </div>
-        <div :class="state.project.website && 'mb-6'">
-          <p class="text-black font-medium mb-2">Typ projektu</p>
-          <p class="pr-8" v-for="(type, i) in state.project.types" :key="i">
-            {{ getProjectTypeDisplayText(type) }}
+        <div :class="state.project.website && 'mb-6'" v-if="state.project.address">
+          <p class="text-black font-medium mb-2">Adresa</p>
+          <p class="pr-8" v-for="(line, i) in state.project.address.split('\\n')" :key="i">
+            {{ line }}
           </p>
         </div>
         <div v-if="state.project.website">
@@ -51,7 +66,11 @@
             <navigation v-if="slidesCount > 1" />
           </template>
         </Carousel>
-        <Image :src="image" :alt="state.project.name" v-else-if="state.project.images.length === 1">
+        <Image
+          :src="state.project.images[0]"
+          :alt="state.project.name"
+          v-else-if="state.project.images.length === 1"
+        >
           <template #error>
             <no-project-image
               :projectName="state.project.name"
@@ -74,7 +93,7 @@ import { useRoute } from "vue-router"
 import { getProject, getProjectTypeDisplayText } from "../api"
 import FullscreenFetchError from "../components/global/FullscreenFetchError.vue"
 import FullscreenLoader from "../components/global/FullscreenLoader.vue"
-import { Title } from "../components/typography"
+import { PageTitle } from "../components/typography"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
 import remark from "remark"
 import html from "remark-html"
@@ -82,11 +101,12 @@ import html from "remark-html"
 import "vue3-carousel/dist/carousel.css"
 import Image from "../components/global/Image.vue"
 import NoProjectImage from "../components/global/NoProjectImage.vue"
+import store from "../store"
 
 export default defineComponent({
   components: {
     FullscreenLoader,
-    Title,
+    PageTitle,
     FullscreenFetchError,
     Carousel,
     Slide,
@@ -109,10 +129,8 @@ export default defineComponent({
       )
       if (!data.success) return (state.project = false)
 
-      // Set page title
-      document.title = `ASV Group | ${data.data.project.name}`
-
       state.project = data.data.project
+      store.loaded = true
     }
 
     const parseMd = (str: string) => remark().use(html, { sanitize: true }).processSync(str)
