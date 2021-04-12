@@ -475,11 +475,12 @@ module.exports = {
       prose: "65ch",
       ...breakpoints(theme("screens")),
     }),
-    minHeight: {
+    minHeight: theme => ({
       0: "0px",
       full: "100%",
       screen: "100vh",
-    },
+      ...theme("spacing"),
+    }),
     minWidth: {
       0: "0px",
       full: "100%",

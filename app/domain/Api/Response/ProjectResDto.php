@@ -13,6 +13,15 @@ final class ProjectResDto
   /** @var string */
   public string $name;
 
+  /** @var string[ */
+  public array $types;
+
+  /** @var string */
+  public string $description;
+
+  /** @var string|null */
+  public ?string $website;
+
   /** @var string */
   public string $slug;
 
@@ -25,6 +34,9 @@ final class ProjectResDto
 
     $self->id = $project->getId();
     $self->name = $project->getName();
+    $self->types = $project->getTypes();
+    $self->description = $project->getDescription();
+    $self->website = $project->getWebsite();
     $self->slug = $project->getSlug();
     $self->images = $project->getImages();
 

@@ -10,13 +10,19 @@
       :key="i"
       :to="`/project/${project.slug}`"
       :img="{
-        src: 'https://unsplash.it/1920/1080?random?' + i,
+        src: project.images[0],
         alt: project.name,
         class: 'h-64 w-64 w-full',
       }"
       textWrapperClass="cursor-pointer"
       class="mr-8"
     >
+      <template #imgError>
+        <no-project-image
+          :projectName="project.name"
+          class="flex-row-reverse items-center justify-start"
+        />
+      </template>
       <card-title>{{ project.name }}</card-title>
     </card>
     <div v-if="state.projects.length === 0" class="text-center">
@@ -29,7 +35,10 @@
       >
         <loader />
       </div>
-      <div class="py-32 flex flex-col justify-center items-center max-w-6xl mx-auto" v-else>
+      <div
+        class="py-32 flex flex-col justify-center items-center max-w-6xl mx-auto"
+        v-else-if="!state.end"
+      >
         <Button color="transparent" @click="nextPage">Další</Button>
       </div>
     </div>
@@ -49,13 +58,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watch } from "vue"
+import { defineComponent, reactive } from "vue"
 import { getProjects } from "../api"
 import Card from "../components/elements/Card.vue"
 import { CardTitle, CardSubtitle } from "../components/elements/Card"
 import Loader from "../components/global/Loader.vue"
 import { Title } from "../components/typography"
 import Button from "../components/elements/Button.vue"
+import { useRoute } from "vue-router"
+import NoProjectImage from "../components/global/NoProjectImage.vue"
 
 export default defineComponent({
   components: {
@@ -65,13 +76,17 @@ export default defineComponent({
     CardTitle,
     CardSubtitle,
     Button,
+    NoProjectImage,
   },
   setup() {
     const state = reactive({
       page: 1,
       projects: null,
       inlineLoader: false,
+      end: false,
     })
+
+    const route = useRoute()
 
     const fetchData = async (nullProjects = true) => {
       // If nullProjects is set to true (by default it is),
@@ -79,7 +94,15 @@ export default defineComponent({
       // This is true on the first load.
       if (nullProjects) state.projects = null
 
-      const { data } = await getProjects(state.page, 10)
+      const { data } = await getProjects(
+        state.page,
+        10,
+        route.query.type
+          ? typeof route.query.type === "string"
+            ? route.query.type
+            : route.query.type[0]
+          : null
+      )
 
       // When loading for the first time, state.projects = null,
       // However, when loading for the second time, some projects may already be in the state,
@@ -89,9 +112,15 @@ export default defineComponent({
       // Merges together both the current state.projects (or an empty object, if no projects
       // are loaded prior to the call of this function) and the results from the bacckend
       state.projects = [...(state.projects ?? []), ...data.data.projects]
+
+      // If there's less than 10 results, there will be no more results,
+      // therefore this is the last page
+      if (data.data.projects.length < 10) state.end = true
     }
 
     const nextPage = async () => {
+      const prevLength = state.projects.length
+
       // Adds one to current state.page
       state.page = state.page + 1
 
@@ -100,6 +129,8 @@ export default defineComponent({
 
       // Wait for the results
       await fetchData(false)
+
+      if (prevLength === state.projects.length) state.end = true
 
       // Disable inlineLoader to hide the spinner
       state.inlineLoader = false

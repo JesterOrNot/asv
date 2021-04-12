@@ -1,13 +1,13 @@
 <template>
   <nav
-    class="fixed top-0 w-full transitio-all duration-300 ease-in-out"
+    class="fixed top-0 w-full transition-all duration-300 ease-in-out"
     :class="
       modelValue ? 'px-24' : modelValue === false ? 'bg-white bg-opacity-25 px-32' : 'opacity-0'
     "
   >
     <div
-      class="w-full flex justify-between transition-all duration-300 ease-in-out shadow-2xl"
-      :class="modelValue ? 'bg-primary my-4 py-2 px-8' : ''"
+      class="w-full flex justify-between transition-all duration-300 ease-in-out"
+      :class="modelValue ? 'bg-primary my-4 py-2 px-8 shadow-2xl' : ''"
     >
       <router-link to="/" class="w-full">
         <logo class="w-24 h-16" v-model="modelValue" />

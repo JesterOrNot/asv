@@ -33,6 +33,9 @@
     "react-scripts": "3.4.3",
     "react-spinners": "^0.9.0",
     "react-spring": "^8.0.27",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
+    "remark-vue": "^0.9.4",
     "scroll-snap": "^3.2.3",
     "smooth-scrollbar": "^8.6.1",
     "styled-components": "^5.2.0",
@@ -41,8 +44,10 @@
     "vite": "^2.1.5",
     "vite-plugin-react": "^4.0.1",
     "vue": "^3.0.10",
+    "vue-displacement-slideshow": "^3.0.1",
     "vue-router": "4.0.5",
     "vue-scroll-snap": "^0.1.10",
+    "vue3-carousel": "^0.1.15",
     "vuex": "^4.0.0"
   },
   "scripts": {

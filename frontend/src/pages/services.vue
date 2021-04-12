@@ -1,76 +1,89 @@
 <template>
-  <DefaultLayout>
-    <div class="hero is-primary" :style="{ display: 'flex', justifyContent: 'center' }">
-      <div class="hero-body has-text-centered">
-        <h1 class="is-size-1">Co děláme</h1>
-      </div>
+  <div class="bg-main">
+    <div class="py-32 bg-gray-700 bg-opacity-30 w-full h-full flex justify-center items-center">
+      <Title>Co děláme</Title>
     </div>
-
-    <div class="container mt-6 pt-6">
-      <div class="content">
-        <h1 class="is-size-1 mb-6">Naše činnost</h1>
-
-        <div class="content mt-4">
-          <ColumnWrapper>
-            <Column size="is-one-quarter">
-              <WdwdItem title="Development & Construction Management" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Investments & Acquisitions" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Asset Management & Leasing" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Advisory & Financing" :image="placeholderImage" />
-            </Column>
-          </ColumnWrapper>
-        </div>
-      </div>
-
-      <div class="content mt-6">
-        <h1 class="is-size-1 mb-6">Typy pozemků</h1>
-
-        <div class="content mt-4">
-          <ColumnWrapper>
-            <Column size="is-one-quarter">
-              <WdwdItem title="Mixed-Use" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Office" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Residential" :image="placeholderImage" />
-            </Column>
-
-            <Column size="is-one-quarter">
-              <WdwdItem title="Retail" :image="placeholderImage" />
-            </Column>
-          </ColumnWrapper>
-        </div>
-      </div>
+  </div>
+  <div class="py-32 max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-medium mb-8">Naše činnost</h2>
+    <div class="w-full flex justify-between items-center">
+      <router-link
+        to="/projects?type=development"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("development") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=investments"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("investments") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=asset_management"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("asset_management") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=advisory"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("advisory") }}</card-subtitle>
+      </router-link>
     </div>
-  </DefaultLayout>
+    <h2 class="text-3xl font-medium my-8">Typy nemovitostí</h2>
+    <div class="w-full flex justify-between items-center">
+      <router-link
+        to="/projects?type=mixed"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("mixed") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=office"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("office") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=residential"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("residential") }}</card-subtitle>
+      </router-link>
+      <router-link
+        to="/projects?type=retail"
+        class="w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      >
+        <card-subtitle>{{ getProjectTypeDisplayText("retail") }}</card-subtitle>
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue"
-import Column from "../components/flex/Column.vue"
-import ColumnWrapper from "../components/flex/ColumnWrapper"
-import DefaultLayout from "../components/wrapper/Scroll.vue"
-import WdwdItem from "../components/global/WdwdItem.vue"
+import { getProjectTypeDisplayText } from "../api"
+import Card from "../components/elements/Card.vue"
+import { CardTitle, CardSubtitle } from "../components/elements/Card"
+import Loader from "../components/global/Loader.vue"
+import { Title } from "../components/typography"
+import Button from "../components/elements/Button.vue"
 
 export default defineComponent({
   components: {
-    WdwdItem,
-    Column,
-    ColumnWrapper,
-    DefaultLayout,
+    Title,
+    Card,
+    Loader,
+    CardTitle,
+    CardSubtitle,
+    Button,
+  },
+  setup() {
+    return {
+      getProjectTypeDisplayText,
+    }
   },
 })
 </script>
