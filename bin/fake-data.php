@@ -70,13 +70,16 @@ class FakeManager
     /**
      * UUID Support
      */
-    Type::addType('uuid', UuidType::class);
+    try {
+      Type::addType('uuid', UuidType::class);
+    } catch (\Doctrine\DBAL\Exception $e) {
+    }
 
     /**
      * Create EntityManager
      */
     $this->em = EntityManager::create($this->conn, Setup::createAnnotationMetadataConfiguration(
-      [__DIR__ . '/../app/model/Database/Entity'], true, null, null, false
+      [ __DIR__ . '/../app/model/Database/Entity' ], true, null, null, false
     ));
 
     /**
@@ -135,14 +138,17 @@ class FakeData
   {
     $f = $m->getFaker();
 
+    // Drop all data
+    $m->getConnection()->executeQuery('DELETE FROM projects;');
+
     for ($i = 0; $i < 100; $i++) {
       $m->getEntityManager()->persist(
-        new Project($m->getFaker()->company, $f->slug, [
+        new Project($f->company, $f->randomElement(Project::TYPES), $f->text(255), images: [
           // Adding random numbers at the end because of browser caching
           'https://unsplash.it/1920/1080?random?' . $f->randomNumber(),
           'https://unsplash.it/1920/1080?random?' . $f->randomNumber(),
           'https://unsplash.it/1920/1080?random?' . $f->randomNumber()
-        ])
+        ], website: $f->domainName)
       );
     }
 
@@ -162,6 +168,3 @@ class FakeData
   }
 
 }
-
-// Generate data
-FakeData::fakeProjects(FakeManager::create());

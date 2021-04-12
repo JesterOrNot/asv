@@ -5,43 +5,16 @@
 
       <div class="flex my-8 w-full justify-between">
         <card
+          v-for="(project, i) in modelValue.slice(0, 4)"
+          :key="i"
           :img="{
-            src: 'https://via.placeholder.com/300x200',
-            alt: 'Projekt D',
+            src: project.images[0],
+            alt: project.name,
           }"
-          to="/project/d"
-          class="mr-8"
+          :to="`/project/${project.slug}`"
+          :class="i !== 3 ? 'mr-8' : ''"
         >
-          <card-title>Projekt B</card-title>
-        </card>
-        <card
-          :img="{
-            src: 'https://via.placeholder.com/300x200',
-            alt: 'Projekt B',
-          }"
-          to="/project/b"
-          class="mr-8"
-        >
-          <card-title>Projekt D</card-title>
-        </card>
-        <card
-          :img="{
-            src: 'https://via.placeholder.com/300x200',
-            alt: 'Projekt X',
-          }"
-          to="/project/b"
-          class="mr-8"
-        >
-          <card-title>Projekt D</card-title>
-        </card>
-        <card
-          :img="{
-            src: 'https://via.placeholder.com/300x200',
-            alt: 'Projekt F',
-          }"
-          to="/project/f"
-        >
-          <card-title>Projekt F</card-title>
+          <card-title>{{ project.name }}</card-title>
         </card>
       </div>
 
@@ -63,6 +36,11 @@ import { CardTitle } from "../../components/elements/Card"
 import Link from "../../components/elements/LinkButton.vue"
 
 export default defineComponent({
+  props: {
+    modelValue: {
+      type: Array,
+    },
+  },
   components: {
     FullscreenWrapper,
     Subtitle,

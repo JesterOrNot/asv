@@ -1,16 +1,18 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Module\V2;
 
 use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\OpenApi;
 use Apitte\Core\Annotation\Controller\Path;
-use Apitte\Core\Annotation\Controller\RequestParameters;
 use Apitte\Core\Annotation\Controller\RequestParameter;
+use Apitte\Core\Annotation\Controller\RequestParameters;
 use Apitte\Core\Http\ApiRequest;
 use App\Domain\Api\Facade\ProjectFacade;
 use App\Domain\Api\Response\ProjectResDto;
 use App\Model\Api\Response\BaseError;
+use App\Model\Database\Entity\Project;
+use App\Model\Database\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 
 /**
@@ -19,7 +21,7 @@ use Doctrine\ORM\EntityNotFoundException;
 class ProjectController extends BaseV2Controller
 {
 
-  public function __construct(private ProjectFacade $projectFacade)
+  public function __construct(private ProjectFacade $projectFacade, private EntityManager $em)
   {
   }
 
@@ -31,7 +33,8 @@ class ProjectController extends BaseV2Controller
    * @Method("GET")
    * @RequestParameters({
    * 		@RequestParameter(name="limit", type="int", in="query", required=false, description="Data limit"),
-   * 		@RequestParameter(name="page", type="int", in="query", required=false, description="Data offset")
+   * 		@RequestParameter(name="page", type="int", in="query", required=false, description="Data offset"),
+   * 		@RequestParameter(name="type", type="int", in="query", required=false, description="Data offset")
    * })
    * @param ApiRequest $req
    * @return ProjectResDto[]
@@ -42,8 +45,27 @@ class ProjectController extends BaseV2Controller
     $page = intval($req->getParameter("page", 1));
     $offset = ($page - 1) * $limit;
 
+    $type = $req->getParameter("type");
+
+    $fetchByType = function () use ($offset, $limit, $type) {
+      $qb = $this->em->createQueryBuilder();
+
+      return $qb->select("p")
+        ->from(Project::class, "p")
+        ->where($qb->expr()->like("p.types", "?1"))
+        ->setParameter(1, "%$type%")
+        ->setMaxResults($limit)
+        ->setFirstResult($offset)
+        ->getQuery()
+        ->getArrayResult();
+    };
+
+    $fetchAll = function () use ($offset, $limit) {
+      return $this->projectFacade->findAll($limit, $offset);
+    };
+
     return $this->ok([
-      "projects" => $this->projectFacade->findAll($limit, $offset)
+      "projects" => $type ? $fetchByType() : $fetchAll()
     ]);
   }
 
@@ -65,10 +87,10 @@ class ProjectController extends BaseV2Controller
     $id = $req->getParameter("id");
 
     // Querying by slug first as that is used in the frontend.
-    $project = $this->projectFacade->findOneBy(['slug' => $id]);
+    $project = $this->projectFacade->findOneBy([ 'slug' => $id ]);
 
     // If there's no match for slug, search by id
-    if (!$project) $project = $this->projectFacade->findBy(['id' => $id]);
+    if (!$project) $project = $this->projectFacade->findBy([ 'id' => $id ]);
 
     // No match for slug/id
     if (!$project) return $this->err(BaseError::make('USER_INPUT', 'Project not found'));

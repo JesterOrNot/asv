@@ -1,6 +1,10 @@
 <template>
   <component :is="component" class="flex relative h-full">
-    <img :src="img.src" :alt="img.alt" :class="imgClasses + img.class" />
+    <Image :src="img.src" :alt="img.alt" :class="imgClasses + img.class">
+      <template #error>
+        <slot name="imgError" />
+      </template>
+    </Image>
     <div :class="textWrapperClasses">
       <slot />
     </div>
@@ -8,13 +12,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "@vue/runtime-core"
+import { defineComponent, PropType, ref } from "@vue/runtime-core"
 import { RouterLink } from "vue-router"
 import { string } from "../../component-definitions"
 import { Img } from "./Card"
+import Image from "../global/Image.vue"
 
 export default defineComponent({
   name: "Card",
+  components: {
+    Image,
+  },
   props: {
     img: {
       type: Object as PropType<Img>,
@@ -35,10 +43,13 @@ export default defineComponent({
     const textWrapperClasses =
       "bg-primary absolute h-full w-full opacity-0 hover:opacity-100 bg-opacity-75 p-6 flex flex-col justify-center transition duration-300 ease-in-out"
 
+    const err = ref(false)
+
     return {
       imgClasses,
       textWrapperClasses,
       component: attrs.to ? RouterLink : attrs.href ? "a" : "div",
+      err,
     }
   },
 })

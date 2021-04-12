@@ -18,8 +18,7 @@ database-clean:
 
 frontend-build:
 	NODE_ENV=production yarn frontend build
-	rm -rf public/assets -f
-	rm app/resources/index.html -f
+	rm -rf public/assets public/images app/resources/index.html -f
 	mv frontend/dist/assets public/assets
 	mv frontend/dist/index.html app/resources/index.html
 

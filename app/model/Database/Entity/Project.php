@@ -3,7 +3,9 @@
 namespace App\Model\Database\Entity;
 
 use App\Model\Database\Entity\Attributes\TUuid;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use RuntimeException;
 
 /**
  * Project
@@ -17,12 +19,24 @@ class Project
 {
   use TUuid;
 
+  public const TYPES = [
+    'investments',
+    'asset_management',
+    'advisory',
+    'development',
+    'mixed',
+    'office',
+    'residential',
+    'retail'
+  ];
+
   /**
    * @var string
    *
    * @ORM\Column(name="name", type="string", length=191, nullable=false)
    */
   private string $name;
+
   /**
    * @var string
    *
@@ -31,17 +45,49 @@ class Project
   private string $slug;
 
   /**
+   * @var string|null
+   *
+   * @ORM\Column(name="website", type="string", length=191, nullable=true)
+   */
+  private ?string $website;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="description", type="text", nullable=false)
+   */
+  private string $description;
+
+  /**
+   * @var string|null
+   *
+   * @ORM\Column(name="address", type="text", nullable=true)
+   */
+  private ?string $address;
+
+  /**
+   * @var string[]
+   *
+   * @ORM\Column(name="types", type="simple_array", nullable=false)
+   */
+  private array $types;
+
+  /**
    * @var string[]
    *
    * @ORM\Column(name="images", type="array")
    */
   private array $images;
 
-  public function __construct(string $name, string $slug, array $images = [])
+  public function __construct(string $name, string|array $type, string $description, ?string $address = null, ?string $slug = null, ?array $images = null, ?string $website = null)
   {
     $this->name = $name;
-    $this->slug = $slug;
-    $this->images = $images;
+    $this->description = $description;
+    $this->address = $address;
+    $this->types = is_string($type) ? [ $type ] : $type;
+    $this->slug = $slug ?? Slugify::create()->slugify($name);
+    $this->images = $images ?? [ '/images/projects/' . $this->slug . '.jpg' ];
+    $this->website = $website;
   }
 
   /**
@@ -78,6 +124,92 @@ class Project
   {
     $this->slug = $slug;
     return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getDescription(): string
+  {
+    return $this->description;
+  }
+
+  /**
+   * @param string $description
+   */
+  public function setDescription(string $description): void
+  {
+    $this->description = $description;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getAddress(): ?string
+  {
+    return $this->address;
+  }
+
+  /**
+   * @param string|null $address
+   */
+  public function setAddress(?string $address): void
+  {
+    $this->address = $address;
+  }
+
+  /**
+   * @return string[]
+   */
+  public function getTypes(): array
+  {
+    return $this->types;
+  }
+
+  /**
+   * @param string|string[] $types
+   */
+  public function setTypes(string|array $types): void
+  {
+    if (is_string($types)) $types = [ $types ];
+
+    foreach ($types as $t) {
+      if (!in_array($t, self::TYPES))
+        throw new RuntimeException("Invalid type $t");
+    }
+
+    $this->types = $types;
+  }
+
+  /**
+   * @param string|string[] $types
+   */
+  public function addTypes(string|array $types): void
+  {
+    if (is_string($types)) $types = [ $types ];
+
+    foreach ($types as $t) {
+      if (!in_array($t, self::TYPES))
+        throw new RuntimeException("Invalid type $t");
+    }
+
+    $this->types = array_merge($this->types, $types);
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getWebsite(): ?string
+  {
+    return $this->website;
+  }
+
+  /**
+   * @param string|null $website
+   */
+  public function setWebsite(?string $website): void
+  {
+    $this->website = $website;
   }
 
   /**
