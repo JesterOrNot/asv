@@ -20,13 +20,8 @@ class Project
   use TUuid;
 
   public const TYPES = [
-    'investments',
-    'asset_management',
-    'advisory',
-    'development',
-    'mixed',
     'office',
-    'residential',
+    'residential_mixed',
     'retail'
   ];
 
@@ -86,7 +81,7 @@ class Project
     $this->address = $address;
     $this->types = is_string($type) ? [ $type ] : $type;
     $this->slug = $slug ?? Slugify::create()->slugify($name);
-    $this->images = $images ?? [ '/images/projects/' . $this->slug . '.jpg' ];
+    $this->images = $images ?? [ '/images/projects/' . $this->slug . '.png' ];
     $this->website = $website;
   }
 

@@ -19,9 +19,9 @@ export const isStaging = () => window.location.hostname.startsWith("staging")
 
 export const apiDomain = () =>
   process.env.NODE_ENV === "development"
-    ? "http://localhost:4000/api/v2"
+    ? "http://192.168.2.52:4000/api/v2"
     : // : "https://asvgroup.cz/api/v2"
-      "http://localhost:4000/api/v2"
+      "http://192.168.2.52:4000/api/v2"
 
 export const createAxios = () => {
   console.log("[ASV Axi] Staging Server:", isStaging())

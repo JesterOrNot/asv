@@ -11,14 +11,15 @@ export interface ProjectResDto {
 }
 
 export const PROJECT_TYPES = {
-  investments: { en: "Investments & Acquisitions" },
-  asset_management: { en: "Asset Management & Leasing" },
-  advisory: { en: "Advisory & Financing" },
-  development: { en: "Development & Construction Management" },
-  mixed: { en: "Mixed Use" },
   office: { en: "Office" },
-  residential: { en: "Residential" },
+  residential_mixed: { en: "Residential & Mixed Use" },
   retail: { en: "Retail" },
+}
+
+export interface ProjectStates {
+  states: {
+    [key in keyof typeof PROJECT_TYPES]: number
+  }
 }
 
 export const getProjectTypeDisplayText = (type: keyof typeof PROJECT_TYPES) => {
@@ -60,4 +61,13 @@ export const getProject = (id: string) =>
     params: {
       id,
     },
+  })
+
+/**
+ * Get project type states
+ */
+export const getProjectTypeStates = () =>
+  $http.request<SuccessResponse<ProjectStates> | ErrorResponse>({
+    method: "GET",
+    url: "/project/typeStates",
   })

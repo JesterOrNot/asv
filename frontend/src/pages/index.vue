@@ -16,6 +16,7 @@ import Projects from "./index-sections/Projects.vue"
 import FullscreenFooter from "../components/layout/FullscreenFooter.vue"
 import Navbar from "../components/layout/Navbar.vue"
 import { getProjects } from "../api"
+import store from "../store"
 
 export default defineComponent({
   components: {
@@ -27,8 +28,9 @@ export default defineComponent({
     Navbar,
   },
   setup() {
-    // fetching the projects here so they don't have to be fetched twice in header & projects
+    document.title = "ASV Group | Hlavní stránka"
 
+    // fetching the projects here so they don't have to be fetched twice in header & projects
     const projects = ref<{ images: string[] }[]>([
       {
         images: ["https://unsplash.it/1920/1080?random"],
@@ -39,7 +41,10 @@ export default defineComponent({
       const { data } = await getProjects()
       if (!data.success) throw new Error() // error
 
-      projects.value = data.data.projects
+      projects.value = data.data.projects.filter(p => p.images.length >= 1)
+
+      // loaded
+      store.loaded = true
     }
 
     fetchData()

@@ -13,6 +13,7 @@
           }"
           :to="`/project/${project.slug}`"
           :class="i !== 3 ? 'mr-8' : ''"
+          class="w-64"
         >
           <card-title>{{ project.name }}</card-title>
         </card>

@@ -12,8 +12,10 @@ use App\Domain\Api\Facade\ProjectFacade;
 use App\Domain\Api\Response\ProjectResDto;
 use App\Model\Api\Response\BaseError;
 use App\Model\Database\Entity\Project;
-use App\Model\Database\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @Path("/project")
@@ -21,8 +23,18 @@ use Doctrine\ORM\EntityNotFoundException;
 class ProjectController extends BaseV2Controller
 {
 
-  public function __construct(private ProjectFacade $projectFacade, private EntityManager $em)
+  public function __construct(private ProjectFacade $projectFacade)
   {
+  }
+
+  public function createFetchByTypeQuery(string $type, string $select = "p"): QueryBuilder
+  {
+    $qb = $this->projectFacade->em->createQueryBuilder();
+
+    return $qb->select($select)
+      ->from(Project::class, "p")
+      ->where($qb->expr()->like("p.types", "?1"))
+      ->setParameter(1, "%$type%");
   }
 
   /**
@@ -48,13 +60,9 @@ class ProjectController extends BaseV2Controller
     $type = $req->getParameter("type");
 
     $fetchByType = function () use ($offset, $limit, $type) {
-      $qb = $this->em->createQueryBuilder();
+      $qb = $this->createFetchByTypeQuery($type);
 
-      return $qb->select("p")
-        ->from(Project::class, "p")
-        ->where($qb->expr()->like("p.types", "?1"))
-        ->setParameter(1, "%$type%")
-        ->setMaxResults($limit)
+      return $qb->setMaxResults($limit)
         ->setFirstResult($offset)
         ->getQuery()
         ->getArrayResult();
@@ -97,6 +105,30 @@ class ProjectController extends BaseV2Controller
 
     return $this->ok([
       "project" => $project
+    ]);
+  }
+
+  /**
+   * @OpenApi("
+   *   summary: Get amount of projects per every type.
+   * ")
+   * @Path("/typeStates")
+   * @Method("GET")
+   * @param ApiRequest $req
+   * @return ProjectResDto[]
+   * @throws NoResultException
+   * @throws NonUniqueResultException
+   */
+  public function typeStates(): array
+  {
+    $result = [];
+
+    foreach (Project::TYPES as $type) {
+      $result[$type] = intval($this->createFetchByTypeQuery($type, "count(p)")->getQuery()->getSingleScalarResult());
+    }
+
+    return $this->ok([
+      "states" => $result
     ]);
   }
 

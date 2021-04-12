@@ -1,12 +1,15 @@
 <template>
   <div class="bg-main">
     <div class="py-32 bg-gray-700 bg-opacity-30 w-full h-full flex justify-center items-center">
-      <Title>Projekty</Title>
+      <PageTitle>Projekty</PageTitle>
     </div>
   </div>
-  <div class="py-32 max-w-6xl mx-auto px-4 flex flex-col min-h-full" v-if="state.projects">
+  <div class="mt-32 mb-12 max-w-6xl mx-auto px-8">
+    <project-types :linkToEmpty="true" v-model="type" />
+  </div>
+  <div class="mb-32 max-w-6xl mx-auto flex flex-col px-8" v-if="state.projects">
     <card
-      v-for="(project, i) in state.projects"
+      v-for="(project, i) in state.projects.filter(p => p.types.includes('residential_mixed'))"
       :key="i"
       :to="`/project/${project.slug}`"
       :img="{
@@ -15,7 +18,49 @@
         class: 'h-64 w-64 w-full',
       }"
       textWrapperClass="cursor-pointer"
-      class="mr-8"
+      class="mb-8 w-full"
+    >
+      <template #imgError>
+        <no-project-image
+          :projectName="project.name"
+          class="flex-row-reverse items-center justify-start"
+        />
+      </template>
+      <card-title>{{ project.name }}</card-title>
+    </card>
+    <card
+      v-for="(project, i) in state.projects.filter(p => p.types.includes('retail'))"
+      :key="i"
+      :to="`/project/${project.slug}`"
+      :img="{
+        src: project.images[0],
+        alt: project.name,
+        class: 'h-64 w-64 w-full',
+      }"
+      textWrapperClass="cursor-pointer"
+      class="mb-8 w-full"
+      :class="i === state.projects.length - 1 ? '' : 'mb-12'"
+    >
+      <template #imgError>
+        <no-project-image
+          :projectName="project.name"
+          class="flex-row-reverse items-center justify-start"
+        />
+      </template>
+      <card-title>{{ project.name }}</card-title>
+    </card>
+    <card
+      v-for="(project, i) in state.projects.filter(p => p.types.includes('office'))"
+      :key="i"
+      :to="`/project/${project.slug}`"
+      :img="{
+        src: project.images[0],
+        alt: project.name,
+        class: 'h-64 w-64 w-full',
+      }"
+      textWrapperClass="cursor-pointer"
+      class="mb-8 w-full"
+      :class="i === state.projects.length - 1 ? '' : 'mb-12'"
     >
       <template #imgError>
         <no-project-image
@@ -58,25 +103,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue"
+import { defineComponent, onMounted, reactive, ref, watch } from "vue"
 import { getProjects } from "../api"
 import Card from "../components/elements/Card.vue"
 import { CardTitle, CardSubtitle } from "../components/elements/Card"
 import Loader from "../components/global/Loader.vue"
-import { Title } from "../components/typography"
+import { PageTitle } from "../components/typography"
 import Button from "../components/elements/Button.vue"
 import { useRoute } from "vue-router"
 import NoProjectImage from "../components/global/NoProjectImage.vue"
+import ProjectTypes from "./services-sections/ProjectTypes.vue"
+import store from "../store"
 
 export default defineComponent({
   components: {
-    Title,
+    PageTitle,
     Card,
     Loader,
     CardTitle,
     CardSubtitle,
     Button,
     NoProjectImage,
+    ProjectTypes,
   },
   setup() {
     const state = reactive({
@@ -86,7 +134,15 @@ export default defineComponent({
       end: false,
     })
 
+    const type = ref<string | null>(null)
+
     const route = useRoute()
+
+    type.value = route.query.type
+      ? typeof route.query.type === "string"
+        ? route.query.type
+        : route.query.type[0]
+      : null
 
     const fetchData = async (nullProjects = true) => {
       // If nullProjects is set to true (by default it is),
@@ -94,15 +150,13 @@ export default defineComponent({
       // This is true on the first load.
       if (nullProjects) state.projects = null
 
-      const { data } = await getProjects(
-        state.page,
-        10,
-        route.query.type
-          ? typeof route.query.type === "string"
-            ? route.query.type
-            : route.query.type[0]
-          : null
-      )
+      type.value = route.query.type
+        ? typeof route.query.type === "string"
+          ? route.query.type
+          : route.query.type[0]
+        : null
+
+      const { data } = await getProjects(state.page, 10, type.value)
 
       // When loading for the first time, state.projects = null,
       // However, when loading for the second time, some projects may already be in the state,
@@ -116,6 +170,8 @@ export default defineComponent({
       // If there's less than 10 results, there will be no more results,
       // therefore this is the last page
       if (data.data.projects.length < 10) state.end = true
+
+      store.loaded = true
     }
 
     const nextPage = async () => {
@@ -139,10 +195,23 @@ export default defineComponent({
     // Call fetchData() on load
     fetchData()
 
+    watch(
+      () => route.query.type,
+      () => {
+        store.loaded = false
+        state.page = 1
+        state.projects = null
+        state.end = false
+
+        fetchData()
+      }
+    )
+
     return {
       state,
       fetchData,
       nextPage,
+      type,
     }
   },
 })

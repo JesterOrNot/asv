@@ -1,7 +1,11 @@
 <template>
   <div id="top" class="item w-screen h-screen mx-auto flex flex-col justify-between relative">
     <div class="w-screen h-screen absolute top-0 bg-gray-700 bg-opacity-40 z-20"></div>
-    <img class="w-screen h-screen absolute top-0 z-10" :src="modelValue[src]['images'][0]" />
+    <img
+      class="w-screen h-screen absolute top-0 z-10"
+      style="filter: blur(3px)"
+      :src="modelValue[src]['images'][0]"
+    />
 
     <!-- push item -->
     <div class="h-full"></div>
@@ -46,8 +50,6 @@ export default defineComponent({
 
     onMounted(() => {
       if (props.modelValue.length < 1) return
-
-      console.log(props.modelValue)
 
       setInterval(() => {
         src.value = props.modelValue[src.value + 1] ? src.value + 1 : 0

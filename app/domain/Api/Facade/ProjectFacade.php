@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityNotFoundException;
 final class ProjectFacade
 {
 
-  public function __construct(private EntityManager $em)
+  public function __construct(public EntityManager $em)
   {
   }
 
