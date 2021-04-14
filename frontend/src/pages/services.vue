@@ -55,14 +55,26 @@ export default defineComponent({
   },
   setup() {
     const SERVICES = {
-      investments: { en: "Investments & Acquisitions" },
-      asset_management: { en: "Asset Management & Leasing" },
-      advisory: { en: "Advisory & Financing" },
-      development: { en: "Development & Construction Management" },
+      investments: {
+        cs: "Rezidenční development",
+        en: "Investments & Acquisitions",
+      },
+      asset_management: {
+        cs: "Asset Management a pronájmy",
+        en: "Asset Management & Leasing",
+      },
+      advisory: {
+        cs: "Poradenství a Financování",
+        en: "Advisory & Financing",
+      },
+      development: {
+        cs: "Komerční development",
+        en: "Development & Construction Management",
+      },
     }
 
     const getServiceDisplayText = (type: keyof typeof SERVICES) => {
-      const lang = "en" // TODO: change
+      const lang = "cs" // TODO: change
 
       const translation = SERVICES[type]
 

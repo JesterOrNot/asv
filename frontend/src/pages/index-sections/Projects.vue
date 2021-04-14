@@ -1,20 +1,19 @@
 <template>
   <fullscreen-wrapper id="projects">
     <column-wrapper class="w-full items-center md:items-start">
-      <subtitle>Projekty</subtitle>
+      <subtitle class="mb-8">Projekty</subtitle>
 
       <div
-        class="flex my-8 w-full justify-between items-center md:items-start flex-col md:flex-row"
+        class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8 my-8 w-full justify-center md:justify-between items-center md:items-start flex-col md:flex-row"
       >
         <card
-          v-for="(project, i) in modelValue.slice(0, 4)"
+          v-for="(project, i) in modelValue.slice(0, 8)"
           :key="i"
           :img="{
             src: project.images[0],
             alt: project.name,
           }"
           :to="`/project/${project.slug}`"
-          :class="i !== 3 ? 'md:mr-8' : ''"
           class="w-64 mb-8"
         >
           <card-title>{{ project.name }}</card-title>

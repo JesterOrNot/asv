@@ -3,16 +3,16 @@
     <div class="flex flex-col w-full items-center md:items-start">
       <subtitle class="mb-2">O nás</subtitle>
       <p class="text-gray-900 max-w-screen-lg 2xl:text-xl">
-        Skupinu ASV Group založili v roce 2014 Aleš Vobruba a Pavel Menšík, manažeři s dlouholetými
-        zkušenostmi z mezinárodní realitní společnosti, jako realitní investiční platformu, která
-        zahrnuje projekty v různých oborech a teritoriích – komerční nemovitosti, obchodní parky v
-        České republice a na Slovensku, rezidenční a smíšené projekty v České republice, Rakousku a
-        Chorvatsku.
+        Investiční skupinu ASV založili v roce 2014 Aleš Vobruba a Pavel Menšík, manažeři s
+        dlouholetými zkušenostmi z mezinárodních realitních společností, jako realitní investiční
+        platformu, která zahrnuje projekty v oborech rezidenčního developmentu, komerčního
+        developmentu a investičních aktiv, s působností v regionu sřední Evropy. Někeré projekty
+        jsou realizovány v rámci joint-venture partnerství s dalšími investory.
       </p>
     </div>
   </fullscreen-wrapper>
   <fullscreen-wrapper id="nas-team">
-    <column-wrapper class="items-center w-full">
+    <column-wrapper class="items-center md:items-start w-full">
       <subtitle class="mb-4">Náš team</subtitle>
       <div class="flex mb-8 flex-col md:flex-row items-center md:items-start">
         <card
@@ -25,7 +25,6 @@
           class="md:mr-8 mb-8 md:mb-0"
         >
           <card-title>Aleš Vobruba</card-title>
-          <card-subtitle>CEO</card-subtitle>
         </card>
 
         <card
@@ -37,7 +36,6 @@
           textWrapperClass="cursor-pointer"
         >
           <card-title>Pavel Menšík</card-title>
-          <card-subtitle>Finanční ředitel</card-subtitle>
         </card>
       </div>
     </column-wrapper>

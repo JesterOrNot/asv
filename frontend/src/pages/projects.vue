@@ -7,69 +7,31 @@
   <div class="mt-32 mb-12 max-w-6xl mx-auto px-8">
     <project-types :linkToEmpty="true" v-model="type" />
   </div>
-  <div class="mb-32 max-w-6xl mx-auto flex flex-col px-8" v-if="state.projects">
-    <card
-      v-for="(project, i) in state.projects.filter(p => p.types.includes('residential_mixed'))"
-      :key="i"
-      :to="`/project/${project.slug}`"
-      :img="{
-        src: project.images[0],
-        alt: project.name,
-        class: 'h-64 w-64 w-full',
-      }"
-      textWrapperClass="cursor-pointer"
-      class="mb-8 w-full"
+  <div v-if="state.projects">
+    <div
+      class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8 my-8 w-full justify-center md:justify-between items-center md:items-start flex-col md:flex-row max-w-6xl mx-auto px-8"
     >
-      <template #imgError>
-        <no-project-image
-          :projectName="project.name"
-          class="flex-row-reverse items-center justify-start"
-        />
-      </template>
-      <card-title>{{ project.name }}</card-title>
-    </card>
-    <card
-      v-for="(project, i) in state.projects.filter(p => p.types.includes('retail'))"
-      :key="i"
-      :to="`/project/${project.slug}`"
-      :img="{
-        src: project.images[0],
-        alt: project.name,
-        class: 'h-64 w-64 w-full',
-      }"
-      textWrapperClass="cursor-pointer"
-      class="mb-8 w-full"
-      :class="i === state.projects.length - 1 ? '' : 'mb-12'"
-    >
-      <template #imgError>
-        <no-project-image
-          :projectName="project.name"
-          class="flex-row-reverse items-center justify-start"
-        />
-      </template>
-      <card-title>{{ project.name }}</card-title>
-    </card>
-    <card
-      v-for="(project, i) in state.projects.filter(p => p.types.includes('office'))"
-      :key="i"
-      :to="`/project/${project.slug}`"
-      :img="{
-        src: project.images[0],
-        alt: project.name,
-        class: 'h-64 w-64 w-full',
-      }"
-      textWrapperClass="cursor-pointer"
-      class="mb-8 w-full"
-      :class="i === state.projects.length - 1 ? '' : 'mb-12'"
-    >
-      <template #imgError>
-        <no-project-image
-          :projectName="project.name"
-          class="flex-row-reverse items-center justify-start"
-        />
-      </template>
-      <card-title>{{ project.name }}</card-title>
-    </card>
+      <card
+        v-for="(project, i) in state.projects"
+        :key="i"
+        :to="`/project/${project.slug}`"
+        :img="{
+          src: project.images[0],
+          alt: project.name,
+          class: 'h-64 w-64 w-full',
+        }"
+        textWrapperClass="cursor-pointer"
+        class="mb-8 w-full"
+      >
+        <template #imgError>
+          <no-project-image
+            :projectName="project.name"
+            class="flex-row-reverse items-center justify-start"
+          />
+        </template>
+        <card-title>{{ project.name }}</card-title>
+      </card>
+    </div>
     <div v-if="state.projects.length === 0" class="text-center">
       <card-title class="text-primary mb-8"> Nejsou zde zatím žádné projekty. </card-title>
     </div>

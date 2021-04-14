@@ -11,9 +11,18 @@ export interface ProjectResDto {
 }
 
 export const PROJECT_TYPES = {
-  office: { en: "Office" },
-  residential_mixed: { en: "Residential & Mixed Use" },
-  retail: { en: "Retail" },
+  office: {
+    cs: "Investiční aktiva",
+    en: "Office",
+  },
+  residential_mixed: {
+    cs: "Rezidenční development",
+    en: "Residential & Mixed Use",
+  },
+  retail: {
+    cs: "Komerční development“",
+    en: "Retail",
+  },
 }
 
 export interface ProjectStates {
@@ -23,7 +32,7 @@ export interface ProjectStates {
 }
 
 export const getProjectTypeDisplayText = (type: keyof typeof PROJECT_TYPES) => {
-  const lang = "en" // TODO: change
+  const lang = "cs" // TODO: change
 
   const translation = PROJECT_TYPES[type]
 
