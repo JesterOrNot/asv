@@ -23,7 +23,7 @@ final class TeamResDto
    * @param Team[] $teams
    * @return self[]
    */
-  #[Pure] public static function fromMany(array $teams): array
+  public static function fromMany(array $teams): array
   {
     $result = [];
     foreach ($teams as $team) $result[] = self::from($team);
@@ -31,7 +31,7 @@ final class TeamResDto
     return $result;
   }
 
-  #[Pure] public static function from(Team $team): self
+  public static function from(Team $team): self
   {
     $self = new self();
 

@@ -47,11 +47,7 @@ class AuthenticationMiddleware implements IMiddleware
      * Log request
      */
 
-    $record = (new AccessRecord())
-      ->setEndpoint($request->getUri()->getPath())
-      ->setIp($request->getRequestTarget())
-      ->setUser($user)
-      ->setCreatedAt(new DateTime());
+    $record = (new AccessRecord($request->getUri()->getPath(), $request->getRequestTarget(), $user));
 
     $this->em->persist($record);
     $this->em->flush();

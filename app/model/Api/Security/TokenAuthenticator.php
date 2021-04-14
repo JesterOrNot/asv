@@ -9,6 +9,14 @@ use Nette\Utils\Strings;
 use Psr\Http\Message\ServerRequestInterface;
 use UnexpectedValueException;
 
+/**
+ * Authentication is not done at this point,
+ * because it is not required at the moment.
+ *
+ * Once the initial code goes to production, development
+ * of the admin panel will begin. Until then, there is no need
+ * to worry about authentication.
+ */
 class TokenAuthenticator extends AbstractAuthenticator
 {
 
@@ -29,6 +37,7 @@ class TokenAuthenticator extends AbstractAuthenticator
     if (!$token) return null;
 
     try {
+      /** @var JwtPayload $jwt */
       $jwt = JWT::decode($token, '', [ 'HS256' ]);
 
       $user = $this->em->getUserRepository()->findOneBy([ 'id' => $jwt->userId ]);
@@ -48,5 +57,6 @@ class TokenAuthenticator extends AbstractAuthenticator
         : null
       : null;
   }
+
 
 }

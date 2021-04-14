@@ -14,7 +14,7 @@ class FrontendPresenter extends Presenter
    * @throws BadRequestException
    * @throws AbortException
    */
-  #[NoReturn] public function actionDefault()
+  public function actionDefault(): void
   {
     $this->sendResponse(new FileResponse(__DIR__ . '/../resources/index.html', contentType: 'text/html', forceDownload: false));
   }

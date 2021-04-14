@@ -22,7 +22,7 @@ abstract class BaseController implements IController
    * @param array $data
    * @return array
    */
-  #[Pure] public function ok(array $data): array
+  public function ok(array $data): array
   {
     return Response::ok($data);
   }

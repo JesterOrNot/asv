@@ -27,7 +27,7 @@ final class UserResDto
    * @param User[] $users
    * @return self[]
    */
-  #[Pure] public static function fromMany(array $users): array
+  public static function fromMany(array $users): array
   {
     $result = [];
     foreach ($users as $user) $result[] = self::from($user);
@@ -35,7 +35,7 @@ final class UserResDto
     return $result;
   }
 
-  #[Pure] public static function from(User $user): self
+  public static function from(User $user): self
   {
     $self = new self();
 

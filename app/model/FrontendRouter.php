@@ -16,7 +16,6 @@ class FrontendRouter implements Router
    * @param Nette\Http\IRequest $httpRequest
    * @return string[]|null
    */
-  #[ArrayShape([ 'presenter' => 'string', 'action' => 'string' ])]
   public function match(Nette\Http\IRequest $httpRequest): ?array
   {
     return [

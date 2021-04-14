@@ -2,15 +2,17 @@ parameters:
 	excludes_analyse:
 		- /tests/tmp/*
 		- /db/*
+	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
 
 	fileExtensions:
 		- php
 
 	ignoreErrors:
 		- '#Method App\\Model\\Database\\EntityManager::get[a-zA-Z]+Repository\(\) should return App\\Model\\Database\\Repository\\[a-zA-Z]+Repository but returns Doctrine\\ORM\\EntityRepository<App\\Model\\Database\\Entity\\[a-zA-Z]+>.#'
+		- '#Negated boolean expression is always false.#'
 
 includes:
 	- vendor/phpstan/phpstan-nette/extension.neon
 	- vendor/phpstan/phpstan-nette/rules.neon
 	- vendor/phpstan/phpstan-doctrine/extension.neon
-	- vendor/phpstan/phpstan-phpunit/rules.neon

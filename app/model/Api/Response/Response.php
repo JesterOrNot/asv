@@ -12,7 +12,7 @@ class Response
    * @param array $data
    * @return array
    */
-  #[ArrayShape([ 'success' => 'bool', 'data' => '' ])] public static function ok(array $data): array
+  public static function ok(array $data): array
   {
     return [
       'success' => true,
@@ -24,7 +24,6 @@ class Response
    * @param BaseError $error
    * @return array
    */
-  #[ArrayShape([ 'success' => 'false', 'error' => '\App\Model\Response\BaseError' ])]
   public static function err(BaseError $error): array
   {
     return [

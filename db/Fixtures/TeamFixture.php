@@ -32,7 +32,7 @@ class TeamFixture extends AbstractFixture
   /**
    * @return array
    */
-  #[Pure] protected function getStaticTeams(): array
+  protected function getStaticTeams(): array
   {
     return [
       new Team("Aleš Vobruba", "CEO"),
