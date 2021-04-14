@@ -8,6 +8,7 @@ use Nettrine\ORM\EntityManagerDecorator;
 
 class EntityManager extends EntityManagerDecorator
 {
+
   use TRepositories;
 
   /**
@@ -22,4 +23,5 @@ class EntityManager extends EntityManagerDecorator
   {
     return parent::getRepository($entityName);
   }
+
 }

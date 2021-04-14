@@ -3,9 +3,10 @@
 namespace App\Model\Database\Entity;
 
 use App\Model\Database\Entity\Attributes\TCreatedAt;
-use App\Model\Database\Entity\Attributes\TUuid;
 use App\Model\Database\Entity\Attributes\TUpdatedAt;
+use App\Model\Database\Entity\Attributes\TUuid;
 use App\Model\Security\Passwords;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,33 +19,33 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+
   use TUuid;
   use TCreatedAt;
   use TUpdatedAt;
 
-  const ROLES = [ "USER", "ADMIN" ];
+  public const ROLES = [ 'USER', 'ADMIN' ];
 
   /**
    * @var string
-   *
    * @ORM\Column(name="username", type="string", length=191, nullable=false)
    */
   private string $username;
+
   /**
    * @var string
-   *
    * @ORM\Column(name="email", type="string", length=191, nullable=false)
    */
   private string $email;
+
   /**
    * @var string
-   *
    * @ORM\Column(name="password", type="string", length=191, nullable=false)
    */
   private string $password;
+
   /**
    * @var string
-   *
    * @ORM\Column(name="role", type="string", length=191, nullable=false, options={"default"="USER"})
    */
   private string $role;
@@ -60,8 +61,8 @@ class User
     $this->email = $email;
     $this->password = Passwords::create()->hash($password);
     $this->role = $role;
-    $this->createdAt = new \DateTime();
-    $this->updatedAt = new \DateTime();
+    $this->createdAt = new DateTime();
+    $this->updatedAt = new DateTime();
   }
 
   /**
@@ -135,4 +136,5 @@ class User
     $this->role = $role;
     return $this;
   }
+
 }

@@ -16,6 +16,7 @@ use App\Model\Database\Repository\UserRepository;
  */
 trait TRepositories
 {
+
   /**
    * @return UserRepository
    */
@@ -47,4 +48,5 @@ trait TRepositories
   {
     return $this->getRepository(AccessRecord::class);
   }
+
 }

@@ -27,16 +27,6 @@ class ProjectController extends BaseV2Controller
   {
   }
 
-  public function createFetchByTypeQuery(string $type, string $select = "p"): QueryBuilder
-  {
-    $qb = $this->projectFacade->em->createQueryBuilder();
-
-    return $qb->select($select)
-      ->from(Project::class, "p")
-      ->where($qb->expr()->like("p.types", "?1"))
-      ->setParameter(1, "%$type%");
-  }
-
   /**
    * @OpenApi("
    *   summary: List all projects.
@@ -44,20 +34,20 @@ class ProjectController extends BaseV2Controller
    * @Path("/list")
    * @Method("GET")
    * @RequestParameters({
-   * 		@RequestParameter(name="limit", type="int", in="query", required=false, description="Data limit"),
-   * 		@RequestParameter(name="page", type="int", in="query", required=false, description="Data offset"),
-   * 		@RequestParameter(name="type", type="int", in="query", required=false, description="Data offset")
+   *        @RequestParameter(name="limit", type="int", in="query", required=false, description="Data limit"),
+   *        @RequestParameter(name="page", type="int", in="query", required=false, description="Data offset"),
+   *        @RequestParameter(name="type", type="int", in="query", required=false, description="Data offset")
    * })
    * @param ApiRequest $req
    * @return ProjectResDto[]
    */
   public function allProjects(ApiRequest $req): array
   {
-    $limit = intval($req->getParameter("limit", 10));
-    $page = intval($req->getParameter("page", 1));
+    $limit = intval($req->getParameter('limit', 10));
+    $page = intval($req->getParameter('page', 1));
     $offset = ($page - 1) * $limit;
 
-    $type = $req->getParameter("type");
+    $type = $req->getParameter('type');
 
     $fetchByType = function () use ($offset, $limit, $type) {
       $qb = $this->createFetchByTypeQuery($type);
@@ -73,8 +63,18 @@ class ProjectController extends BaseV2Controller
     };
 
     return $this->ok([
-      "projects" => $type ? $fetchByType() : $fetchAll()
+      'projects' => $type ? $fetchByType() : $fetchAll(),
     ]);
+  }
+
+  public function createFetchByTypeQuery(string $type, string $select = 'p'): QueryBuilder
+  {
+    $qb = $this->projectFacade->em->createQueryBuilder();
+
+    return $qb->select($select)
+      ->from(Project::class, 'p')
+      ->where($qb->expr()->like('p.types', '?1'))
+      ->setParameter(1, sprintf('%%%s%%', $type));
   }
 
   /**
@@ -84,7 +84,7 @@ class ProjectController extends BaseV2Controller
    * @Path("/")
    * @Method("GET")
    * @RequestParameters({
-   * 		@RequestParameter(name="id", type="int", in="query", required=false, description="ID/Slug")
+   *        @RequestParameter(name="id", type="int", in="query", required=false, description="ID/Slug")
    * })
    * @param ApiRequest $req
    * @return ProjectResDto[]
@@ -92,7 +92,7 @@ class ProjectController extends BaseV2Controller
    */
   public function getProject(ApiRequest $req): array
   {
-    $id = $req->getParameter("id");
+    $id = $req->getParameter('id');
 
     // Querying by slug first as that is used in the frontend.
     $project = $this->projectFacade->findOneBy([ 'slug' => $id ]);
@@ -104,7 +104,7 @@ class ProjectController extends BaseV2Controller
     if (!$project) return $this->err(BaseError::make('USER_INPUT', 'Project not found'));
 
     return $this->ok([
-      "project" => $project
+      'project' => $project,
     ]);
   }
 
@@ -114,7 +114,6 @@ class ProjectController extends BaseV2Controller
    * ")
    * @Path("/typeStates")
    * @Method("GET")
-   * @param ApiRequest $req
    * @return ProjectResDto[]
    * @throws NoResultException
    * @throws NonUniqueResultException
@@ -124,11 +123,11 @@ class ProjectController extends BaseV2Controller
     $result = [];
 
     foreach (Project::TYPES as $type) {
-      $result[$type] = intval($this->createFetchByTypeQuery($type, "count(p)")->getQuery()->getSingleScalarResult());
+      $result[$type] = intval($this->createFetchByTypeQuery($type, 'count(p)')->getQuery()->getSingleScalarResult());
     }
 
     return $this->ok([
-      "states" => $result
+      'states' => $result,
     ]);
   }
 

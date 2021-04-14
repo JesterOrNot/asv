@@ -7,11 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait for entities that adds the createdAt field.
- *
- * @package App\Model\Database\Entity\Attributes
  */
 trait TCreatedAt
 {
+
   /**
    * @var DateTime
    * @ORM\Column(type="datetime", nullable=FALSE)
@@ -31,4 +30,5 @@ trait TCreatedAt
   {
     $this->createdAt = new DateTime();
   }
+
 }

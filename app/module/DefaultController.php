@@ -4,7 +4,6 @@ namespace App\Module;
 
 use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\Path;
-use JetBrains\PhpStorm\Pure;
 
 /**
  * @Path("/")
@@ -20,15 +19,15 @@ class DefaultController extends BaseController
   #[Pure] public function index(): array
   {
     return $this->ok([
-      "apiVersions" => [
-        "v1" => [
-          "state" => "shutdown"
+      'apiVersions' => [
+        'v1' => [
+          'state' => 'shutdown',
         ],
-        "v2" => [
-          "state" => "current",
-          "path" => "/api/v2"
-        ]
-      ]
+        'v2' => [
+          'state' => 'current',
+          'path' => '/api/v2',
+        ],
+      ],
     ]);
   }
 

@@ -2,7 +2,6 @@
 
 namespace App\Model\Security;
 
-use JetBrains\PhpStorm\Pure;
 use Nette\Security\Passwords as NettePasswords;
 
 final class Passwords extends NettePasswords

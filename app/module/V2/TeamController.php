@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Module\V2;
 
@@ -31,7 +31,7 @@ class TeamController extends BaseV2Controller
   public function allTeamMembers(ApiRequest $req): array
   {
     return $this->ok([
-      "teamMembers" => $this->teamFacade->findAll()
+      'teamMembers' => $this->teamFacade->findAll(),
     ]);
   }
 

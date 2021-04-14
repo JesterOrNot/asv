@@ -15,24 +15,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Team
 {
+
   // Using number ids so the team can be sorted
   use TId;
 
   /**
    * @var string
-   *
    * @ORM\Column(name="fullName", type="string", length=191, nullable=false)
    */
   private string $fullName;
+
   /**
    * @var string
-   *
    * @ORM\Column(name="position", type="string", length=191, nullable=false)
    */
   private string $position;
+
   /**
    * @var ?string
-   *
    * @ORM\Column(name="image", type="string", length=191, nullable=true)
    */
   private ?string $image;
@@ -97,4 +97,5 @@ class Team
     $this->image = $image;
     return $this;
   }
+
 }

@@ -7,7 +7,6 @@ use Apitte\Core\Annotation\Controller\Path;
 use Apitte\Core\UI\Controller\IController;
 use App\Model\Api\Response\BaseError;
 use App\Model\Api\Response\Response;
-use JetBrains\PhpStorm\Pure;
 
 /**
  * @Path("/api")
