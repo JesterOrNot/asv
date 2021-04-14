@@ -16,7 +16,7 @@ class DefaultController extends BaseV2Controller
    * @Method("GET")
    * @return array
    */
-  #[Pure] public function index(): array
+  public function index(): array
   {
     return $this->ok([
       'v2' => [

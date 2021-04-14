@@ -27,7 +27,7 @@ final class AccessRecordResDto
    * @param AccessRecord[] $records
    * @return self[]
    */
-  #[Pure] public static function fromMany(array $records): array
+  public static function fromMany(array $records): array
   {
     $result = [];
     foreach ($records as $record) $result[] = self::from($record);
@@ -35,7 +35,7 @@ final class AccessRecordResDto
     return $result;
   }
 
-  #[Pure] public static function from(AccessRecord $record): self
+  public static function from(AccessRecord $record): self
   {
     $self = new self();
 

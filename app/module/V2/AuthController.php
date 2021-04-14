@@ -28,7 +28,6 @@ class AuthController extends BaseV2Controller
    * @Method("POST")
    * @Tag("request.dto", value="App\Domain\Api\Request\AuthenticateUserReqDto")
    * @param ApiRequest $req
-   * @return array
    * @throws AuthenticationException
    */
   public function login(ApiRequest $req): array

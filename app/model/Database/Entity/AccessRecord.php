@@ -42,10 +42,11 @@ class AccessRecord
    */
   private User $user;
 
-  public function __construct(string $endpoint, string $ip)
+  public function __construct(string $endpoint, string $ip, User $user)
   {
     $this->endpoint = $endpoint;
     $this->ip = $ip;
+    $this->user = $user;
     $this->createdAt = new DateTime();
   }
 

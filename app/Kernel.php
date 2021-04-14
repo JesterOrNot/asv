@@ -3,12 +3,13 @@
 namespace App;
 
 use Contributte\Bootstrap\ExtraConfigurator;
+use Nette\Configurator;
 use Nette\DI\Compiler;
 
 class Kernel
 {
 
-  public static function configure()
+  public static function configure(): Configurator
   {
     $configurator = new ExtraConfigurator();
     $configurator->setTempDirectory(__DIR__ . '/../temp');

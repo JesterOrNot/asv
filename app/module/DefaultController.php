@@ -14,9 +14,8 @@ class DefaultController extends BaseController
   /**
    * @Path("/")
    * @Method("GET")
-   * @return array
    */
-  #[Pure] public function index(): array
+  public function index(): array
   {
     return $this->ok([
       'apiVersions' => [

@@ -13,7 +13,7 @@ final class ProjectResDto
   /** @var string */
   public string $name;
 
-  /** @var string[ */
+  /** @var string[] */
   public array $types;
 
   /** @var string */
@@ -35,7 +35,7 @@ final class ProjectResDto
    * @param Project[] $projects
    * @return self[]
    */
-  #[Pure] public static function fromMany(array $projects): array
+  public static function fromMany(array $projects): array
   {
     $result = [];
     foreach ($projects as $project) $result[] = self::from($project);
@@ -43,7 +43,7 @@ final class ProjectResDto
     return $result;
   }
 
-  #[Pure] public static function from(Project $project): self
+  public static function from(Project $project): self
   {
     $self = new self();
 
