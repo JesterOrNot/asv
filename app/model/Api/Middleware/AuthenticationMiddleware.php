@@ -10,7 +10,6 @@ use App\Model\Database\Entity\User;
 use App\Model\Database\EntityManager;
 use Contributte\Middlewares\IMiddleware;
 use Contributte\Middlewares\Security\IAuthenticator;
-use DateTime;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
 use Psr\Http\Message\ResponseInterface;

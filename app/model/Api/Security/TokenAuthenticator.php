@@ -58,5 +58,4 @@ class TokenAuthenticator extends AbstractAuthenticator
       : null;
   }
 
-
 }
