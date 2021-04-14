@@ -16,26 +16,29 @@
       <router-link to="/" class="w-full flex justify-start items-center">
         <logo class="w-24 h-16" v-model="modelValue" />
       </router-link>
-      <div class="justify-end items-center w-full hidden lg:flex">
+      <div class="justify-end items-center w-full hidden lg:flex text-white">
         <router-link
           to="/#o-nas"
-          class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
+          class="font-medium px-4 py-2 transition duration-350 ease-in-out hover:bg-white hover:text-primary"
         >
           O nás
         </router-link>
         <router-link
+          active-class="bg-white text-primary"
           to="/services"
           class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
         >
           Co děláme
         </router-link>
         <router-link
+          active-class="bg-white text-primary"
           to="/projects"
           class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
         >
           Projekty
         </router-link>
         <router-link
+          active-class="bg-white text-primary"
           to="/contact"
           class="font-medium px-4 py-2 transition duration-350 ease-in-out text-white hover:bg-white hover:text-primary"
         >
