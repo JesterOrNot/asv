@@ -6,9 +6,7 @@
       </div>
 
       <div class="mb-6 lg:mb-12 text-center">
-        <h2 class="text-white text-xl md:text-2xl xl:text-4xl 2xl:text-5xl">
-          Pojďte do toho s námi!
-        </h2>
+        <h2 class="text-white text-2xl xl:text-4xl 2xl:text-5xl">Pojďte do toho s námi!</h2>
       </div>
 
       <div
@@ -17,8 +15,10 @@
         <Link color="white" to="/contact"> Kontaktujte nás </Link>
       </div>
 
-      <div class="flex w-full justify-evenly items-center mb-6 xl:mb-0">
-        <div class="flex text-white text-xl items-center">
+      <div
+        class="flex flex-col md:flex-row w-full md:justify-evenly items-center mb-6 xl:mb-0 px-4 md:px-0"
+      >
+        <div class="flex text-white text-xl items-center my-8">
           <svg
             class="w-8 h-8 mr-4"
             fill="none"

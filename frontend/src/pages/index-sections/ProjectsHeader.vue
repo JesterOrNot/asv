@@ -10,8 +10,8 @@
     <!-- push item -->
     <div class="h-full"></div>
 
-    <div class="h-full flex items-center px-32 z-20">
-      <div>
+    <div class="h-full flex items-center px-4 md:px-32 z-20">
+      <div class="text-center">
         <Title>{{ modelValue[src]["name"] }}</Title>
         <div class="mt-6">
           <link-button :to="`/project/${modelValue[src]['slug']}`">O projektu</link-button>

@@ -1,6 +1,6 @@
 <template>
   <fullscreen-wrapper id="o-nas" class="flex-col">
-    <div class="flex flex-col">
+    <div class="flex flex-col w-full items-center md:items-start">
       <subtitle class="mb-2">O nás</subtitle>
       <p class="text-gray-900 max-w-screen-lg 2xl:text-xl">
         Skupinu ASV Group založili v roce 2014 Aleš Vobruba a Pavel Menšík, manažeři s dlouholetými
@@ -12,9 +12,9 @@
     </div>
   </fullscreen-wrapper>
   <fullscreen-wrapper id="nas-team">
-    <column-wrapper>
+    <column-wrapper class="items-center w-full">
       <subtitle class="mb-4">Náš team</subtitle>
-      <div class="flex mb-8">
+      <div class="flex mb-8 flex-col md:flex-row items-center md:items-start">
         <card
           :img="{
             src: 'https://via.placeholder.com/300x300',
@@ -22,7 +22,7 @@
             class: 'h-64 w-64',
           }"
           textWrapperClass="cursor-pointer"
-          class="mr-8"
+          class="md:mr-8 mb-8 md:mb-0"
         >
           <card-title>Aleš Vobruba</card-title>
           <card-subtitle>CEO</card-subtitle>
