@@ -32,8 +32,16 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({ routes, history: createWebHistory() })
 
-router.beforeEach(async () => {
-  if (store.loaded) store.loaded = false
+router.beforeEach(async (to, from) => {
+  // Close the mobile menu
+  store.mobileMenuOpen = false
+
+  // Hash changes triggered via router-link would also call
+  // this beforeEach hook, causing the loader to show up and
+  // then never hide.
+  if (to.path === from.path && to.hash !== from.hash) return
+
+  store.loaded = false
 
   // Wait 500ms for the transition to end
   await new Promise((res, rej) => setTimeout(res, 500))

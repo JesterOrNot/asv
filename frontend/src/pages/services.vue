@@ -6,24 +6,24 @@
   </div>
   <div class="py-32 max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-medium mb-8">Naše činnost</h2>
-    <div class="w-full flex justify-between items-center">
+    <div class="w-full flex flex-col md:flex-row justify-between items-center">
       <div
-        class="cursor-pointer w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       >
         <card-subtitle>{{ getServiceDisplayText("development") }}</card-subtitle>
       </div>
       <div
-        class="cursor-pointer w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       >
         <card-subtitle>{{ getServiceDisplayText("investments") }}</card-subtitle>
       </div>
       <div
-        class="cursor-pointer w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       >
         <card-subtitle>{{ getServiceDisplayText("asset_management") }}</card-subtitle>
       </div>
       <div
-        class="cursor-pointer w-full h-32 bg-primary mr-4 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       >
         <card-subtitle>{{ getServiceDisplayText("advisory") }}</card-subtitle>
       </div>

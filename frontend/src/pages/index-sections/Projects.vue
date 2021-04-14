@@ -1,9 +1,11 @@
 <template>
   <fullscreen-wrapper id="projects">
-    <column-wrapper class="w-full">
+    <column-wrapper class="w-full items-center md:items-start">
       <subtitle>Projekty</subtitle>
 
-      <div class="flex my-8 w-full justify-between">
+      <div
+        class="flex my-8 w-full justify-between items-center md:items-start flex-col md:flex-row"
+      >
         <card
           v-for="(project, i) in modelValue.slice(0, 4)"
           :key="i"
@@ -12,14 +14,14 @@
             alt: project.name,
           }"
           :to="`/project/${project.slug}`"
-          :class="i !== 3 ? 'mr-8' : ''"
-          class="w-64"
+          :class="i !== 3 ? 'md:mr-8' : ''"
+          class="w-64 mb-8"
         >
           <card-title>{{ project.name }}</card-title>
         </card>
       </div>
 
-      <div class="flex justify-end">
+      <div class="flex md:justify-end">
         <Link color="transparent" to="/projects"> Všechny projekty </Link>
       </div>
     </column-wrapper>

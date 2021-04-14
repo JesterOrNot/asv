@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-between items-center" v-if="states">
+  <div class="w-full flex flex-col md:flex-row justify-between items-center" v-if="states">
     <router-link
       :to="
         !linkToEmpty
@@ -8,7 +8,7 @@
             : '/projects?type=residential_mixed'
           : '/projects?type=residential_mixed'
       "
-      class="w-full h-32 bg-primary mr-4 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      class="w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       :class="modelValue !== 'residential_mixed' && 'bg-opacity-80'"
     >
       <div>
@@ -22,7 +22,7 @@
       :to="
         !linkToEmpty ? (states.retail < 1 ? '#' : '/projects?type=retail') : '/projects?type=retail'
       "
-      class="w-full h-32 bg-primary mr-4 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      class="w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       :class="modelValue !== 'retail' && 'bg-opacity-80'"
     >
       <div>
@@ -34,7 +34,7 @@
       :to="
         !linkToEmpty ? (states.office < 1 ? '#' : '/projects?type=office') : '/projects?type=office'
       "
-      class="w-full h-32 bg-primary hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+      class="w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       :class="modelValue !== 'office' && 'bg-opacity-80'"
     >
       <div>

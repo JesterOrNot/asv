@@ -1,7 +1,7 @@
 import { defineComponent, h } from "@vue/runtime-core"
 import { defineTypographyComponent } from "../../component-definitions"
 
-export const Title = defineTypographyComponent("h1", "text-2xl md:text-4xl xl:text-6xl text-white")
+export const Title = defineTypographyComponent("h1", "text-3xl md:text-4xl xl:text-6xl text-white")
 
 /**
  * Wrapper around title that sets the document title
