@@ -6,14 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait for entities that adds the id field.
- *
- * @package App\Model\Database\Entity\Attributes
  */
 trait TId
 {
+
   /**
    * @var int
-   *
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue
@@ -37,4 +35,5 @@ trait TId
     $this->id = $id;
     return $this;
   }
+
 }

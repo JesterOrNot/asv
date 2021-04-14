@@ -29,7 +29,7 @@ class TokenAuthenticator extends AbstractAuthenticator
     if (!$token) return null;
 
     try {
-      $jwt = JWT::decode($token, "", [ "HS256" ]);
+      $jwt = JWT::decode($token, '', [ 'HS256' ]);
 
       $user = $this->em->getUserRepository()->findOneBy([ 'id' => $jwt->userId ]);
       if (!$user) return null;
@@ -48,4 +48,5 @@ class TokenAuthenticator extends AbstractAuthenticator
         : null
       : null;
   }
+
 }

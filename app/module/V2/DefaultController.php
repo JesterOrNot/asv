@@ -1,10 +1,9 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Module\V2;
 
 use Apitte\Core\Annotation\Controller\Method;
 use Apitte\Core\Annotation\Controller\Path;
-use JetBrains\PhpStorm\Pure;
 
 /**
  * @Path("/")
@@ -20,15 +19,15 @@ class DefaultController extends BaseV2Controller
   #[Pure] public function index(): array
   {
     return $this->ok([
-      "v2" => [
-        "state" => "current",
-        "endpoints" => [
-          "GET_TEAM_MEMBERS" => "/team",
-          "GET_PROJECTS" => "/project/all/:page=1",
-          "GET_PROJECT" => "/project/:slug",
-          "GET_SETTINGS" => "/settings"
-        ]
-      ]
+      'v2' => [
+        'state' => 'current',
+        'endpoints' => [
+          'GET_TEAM_MEMBERS' => '/team',
+          'GET_PROJECTS' => '/project/all/:page=1',
+          'GET_PROJECT' => '/project/:slug',
+          'GET_SETTINGS' => '/settings',
+        ],
+      ],
     ]);
   }
 

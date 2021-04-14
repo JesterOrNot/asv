@@ -15,7 +15,6 @@ use Apitte\Core\Schema\Endpoint;
 use App\Model\Api\Response\BaseError;
 use App\Model\Api\Response\Response;
 use Doctrine\ORM\EntityNotFoundException;
-use JetBrains\PhpStorm\Pure;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use RuntimeException;
@@ -25,6 +24,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class JsonDispatcher extends ApitteJsonDispatcher
 {
+
   protected SerializerInterface $serializer;
 
   protected ValidatorInterface $validator;
@@ -59,25 +59,24 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
       if ($e->getMessage()) $data['error']['message'] = $e->getMessage();
 
-      if ($e->getCode())
-        $data['error']['kind'] = match ($e->getCode()) {
-          400 => "VALIDATION",
-          401 => "UNAUTHORIZED",
-          403 => "FORBIDDEN",
-          404 => "USER_INPUT",
-        };
+      if ($e->getCode()) {
+        $data['error']['kind'] = match ($e->getCode()) 400 => 'VALIDATION',
+          401 => 'UNAUTHORIZED',
+          403 => 'FORBIDDEN',
+          404 => 'USER_INPUT',
+        }
 
-      $response = $response->withStatus($e->getCode() ?: 500)
-        ->withHeader('Content-Type', 'application/json');
+          $response = $response->withStatus($e->getCode() ?: 500)
+            ->withHeader('Content-Type', 'application/json');
 
-      $response->getBody()->write(Json::encode($data));
-    } catch (RuntimeException $e) {
+          $response->getBody()->write(Json::encode($data));
+      } catch (RuntimeException $e) {
       $response = $response->withStatus($e->getCode() ?: 500)
         ->withHeader('Content-Type', 'application/json');
 
       $response->getBody()->write(Json::encode(Response::err(BaseError::make())));
     } catch (EntityNotFoundException $e) {
-      $response = $response->writeJsonBody(Response::err(BaseError::make('USER_INPUT', $e->getMessage() ?: "Entity not found")));
+      $response = $response->writeJsonBody(Response::err(BaseError::make('USER_INPUT', $e->getMessage() ?: 'Entity not found')));
     }
 
     return $response;
@@ -99,7 +98,6 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
     if (!($entity = $endpoint->getTag('request.dto')))
       return $request;
-
 
     try {
       $dto = $this->serializer->deserialize(
@@ -147,4 +145,5 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
     return $response;
   }
+
 }

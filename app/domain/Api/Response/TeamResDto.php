@@ -3,10 +3,10 @@
 namespace App\Domain\Api\Response;
 
 use App\Model\Database\Entity\Team;
-use JetBrains\PhpStorm\Pure;
 
 final class TeamResDto
 {
+
   /** @var int */
   public int $id;
 
@@ -18,6 +18,18 @@ final class TeamResDto
 
   /** @var string|null */
   public ?string $image;
+
+  /**
+   * @param Team[] $teams
+   * @return self[]
+   */
+  #[Pure] public static function fromMany(array $teams): array
+  {
+    $result = [];
+    foreach ($teams as $team) $result[] = self::from($team);
+
+    return $result;
+  }
 
   #[Pure] public static function from(Team $team): self
   {
@@ -31,15 +43,4 @@ final class TeamResDto
     return $self;
   }
 
-  /**
-   * @param Team[] $teams
-   * @return self[]
-   */
-  #[Pure] public static function fromMany(array $teams): array
-  {
-    $result = [];
-    foreach ($teams as $team) $result[] = TeamResDto::from($team);
-
-    return $result;
-  }
 }

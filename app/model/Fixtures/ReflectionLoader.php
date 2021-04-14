@@ -9,6 +9,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 final class ReflectionLoader extends NativeLoader
 {
+
   protected function createPropertyAccessor(): PropertyAccessorInterface
   {
     return new ReflectionPropertyAccessor(
@@ -17,4 +18,5 @@ final class ReflectionLoader extends NativeLoader
         ->getPropertyAccessor()
     );
   }
+
 }

@@ -7,14 +7,12 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 /**
  * Trait for entities that adds the id field.
- *
- * @package App\Model\Database\Entity\Attributes
  */
 trait TUuid
 {
+
   /**
    * @var string
-   *
    * @ORM\Column(type="string", unique=true)
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="CUSTOM")
@@ -39,4 +37,5 @@ trait TUuid
     $this->id = $id;
     return $this;
   }
+
 }

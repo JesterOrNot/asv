@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Module\V2;
 
@@ -34,12 +34,12 @@ class AuthController extends BaseV2Controller
   public function login(ApiRequest $req): array
   {
     $user = $this->auth->authenticate($req);
-    if (!$user) throw new AuthenticationException("Neznámé uživatelské jméno nebo heslo.");
+    if (!$user) throw new AuthenticationException('Neznámé uživatelské jméno nebo heslo.');
 
     $token = $this->auth->createUserToken($user);
 
     return $this->ok([
-      "token" => $token
+      'token' => $token,
     ]);
   }
 

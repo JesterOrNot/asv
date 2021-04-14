@@ -12,4 +12,5 @@ use App\Module\BaseController;
  */
 abstract class BaseV2Controller extends BaseController
 {
+
 }

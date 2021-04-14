@@ -3,10 +3,10 @@
 namespace App\Domain\Api\Response;
 
 use App\Model\Database\Entity\Project;
-use JetBrains\PhpStorm\Pure;
 
 final class ProjectResDto
 {
+
   /** @var string */
   public string $id;
 
@@ -31,6 +31,18 @@ final class ProjectResDto
   /** @var string[] */
   public array $images;
 
+  /**
+   * @param Project[] $projects
+   * @return self[]
+   */
+  #[Pure] public static function fromMany(array $projects): array
+  {
+    $result = [];
+    foreach ($projects as $project) $result[] = self::from($project);
+
+    return $result;
+  }
+
   #[Pure] public static function from(Project $project): self
   {
     $self = new self();
@@ -47,15 +59,4 @@ final class ProjectResDto
     return $self;
   }
 
-  /**
-   * @param Project[] $projects
-   * @return self[]
-   */
-  #[Pure] public static function fromMany(array $projects): array
-  {
-    $result = [];
-    foreach ($projects as $project) $result[] = ProjectResDto::from($project);
-
-    return $result;
-  }
 }

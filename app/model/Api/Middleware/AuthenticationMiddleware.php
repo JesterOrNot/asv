@@ -71,7 +71,7 @@ class AuthenticationMiddleware implements IMiddleware
   protected function unauthorized(ResponseInterface $response): ResponseInterface
   {
     $response->getBody()->write(Json::encode(
-      Response::err(BaseError::make("UNAUTHORIZED", "Missing auth token"))
+      Response::err(BaseError::make('UNAUTHORIZED', 'Missing auth token'))
     ));
 
     return $response

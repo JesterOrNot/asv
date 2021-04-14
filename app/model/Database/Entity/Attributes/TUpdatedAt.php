@@ -7,11 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait for entities that adds the updatedAt field.
- *
- * @package App\Model\Database\Entity\Attributes
  */
 trait TUpdatedAt
 {
+
   /**
    * @var DateTime|NULL
    * @ORM\Column(type="datetime", nullable=TRUE)
@@ -33,4 +32,5 @@ trait TUpdatedAt
   {
     $this->updatedAt = new DateTime();
   }
+
 }

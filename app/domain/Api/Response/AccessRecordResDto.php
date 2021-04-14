@@ -3,12 +3,11 @@
 namespace App\Domain\Api\Response;
 
 use App\Model\Database\Entity\AccessRecord;
-use App\Model\Database\Entity\Project;
 use DateTimeInterface;
-use JetBrains\PhpStorm\Pure;
 
 final class AccessRecordResDto
 {
+
   /** @var string */
   public string $id;
 
@@ -24,6 +23,17 @@ final class AccessRecordResDto
   /** @var UserResDto */
   public UserResDto $user;
 
+  /**
+   * @param AccessRecord[] $records
+   * @return self[]
+   */
+  #[Pure] public static function fromMany(array $records): array
+  {
+    $result = [];
+    foreach ($records as $record) $result[] = self::from($record);
+
+    return $result;
+  }
 
   #[Pure] public static function from(AccessRecord $record): self
   {
@@ -38,15 +48,4 @@ final class AccessRecordResDto
     return $self;
   }
 
-  /**
-   * @param AccessRecord[] $records
-   * @return self[]
-   */
-  #[Pure] public static function fromMany(array $records): array
-  {
-    $result = [];
-    foreach ($records as $record) $result[] = AccessRecordResDto::from($record);
-
-    return $result;
-  }
 }

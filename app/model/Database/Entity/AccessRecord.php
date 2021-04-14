@@ -17,24 +17,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AccessRecord
 {
+
   use TUuid;
   use TCreatedAt;
 
   /**
    * @var string
-   *
    * @ORM\Column(name="endpoint", type="string", length=191, nullable=false)
    */
   private string $endpoint;
+
   /**
    * @var string
-   *
    * @ORM\Column(name="ip", type="string", length=191, nullable=false)
    */
   private string $ip;
+
   /**
    * @var User
-   *
    * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumns({
    *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -46,7 +46,7 @@ class AccessRecord
   {
     $this->endpoint = $endpoint;
     $this->ip = $ip;
-    $this->createdAt = new \DateTime();
+    $this->createdAt = new DateTime();
   }
 
   /**
@@ -117,4 +117,5 @@ class AccessRecord
     $this->ip = $ip;
     return $this;
   }
+
 }

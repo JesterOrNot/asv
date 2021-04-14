@@ -27,7 +27,6 @@ final class ProjectFacade
 
   /**
    * @param array $criteria
-   * @param string[] $orderBy
    * @param int $limit
    * @param int $offset
    * @return ProjectResDto[]
@@ -72,7 +71,7 @@ final class ProjectFacade
    */
   public function create(CreateProjectReqDto $dto): Project
   {
-    $project = new Project($dto->name, $dto->slug);
+    $project = new Project($dto->name, $dto->type, $dto->description, $dto->address, $dto->slug, $dto->images, $dto->website);
 
     $this->em->persist($project);
     $this->em->flush($project);

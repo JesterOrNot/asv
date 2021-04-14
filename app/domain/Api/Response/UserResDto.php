@@ -4,10 +4,10 @@ namespace App\Domain\Api\Response;
 
 use App\Model\Database\Entity\User;
 use DateTimeInterface;
-use JetBrains\PhpStorm\Pure;
 
 final class UserResDto
 {
+
   /** @var string */
   public string $id;
 
@@ -23,6 +23,18 @@ final class UserResDto
   /** @var DateTimeInterface|null */
   public ?DateTimeInterface $updatedAt;
 
+  /**
+   * @param User[] $users
+   * @return self[]
+   */
+  #[Pure] public static function fromMany(array $users): array
+  {
+    $result = [];
+    foreach ($users as $user) $result[] = self::from($user);
+
+    return $result;
+  }
+
   #[Pure] public static function from(User $user): self
   {
     $self = new self();
@@ -36,15 +48,4 @@ final class UserResDto
     return $self;
   }
 
-  /**
-   * @param User[] $users
-   * @return self[]
-   */
-  #[Pure] public static function fromMany(array $users): array
-  {
-    $result = [];
-    foreach ($users as $user) $result[] = UserResDto::from($user);
-
-    return $result;
-  }
 }

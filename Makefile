@@ -1,15 +1,15 @@
-.PHONY: qa cs cfx phpstan tests build frontend
+.PHONY: qa cs cfx phpstan build frontend
 
 qa: cs phpstan
 
 cs:
-	vendor/bin/codesniffer app tests
+	vendor/bin/codesniffer app
 
 cfx:
-	vendor/bin/codefixer app tests
+	vendor/bin/codefixer app
 
 phpstan:
-	vendor/bin/phpstan analyse -l max -c phpstan.neon --memory-limit=512M app tests/toolkit
+	vendor/bin/phpstan analyse -l max -c phpstan.neon --memory-limit=512M app
 
 database-clean:
 	NETTE_DEBUG=1 bin/console orm:schema-tool:drop --force --full-database
