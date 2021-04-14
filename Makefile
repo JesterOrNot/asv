@@ -1,12 +1,6 @@
-.PHONY: qa cs cfx phpstan build frontend
+.PHONY: qa phpstan build frontend
 
-qa: cs phpstan
-
-cs:
-	vendor/bin/codesniffer app
-
-cfx:
-	vendor/bin/codefixer app
+qa: phpstan
 
 phpstan:
 	vendor/bin/phpstan analyse -l max -c phpstan.neon --memory-limit=512M app

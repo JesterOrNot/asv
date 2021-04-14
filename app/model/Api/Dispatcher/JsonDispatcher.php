@@ -60,11 +60,11 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
       if ($e->getCode())
         $data['error']['kind'] = match ($e->getCode()) {
-          400 => "VALIDATION",
-          401 => "UNAUTHORIZED",
-          403 => "FORBIDDEN",
-          404 => "USER_INPUT",
-          default => "INTERNAL"
+          400 => 'VALIDATION',
+          401 => 'UNAUTHORIZED',
+          403 => 'FORBIDDEN',
+          404 => 'USER_INPUT',
+          default => 'INTERNAL'
         };
 
       $response = $response->withStatus($e->getCode() ?: 500)
@@ -77,7 +77,7 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
       $response->getBody()->write(Json::encode(Response::err(BaseError::make())));
     } catch (EntityNotFoundException $e) {
-      $response = $response->writeJsonBody(Response::err(BaseError::make('USER_INPUT', $e->getMessage() ?: "Entity not found")));
+      $response = $response->writeJsonBody(Response::err(BaseError::make('USER_INPUT', $e->getMessage() ?: 'Entity not found')));
     }
 
     return $response;
@@ -147,4 +147,5 @@ class JsonDispatcher extends ApitteJsonDispatcher
 
     return $response;
   }
+
 }
