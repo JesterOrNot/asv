@@ -13,15 +13,15 @@ export interface ProjectResDto {
 export const PROJECT_TYPES = {
   office: {
     cs: "Investiční aktiva",
-    en: "Office",
+    en: "Investment assets",
   },
   residential_mixed: {
     cs: "Rezidenční development",
     en: "Residential & Mixed Use",
   },
   retail: {
-    cs: "Komerční development“",
-    en: "Retail",
+    cs: "Komerční development",
+    en: "Commercial development",
   },
 }
 
