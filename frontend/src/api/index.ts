@@ -18,7 +18,7 @@ export interface ErrorResponse<TError extends BaseError = BaseError> {
 export const apiDomain = () =>
   process.env.NODE_ENV === "development"
     ? "http://192.168.2.52:4000/api/v2"
-    : "https://asvgroup.cz/api/v2"
+    : "https://asvgroup.herokuapp.com/api/v2"
 
 export const createAxios = () => {
   console.log("[ASV Axi] Chosen API:", apiDomain())

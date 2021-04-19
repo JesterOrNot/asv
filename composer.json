@@ -34,7 +34,8 @@
     "jetbrains/phpstorm-attributes": "^1.0",
     "ramsey/uuid": "^4.1",
     "ramsey/uuid-doctrine": "^1.6",
-    "cocur/slugify": "^4.0"
+    "cocur/slugify": "^4.0",
+    "symfony/property-access": "^5.2"
   },
   "require-dev": {
     "ninjify/qa": "^0.12",
@@ -58,11 +59,8 @@
   "prefer-stable": true,
   "minimum-stability": "dev",
   "scripts": {
-    "post-install-cmd": [
-      "Contributte\\Neonizer\\NeonizerExtension::process"
-    ],
-    "post-update-cmd": [
-      "Contributte\\Neonizer\\NeonizerExtension::process"
+    "compile": [
+      "mv app/resources/heroku.html app/resources/index.html"
     ]
   },
   "extra": {
