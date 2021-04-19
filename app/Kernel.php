@@ -5,6 +5,7 @@ namespace App;
 use Contributte\Bootstrap\ExtraConfigurator;
 use Nette\Configurator;
 use Nette\DI\Compiler;
+use Tracy\Debugger;
 
 class Kernel
 {
@@ -27,6 +28,7 @@ class Kernel
 
     // According to NETTE_DEBUG env
     //$configurator->setEnvDebugMode();
+    $configurator->setDebugMode(false);
 
     // Enable tracy and configure it
     $configurator->enableTracy(__DIR__ . '/../log');
