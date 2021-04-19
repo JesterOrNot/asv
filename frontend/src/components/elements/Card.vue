@@ -1,11 +1,11 @@
 <template>
-  <component :is="component" class="flex relative h-full">
-    <Image :src="img.src" :alt="img.alt" :class="imgClasses + img.class">
+  <component :is="component" class="flex relative">
+    <Image v-if="img" :src="img.src" :alt="img.alt" :class="imgClasses + img.class">
       <template #error>
         <slot name="imgError" />
       </template>
     </Image>
-    <div :class="textWrapperClasses">
+    <div :class="img ? textWrapperClasses : textWrapperNoImageClasses">
       <slot />
     </div>
   </component>
@@ -26,7 +26,6 @@ export default defineComponent({
   props: {
     img: {
       type: Object as PropType<Img>,
-      default: { src: "/" } as Img,
       // if img.alt isnt present, check is true because its optional
       //  same for img.class
       validator: (img: Img) =>
@@ -42,12 +41,16 @@ export default defineComponent({
     const imgClasses = "h-full"
     const textWrapperClasses =
       "bg-primary absolute h-full w-full opacity-0 hover:opacity-100 bg-opacity-75 p-6 flex flex-col justify-center transition duration-300 ease-in-out"
+    const textWrapperNoImageClasses = textWrapperClasses
+      .replace("opacity-0", "opacity-90")
+      .replace("bg-opacity-75", "")
 
     const err = ref(false)
 
     return {
       imgClasses,
       textWrapperClasses,
+      textWrapperNoImageClasses,
       component: attrs.to ? RouterLink : attrs.href ? "a" : "div",
       err,
     }

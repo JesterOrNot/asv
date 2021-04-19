@@ -16,24 +16,15 @@
       <subtitle class="mb-4">Náš team</subtitle>
       <div class="flex mb-8 flex-col md:flex-row items-center md:items-start">
         <card
-          :img="{
-            src: 'https://via.placeholder.com/300x300',
-            alt: 'Aleš Vobruba',
-            class: 'h-64 w-64',
-          }"
           textWrapperClass="cursor-pointer"
-          class="md:mr-8 mb-8 md:mb-0"
+          class="md:mr-8 mb-8 md:mb-0 w-64 h-64"
         >
           <card-title>Aleš Vobruba</card-title>
         </card>
 
         <card
-          :img="{
-            src: 'https://via.placeholder.com/300x300',
-            alt: 'Aleš Vobruba',
-            class: 'h-64 w-64',
-          }"
           textWrapperClass="cursor-pointer"
+          class="w-64 h-64"
         >
           <card-title>Pavel Menšík</card-title>
         </card>
