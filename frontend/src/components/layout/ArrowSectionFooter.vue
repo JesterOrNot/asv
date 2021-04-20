@@ -10,8 +10,8 @@
     >
       <slot />
     </a>
-    <a
-      :href="href"
+    <router-link
+      :to="href"
       class="animation duration-300 ease-in-out hover:text-black"
       :class="inverted ? 'hover:text-white' : 'hover:text-black'"
     >
@@ -29,7 +29,7 @@
           d="M16 17l-4 4m0 0l-4-4m4 4V3"
         ></path>
       </svg>
-    </a>
+    </router-link>
   </div>
 </template>
 
