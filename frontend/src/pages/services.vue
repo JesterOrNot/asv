@@ -23,7 +23,7 @@
         <card-subtitle>{{ getServiceDisplayText("asset_management") }}</card-subtitle>
       </div>
       <div
-        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mr-4 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
+        class="cursor-pointer w-full h-32 bg-primary mb-8 md:mb-0 bg-opacity-80 hover:bg-opacity-100 transition duration-300 ease-in-out flex items-center justify-center text-center"
       >
         <card-subtitle>{{ getServiceDisplayText("advisory") }}</card-subtitle>
       </div>

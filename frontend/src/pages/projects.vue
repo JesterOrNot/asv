@@ -18,10 +18,10 @@
         :img="{
           src: project.images[0],
           alt: project.name,
-          class: 'h-64 w-64 w-full',
+          class: ' h-48 w-full',
         }"
         textWrapperClass="cursor-pointer"
-        class="mb-8 w-full"
+        class="mb-8 w-full h-48"
       >
         <template #imgError>
           <no-project-image
