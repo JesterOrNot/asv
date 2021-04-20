@@ -14,7 +14,7 @@
             alt: project.name,
           }"
           :to="`/project/${project.slug}`"
-          class="w-64 mb-8"
+          class="w-64 h-48 mb-8"
         >
           <card-title>{{ project.name }}</card-title>
         </card>
