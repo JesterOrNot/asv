@@ -95,8 +95,6 @@ import FullscreenFetchError from "../components/global/FullscreenFetchError.vue"
 import FullscreenLoader from "../components/global/FullscreenLoader.vue"
 import { PageTitle } from "../components/typography"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
-import remark from "remark"
-import html from "remark-html"
 
 import "vue3-carousel/dist/carousel.css"
 import Image from "../components/global/Image.vue"
@@ -133,15 +131,12 @@ export default defineComponent({
       store.loaded = true
     }
 
-    const parseMd = (str: string) => remark().use(html, { sanitize: true }).processSync(str)
-
     fetchData()
 
     return {
       state,
       fetchData,
       getProjectTypeDisplayText,
-      parseMd,
     }
   },
 })
