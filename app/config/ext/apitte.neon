@@ -34,9 +34,4 @@ services:
 	middleware.methodOverride:
 		factory: Contributte\Middlewares\MethodOverrideMiddleware
 		tags: [middleware: [priority: 150]]
-	middleware.authenticator:
-		factory: App\Model\Api\Middleware\AuthenticationMiddleware(
-			App\Model\Api\Security\TokenAuthenticator()
-		)
-		tags: [middleware: [priority: 200]]
 	api.core.dispatcher: App\Model\Api\Dispatcher\JsonDispatcher

@@ -1,12 +1,25 @@
 <template>
-  <div class="_asv_spinner w-16 h-16 inline-block overflow-hidden bg-transparent">
-    <div class="_asv_spinner--inner relative w-full h-full">
-      <div
-        class="w-16 h-16 top-12 left-12 rounded-full box-content absolute border-4"
-        :class="loaderClass"
-      ></div>
-    </div>
-  </div>
+  <svg
+    class="animate-spin"
+    :class="colorClass"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      stroke-width="4"
+    ></circle>
+    <path
+      class="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+    ></path>
+  </svg>
 </template>
 
 <script lang="ts">
@@ -15,27 +28,7 @@ import { string } from "../../component-definitions"
 
 export default defineComponent({
   props: {
-    loaderClass: string("border-primary"),
+    colorClass: string("text-primary"),
   },
 })
 </script>
-
-<style scoped>
-@keyframes _asv_spinner {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-._asv_spinner--inner {
-  transform: translateZ(0) scale(0.75);
-  backface-visibility: hidden;
-  transform-origin: 0 0;
-}
-._asv_spinner--inner div {
-  border-top-color: transparent !important;
-  animation: _asv_spinner 1s ease-in-out infinite;
-}
-</style>

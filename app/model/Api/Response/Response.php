@@ -12,7 +12,7 @@ class Response
    * @param array $data
    * @return array
    */
-  public static function ok(array $data): array
+  public static function ok(array $data = [ 'message' => 'success' ]): array
   {
     return [
       'success' => true,

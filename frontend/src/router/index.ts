@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 import store from "../store"
+import { $http } from "../api"
 
 const routes: RouteRecordRaw[] = [
   {
@@ -27,6 +28,27 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../pages/index.vue"),
       },
     ],
+  },
+  {
+    path: "/admin/login",
+    component: () => import("../pages/admin/auth/login.vue"),
+  },
+  {
+    path: "/admin",
+    component: () => import("../pages/admin/index.vue"),
+    beforeEnter: async (to, from) => {
+      try {
+        const { data } = await $http.get("/user/@me")
+
+        if (!data.success) return "/admin/login"
+
+        store.user = data.data.user
+
+        return true
+      } catch {
+        return "/admin/login"
+      }
+    },
   },
 ]
 

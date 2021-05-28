@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Api\Facade;
 
@@ -6,7 +8,7 @@ use App\Domain\Api\Request\Project\CreateProjectReqDto;
 use App\Domain\Api\Response\ProjectResDto;
 use App\Model\Database\Entity\Project;
 use App\Model\Database\EntityManager;
-use Doctrine\ORM\EntityNotFoundException;
+use App\Model\Exception\Runtime\EntityNotFoundException;
 
 final class ProjectFacade
 {
@@ -35,8 +37,7 @@ final class ProjectFacade
     array $criteria = [],
     int $limit = 10,
     int $offset = 0
-  ): array
-  {
+  ): array {
     $projects = $this->em->getProjectRepository()->findBy($criteria, limit: $limit, offset: $offset);
     return ProjectResDto::fromMany($projects);
   }
@@ -48,7 +49,7 @@ final class ProjectFacade
    */
   public function findOne(int $id): ProjectResDto
   {
-    return $this->findOneBy([ 'id' => $id ]);
+    return $this->findOneBy(['id' => $id]);
   }
 
   /**
@@ -60,9 +61,26 @@ final class ProjectFacade
   public function findOneBy(array $criteria, ?array $orderBy = null): ProjectResDto
   {
     $project = $this->em->getProjectRepository()->findOneBy($criteria, $orderBy);
-    if (!$project) throw new EntityNotFoundException();
+    if (!$project) throw new EntityNotFoundException(404);
 
     return ProjectResDto::from($project);
+  }
+
+  /**
+   * @param string $identifier
+   * @return ProjectResDto
+   * @throws EntityNotFoundException
+   */
+  public function findOneByIdentifier(string $identifier): ProjectResDto
+  {
+    try {
+      // Querying by slug first as that is used in the frontend.
+      $project = $this->findOneBy(['slug' => $identifier]);
+    } catch (EntityNotFoundException) {
+      $project = $this->findOneBy(['id' => $identifier]);
+    }
+
+    return $project;
   }
 
   /**
@@ -71,12 +89,19 @@ final class ProjectFacade
    */
   public function create(CreateProjectReqDto $dto): Project
   {
-    $project = new Project($dto->name, $dto->type, $dto->description, $dto->address, $dto->slug, $dto->images, $dto->website);
+    $project = new Project(
+      $dto->name,
+      $dto->type,
+      $dto->description,
+      $dto->address,
+      $dto->slug,
+      $dto->images,
+      $dto->website
+    );
 
     $this->em->persist($project);
     $this->em->flush($project);
 
     return $project;
   }
-
 }

@@ -2,7 +2,6 @@ services:
   - App\Domain\Api\Facade\UserFacade
   - App\Domain\Api\Facade\ProjectFacade
   - App\Domain\Api\Facade\TeamFacade
-  - App\Model\Api\Security\TokenAuthenticator
   symfony.serializer.serializer:
     factory: Symfony\Component\Serializer\Serializer
     arguments:

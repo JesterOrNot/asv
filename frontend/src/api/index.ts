@@ -17,7 +17,7 @@ export interface ErrorResponse<TError extends BaseError = BaseError> {
 
 export const apiDomain = () =>
   process.env.NODE_ENV === "development"
-    ? "http://192.168.2.52:4000/api/v2"
+    ? "http://localhost:8000/api"
     : "https://asvgroup.herokuapp.com/api/v2"
 
 export const createAxios = () => {
@@ -30,6 +30,7 @@ export const createAxios = () => {
     headers: {
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
+    withCredentials: true
   })
 }
 

@@ -1,8 +1,8 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 use Nette\Http\Url;
-
-$databaseConfig = [];
 
 $databaseUrl = new Url(
   is_string(getenv('DATABASE_URL'))
@@ -16,14 +16,14 @@ $user = $databaseUrl->user;
 $password = $databaseUrl->password;
 $database = trim($databaseUrl->path, '/\\');
 
-$databaseConfig = [
-  'database' => array_merge($databaseConfig, [
+$parameters = [
+  'database' => [
     'host' => $host,
     'port' => $port,
     'user' => $user,
     'password' => $password,
     'dbname' => $database,
-  ]),
+  ],
 ];
 
-return [ "parameters" => $databaseConfig ];
+return ["parameters" => $parameters];

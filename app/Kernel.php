@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App;
 
@@ -23,12 +25,12 @@ class Kernel
       Compiler $compiler
     ): void {
       // Add env variables to config structure
-      $compiler->addConfig([ 'parameters' => $configurator->getEnvironmentParameters() ]);
+      $compiler->addConfig(['parameters' => $configurator->getEnvironmentParameters()]);
     };
 
     // According to NETTE_DEBUG env
     //$configurator->setEnvDebugMode();
-    $configurator->setDebugMode(false);
+    $configurator->setDebugMode(true);
 
     // Enable tracy and configure it
     $configurator->enableTracy(__DIR__ . '/../log');
@@ -51,5 +53,4 @@ class Kernel
 
     return $configurator;
   }
-
 }

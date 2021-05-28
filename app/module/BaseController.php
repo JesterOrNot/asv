@@ -4,9 +4,11 @@ namespace App\Module;
 
 use Apitte\Core\Annotation\Controller\Id;
 use Apitte\Core\Annotation\Controller\Path;
+use Apitte\Core\Http\ApiRequest;
 use Apitte\Core\UI\Controller\IController;
 use App\Model\Api\Response\BaseError;
 use App\Model\Api\Response\Response;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * @Path("/api")
@@ -15,6 +17,10 @@ use App\Model\Api\Response\Response;
 abstract class BaseController implements IController
 {
 
+  public function __construct(protected ApiRequest $request)
+  {
+  }
+
   /**
    * The success response formatter.
    * Implements the response-spec.
@@ -22,7 +28,8 @@ abstract class BaseController implements IController
    * @param array $data
    * @return array
    */
-  public function ok(array $data): array
+  #[Pure]
+  public function ok(array $data = [ 'message' => 'success' ]): array
   {
     return Response::ok($data);
   }
