@@ -5,10 +5,12 @@
   "author": "Filip Vottus <vottus@vott.us>",
   "license": "UNLICENSED",
   "workspaces": [
-    "frontend"
+    "frontend",
+    "admin"
   ],
   "private": true,
   "scripts": {
-    "frontend": "yarn workspace @asv/frontend"
+    "frontend": "yarn workspace @asv/frontend",
+    "admin": "yarn workspace @asv/admin"
   }
 }

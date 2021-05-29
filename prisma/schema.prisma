@@ -1,0 +1,75 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model AccessRecord {
+    id        String   @id @db.VarChar(255)
+    userId    String?  @map("user_id") @db.VarChar(255)
+    endpoint  String
+    ip        String
+    createdAt DateTime @map("created_at") @db.DateTime(0)
+    users     User?    @relation(fields: [userId], references: [id])
+
+    @@index([userId], name: "user_id")
+    @@map("access_records")
+}
+
+// The Doctrine migrations
+// New migrations will be made with Prisma, however
+// all Doctrine models annotated with @doctrine need to be kept in sync.
+// This model shouldn't be updated.
+model doctrine_migrations {
+    version     String   @id @db.VarChar(14)
+    executed_at DateTime @db.DateTime(0)
+
+    @@ignore
+}
+
+// @doctrine
+model Project {
+    id          String  @id @db.VarChar(255)
+    name        String
+    slug        String  @unique
+    website     String?
+    description String  @db.LongText
+    address     String? @db.LongText
+    types       String  @db.LongText
+    images      String  @db.LongText
+
+    @@map("projects")
+}
+
+// @doctrine
+model Team {
+    id       Int     @id @default(autoincrement())
+    fullName String  @unique @map("full_name")
+    position String
+    image    String?
+
+    @@map("teams")
+}
+
+model User {
+    id            String         @id @db.VarChar(255)
+    email         String         @unique
+    password      String
+    createdAt     DateTime       @map("created_at") @db.DateTime(0)
+    updatedAt     DateTime?      @map("updated_at") @db.DateTime(0)
+    accessRecords AccessRecord[]
+    sessions      Session[]
+
+    @@map("users")
+}
+
+model Session {
+    id     String @id @default(cuid())
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @map("user_id") @db.VarChar(255)
+
+    @@map("sessions")
+}
