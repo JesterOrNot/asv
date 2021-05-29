@@ -1,0 +1,19 @@
+{
+  "name": "@asv/admin",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@fasteerjs/exceptions": "^1.0.1",
+    "@fasteerjs/fasteer": "^3.1.1",
+    "@matherioneu/container": "^1.0.1-2",
+    "@prisma/client": "^2.23.0",
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.1.1",
+    "fluent-json-schema": "^3.0.0",
+    "prisma": "^2.23.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2"
+  }
+}
