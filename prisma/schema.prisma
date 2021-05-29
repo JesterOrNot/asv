@@ -45,7 +45,7 @@ model Project {
 }
 
 // @doctrine
-model Team {
+model TeamMember {
     id       Int     @id @default(autoincrement())
     fullName String  @unique @map("full_name")
     position String

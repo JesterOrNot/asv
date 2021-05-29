@@ -9,6 +9,14 @@ interface Login {
 
 const login = s
   .object()
-  .prop("body", s.object().prop("email", s.string()).prop("password", s.string().minLength(6)))
+  .prop(
+    "body",
+    s
+      .object()
+      .prop("email", s.string())
+      .prop("password", s.string().minLength(6))
+      .required(["email", "password"])
+  )
+  .required()
 
 export { Login, login }
