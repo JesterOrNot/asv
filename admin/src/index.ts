@@ -15,7 +15,7 @@ const opts = {
 }
 
 const app = createFasteer({
-  controllers: [path.join(__dirname, "http", "controllers", "*.{ts,js}")],
+  controllers: [path.join(__dirname, "http", "controllers", "**", "*.{ts,js}")],
   ...opts,
   logEmits: [],
   loggerOptions: {
@@ -38,8 +38,8 @@ app.fastify.register(fastifyMultipart)
 app.inject("db", db)
 
 registerContainerServices({
-  app: FasteerInstance,
-  logger: FasteerInstance["logger"],
+  app,
+  logger: app.logger,
 })
 
 const start = async () => {

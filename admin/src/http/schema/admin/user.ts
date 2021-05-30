@@ -17,6 +17,6 @@ interface DeleteUser extends UserId {}
 
 const createUser = s.object().prop("body", requiredUserSchema).required(["body"])
 
-const updateUser = stringId.prop("body", userSchema).required(["body", "params"])
+const updateUser = stringId.prop("body", userSchema).required(["body"])
 
 export { UserId, CreateUser, UpdateUser, DeleteUser, createUser, updateUser }

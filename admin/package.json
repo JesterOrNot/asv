@@ -19,5 +19,9 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/busboy": "^0.2.3"
+  },
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "prod": "node dist/index.js"
   }
 }

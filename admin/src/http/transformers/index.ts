@@ -15,7 +15,7 @@ type Transforms = {
 
 const transformUser = (user: User): Transforms["User"] => {
   for (const key of omit.user) {
-    user[key] = undefined
+    user[key] = undefined as any
   }
 
   return user

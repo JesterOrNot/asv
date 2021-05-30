@@ -1,5 +1,6 @@
 import fasteerExceptions from "@fasteerjs/exceptions"
-import { FasteerInstance } from "@fasteerjs/fasteer"
+import { FasteerInstance, hookLoggerToEmitter } from "@fasteerjs/fasteer"
+import { ErrorKind } from "../../utils/response"
 
 const exceptionHandler = (app: FasteerInstance) => {
   app.plugin(
@@ -9,20 +10,19 @@ const exceptionHandler = (app: FasteerInstance) => {
         // Unfortunetely, right now there is no better way to figure out
         // whether it's this error other than checking the message.
         if (err.message && /(auth|authorization) (prefix|header)/g.test(err.message)) {
-          return res.send({
-            success: false,
-            error: {
-              kind: "UNAUTHORIZED",
-              message: "Invalid auth header",
-            },
+          return res.err({
+            kind: "UNAUTHORIZED",
+            message: "Invalid auth header",
           })
         }
 
-        return res.send({
-          success: false,
-          error: {
-            kind: "UNAUTHORIZED",
-          },
+        // console.log(req.routerPath)
+        console.log({ err })
+        // console.log({ err })
+
+        return res.err({
+          kind: "INTERNAL",
+          message: "Internal Server Error",
         })
       },
     })

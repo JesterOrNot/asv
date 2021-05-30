@@ -36,19 +36,19 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/admin",
     component: () => import("../pages/admin/index.vue"),
-    beforeEnter: async (to, from) => {
-      try {
-        const { data } = await $http.get("/user/@me")
+    // beforeEnter: async (to, from) => {
+    //   try {
+    //     const { data } = await $http.get("/user/@me")
 
-        if (!data.success) return "/admin/login"
+    //     if (!data.success) return "/admin/login"
 
-        store.user = data.data.user
+    //     store.user = data.data.user
 
-        return true
-      } catch {
-        return "/admin/login"
-      }
-    },
+    //     return true
+    //   } catch {
+    //     return "/admin/login"
+    //   }
+    // },
   },
 ]
 

@@ -14,4 +14,5 @@ export default reactive({
   loaded: false,
   mobileMenuOpen: false,
   user: null as null | User,
+  title: "Administrace",
 })

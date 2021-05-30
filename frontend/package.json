@@ -4,7 +4,9 @@
   "version": "2.0.0-pre",
   "private": true,
   "dependencies": {
+    "@headlessui/vue": "^1.2.0",
     "axios": "^0.21.1",
+    "heroicons-vue3": "^1.0.1",
     "smooth-scrollbar": "^8.6.2",
     "vue": "^3.0.11",
     "vue-router": "^4.0.8",

@@ -1,9 +1,9 @@
 const ErrorKind = {
-  USER_INPUT: "user_input",
-  UNAUTHORIZED: "unauthorized",
-  FORBIDDEN: "forbidden",
-  INTERNAL: "internal",
-  VALIDATION: "validation",
+  USER_INPUT: "USER_INPUT",
+  UNAUTHORIZED: "UNAUTHORIZED",
+  FORBIDDEN: "FORBIDDEN",
+  INTERNAL: "INTERNAL",
+  VALIDATION: "VALIDATION",
 }
 
 type ErrorKindEnum = typeof ErrorKind
