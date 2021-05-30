@@ -1,4 +1,5 @@
-import { User, TeamMember, AccessRecord } from "@prisma/client"
+import { User, TeamMember, AccessRecord, Project } from "@prisma/client"
+import { unserialize as unserializePhp } from "php-serialize"
 
 const omit = {
   user: ["password"] as (keyof User)[],
@@ -8,6 +9,7 @@ const omit = {
 type Transforms = {
   User: Omit<User, "password">
   TeamMember: TeamMember
+  Project: Omit<Project, "images" | "types"> & { images: string[]; types: string[] }
   AccessRecord: AccessRecord
 }
 
@@ -27,4 +29,20 @@ const transformTeamMember = (teamMember: TeamMember): Transforms["TeamMember"] =
 const transformAccessRecord = (accessRecord: AccessRecord): Transforms["AccessRecord"] =>
   accessRecord
 
-export { Transforms, omit, transformUser, transformTeamMember, transformAccessRecord }
+const transformProject = (project: Project): Transforms["Project"] => {
+  return {
+    ...project,
+    // Stupid PHP serialization...
+    images: unserializePhp(project.images),
+    types: project.types.split(","),
+  }
+}
+
+export {
+  Transforms,
+  omit,
+  transformUser,
+  transformTeamMember,
+  transformAccessRecord,
+  transformProject,
+}

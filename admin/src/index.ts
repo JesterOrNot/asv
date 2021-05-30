@@ -3,6 +3,7 @@ import { registerContainerServices } from "@matherioneu/container"
 import { PrismaClient } from "@prisma/client"
 import { greenBright, bold } from "chalk"
 import path from "path"
+import fastifyMultipart from "fastify-multipart"
 import { dev } from "./env"
 import lifecycle from "./http/lifecycle"
 
@@ -31,6 +32,8 @@ const app = createFasteer({
 })
 
 app.plugin(lifecycle)
+
+app.fastify.register(fastifyMultipart)
 
 app.inject("db", db)
 

@@ -6,7 +6,9 @@ const AccessController: HttpController = async (app, { db }) => {
     res.ok({
       records: (
         await db.accessRecord.findMany({
-          where: await req.guard.user(),
+          where: {
+            user: await req.guard.user(),
+          },
         })
       ).map(transformAccessRecord),
     })

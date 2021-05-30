@@ -44,7 +44,7 @@ const TeamController: HttpController = async (app, { db }) => {
     })
 
     res.ok({
-      member: transformTeamMember(updatedMember),
+      member: transformTeamMember(member),
       updatedMember: transformTeamMember(updatedMember),
     })
   })

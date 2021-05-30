@@ -8,12 +8,16 @@
     "@fasteerjs/fasteer": "^3.1.1",
     "@matherioneu/container": "^1.0.1-2",
     "@prisma/client": "^2.23.0",
+    "basic-ftp": "^4.6.6",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.1.1",
+    "fastify-multipart": "^4.0.6",
     "fluent-json-schema": "^3.0.0",
+    "php-serialize": "^4.0.2",
     "prisma": "^2.23.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2"
+    "@types/bcryptjs": "^2.4.2",
+    "@types/busboy": "^0.2.3"
   }
 }

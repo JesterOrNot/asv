@@ -13,7 +13,7 @@ model AccessRecord {
     endpoint  String
     ip        String
     createdAt DateTime @map("created_at") @db.DateTime(0)
-    users     User?    @relation(fields: [userId], references: [id])
+    user      User?    @relation(fields: [userId], references: [id])
 
     @@index([userId], name: "user_id")
     @@map("access_records")
